@@ -1,0 +1,41 @@
+#{extends 'crud.html' /}
+
+#{set title:messages.get('crud.blank.title', type.modelName) /}
+
+
+<div id="crudBlank" class="${type.name}">
+
+    <h2 id="crudBlankTitle">&{'crud.blank.title', type.modelName}</h2>
+
+    <div class="objectForm">
+    #{form action:@create(), enctype:'multipart/form-data'}
+        #{crud.form}
+            #{crud.custom 'CIV_NIVEAUDROIT'}
+                <label for="CIV_NIVEAUDROIT">Droits administratifs</label>
+                <select name="${filedName}" class="form-control">
+                    <option value="0">0 - Civil</option>
+                    <option value="1">1 - Admin</option>
+                    <option value="2">3 - Maitre-suprême</option>
+                </select>
+            #{/crud.custom}
+            #{crud.custom 'CIV_MDP'}
+                <label for="CIV_MDP">Mot de passe</label>
+                <input type="password" name="${filedName}">
+            #{/crud.custom}
+
+        #{/crud.form}
+        <p class="crudButtons">
+            <input type="submit" name="_save" value="&{'crud.save', type.modelName}"/>
+            <input type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}"/>
+            <input type="submit" name="_saveAndAddAnother" value="&{'crud.saveAndAddAnother', type.modelName}"/>
+        </p>
+    #{/form}
+    </div>
+
+</div>
+
+<script>
+    $(()=>{
+        $("input").not('input[type=submit]').addClass("form-control")
+    });
+</script>
