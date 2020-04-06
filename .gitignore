@@ -16,3 +16,6 @@ server.pid
 .cache
 conf/application.conf
 .idea/
+*.iml
+*.ipr
+*.iws
