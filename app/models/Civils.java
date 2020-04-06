@@ -6,9 +6,11 @@ import javax.persistence.*;
 import play.db.jpa.*;
 
 @Entity
-public class Civils extends Model {
+public class Civils extends GenericModel {
 
+    @Id
     public String id;
+    public String mdp;
     public String id_super;
     public int id_admin;
     public String nom;
@@ -23,7 +25,6 @@ public class Civils extends Model {
     public Date dateMort;
     public String nation;
     public Date dateMaj;
-    public String mdp;
 
 
     public Civils(String id,
@@ -58,5 +59,9 @@ public class Civils extends Model {
         this.nation = nation;
         this.dateMaj = dateMaj;
         this.mdp = mdp;
+    }
+
+    public static Civils connect(String id, String mdp) {
+        return find("byIdAndMdp", id, mdp).first();
     }
 }
