@@ -14,16 +14,19 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lesVengeurs.iml" filepath="$PROJECT_DIR$/lesVengeurs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lesvengeursassemblage.iml" filepath="$PROJECT_DIR$/.idea/modules/lesvengeursassemblage.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/tmp/classes" />
+  </component>
+  <component name="ScalaCompilerConfiguration">
+    <profile name="sbt 1" modules="lesvengeursassemblage" />
   </component>
   <component name="ScalaSbtSettings">
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/.idea/modules" />
         <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </SbtProjectSettings>
@@ -31,5 +34,25 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="sbt: org.scala-lang:scala-library:2.12.7:jar" type="Scala">
+      <properties>
+        <compiler-classpath>
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/jline.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-compiler.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-library.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-reflect.jar" />
+          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-xml_2.12.jar" />
+        </compiler-classpath>
+      </properties>
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-library.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
 </project>

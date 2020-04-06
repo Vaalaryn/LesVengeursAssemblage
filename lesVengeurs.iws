@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="353e7f9b-458e-40cd-a8af-dc61b8196fc1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/dependencies.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/dependencies.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/messages" beforeDir="false" afterPath="$PROJECT_DIR$/conf/messages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/index.scala.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/main.scala.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesVengeurs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesVengeurs.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/lesVengeurs.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lesVengeurs.iws" beforeDir="false" afterPath="$PROJECT_DIR$/lesVengeurs.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/build.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project/build.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/plugins.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/IntegrationTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +33,11 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="SBT">
@@ -76,7 +86,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="play.paths.configuration" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -86,15 +96,18 @@
   <component name="SbtLocalSettings">
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4758476104363" />
+        <entry key="$PROJECT_DIR$/.idea/modules" value="4758564448867" />
+        <entry key="$PROJECT_DIR$/.idea/modules/build.sbt" value="799381594" />
+        <entry key="$PROJECT_DIR$/.idea/modules/project/build.properties" value="934637055" />
+        <entry key="$PROJECT_DIR$/.idea/modules/project/plugins.sbt" value="567177367" />
         <entry key="$PROJECT_DIR$/build.sbt" value="3010343355" />
-        <entry key="$PROJECT_DIR$/project/build.properties" value="934637055" />
+        <entry key="$PROJECT_DIR$/project/build.properties" value="1396028727" />
         <entry key="$PROJECT_DIR$/project/plugins.sbt" value="567177367" />
       </map>
     </option>
     <option name="projectSyncType">
       <map>
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/.idea/modules" value="RE_IMPORT" />
       </map>
     </option>
   </component>
@@ -130,7 +143,11 @@
       <workItem from="1586161061722" duration="4000" />
       <workItem from="1586161239993" duration="36000" />
       <workItem from="1586161290725" duration="16368000" />
-      <workItem from="1586181141323" duration="5308000" />
+      <workItem from="1586181141323" duration="6166000" />
+      <workItem from="1586187338163" duration="15000" />
+      <workItem from="1586187393013" duration="783000" />
+      <workItem from="1586188193415" duration="364000" />
+      <workItem from="1586188573625" duration="117000" />
     </task>
     <servers />
   </component>
@@ -154,26 +171,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="261" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586160270425" />
-    <state x="576" y="213" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586177704801">
+    <state x="576" y="213" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1586188149655">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="576" y="213" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586177704801" />
+    <state x="576" y="213" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586188149655" />
     <state x="808" y="410" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586161476045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="808" y="410" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586161476045" />
-    <state x="1103" y="285" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1586159839007">
+    <state x="1103" y="285" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1586188480966">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="285" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586159839007" />
-    <state x="673" y="358" key="FileChooserDialogImpl" timestamp="1586161029015">
+    <state x="1103" y="285" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586188480966" />
+    <state x="826" y="316" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1586188383691">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="673" y="358" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586161029015" />
-    <state x="576" y="136" key="SettingsEditor" timestamp="1586181459294">
+    <state x="826" y="316" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586188383691" />
+    <state x="843" y="277" key="DetectedRootsChooserDialog" timestamp="1586188437099">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="576" y="136" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586181459294" />
+    <state x="843" y="277" key="DetectedRootsChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586188437099" />
+    <state x="673" y="358" key="FileChooserDialogImpl" timestamp="1586188624409">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="673" y="358" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586188624409" />
+    <state x="576" y="136" key="SettingsEditor" timestamp="1586188688830">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="576" y="136" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586188688830" />
     <state x="342" y="141" key="new project wizard" timestamp="1586161029851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
