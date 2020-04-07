@@ -11,12 +11,12 @@ public class Ajoutgens extends Controller {
 
     public static void index() {
         try {
-            new models.Civil("CI-T001996F-7I5H4W",0,"Jean","Civil","h","06667634","10 rue de la Motte","Raccourcis-Ville","66660","jean.c@gouv.fr",null,null,"France",null,"toor").save();
+            new models.SuperH("SHK001001HNKDEFR","SuperMan","Kryptonite",'h',"toor").save();
+            new models.SuperH("SVK001001HBEAPGQ","Général Zod","Kryptonite verte",'v',"toor").save();
         }catch (Exception e){
-            System.out.println("DEBUG : ERREUR ->");
+            System.out.println("Erreur Création Super -> ");
             System.out.println(e);
         }
-        new models.SuperH("SH-T001245H-LQ65XF","SuperMan","Cryptonite",'g',"toor");
         render();
     }
 }
