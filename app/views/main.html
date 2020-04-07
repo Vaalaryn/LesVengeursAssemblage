@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">AV</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,8 +37,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Déclarer un incident</a>
                     <a class="dropdown-item" href="#">Suivre un incident</a>
-                    *{admin}*
-                    <a class="dropdown-item" href="#">Voir incident</a>
+                #{if admin >= 1}
+                    <a class="dropdown-item" href="#">Gérer incident</a>
+                #{/if}
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -46,18 +47,25 @@
                    aria-haspopup="true" aria-expanded="false">
                     Missions
                 </a>
+            #{if admin >= 1}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Gerer missions</a>
-                    *{Hero}*
-                    <a class="dropdown-item" href="#">Missions assigné</a>
-                    <a class="dropdown-item" href="#">Historique missions</a>
+                    #{if admin == 2}
+                        <a class="dropdown-item" href="#">Missions assigné</a>
+                        <a class="dropdown-item" href="#">Historique missions</a>
+                    #{/if}
                 </div>
+            #{/if}
             </li>
+        #{if admin >= 3}
             <li class="nav-item active">
                 <a class="nav-link" href="#">Administration</a>
             </li>
+        #{/if}
+        </ul>
+        <ul class="navbar-nav ml-auto my-2 my-lg-">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Profil</a>
+                <a class="nav-link" href="#">${username}</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/logout">Déconnexion</a>
