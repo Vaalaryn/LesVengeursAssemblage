@@ -4,14 +4,14 @@ import java.util.*;
 import javax.persistence.*;
 
 import play.db.jpa.*;
+import play.libs.Codec;
 
 @Entity
-public class Civils extends GenericModel {
+public class Civil extends GenericModel {
 
     @Id
     public String id;
     public String mdp;
-    public String id_super;
     public int id_admin;
     public String nom;
     public String prenom;
@@ -27,8 +27,7 @@ public class Civils extends GenericModel {
     public Date dateMaj;
 
 
-    public Civils(String id,
-                  String id_super,
+    public Civil(String id,
                   int id_admin,
                   String nom,
                   String prenom,
@@ -45,7 +44,6 @@ public class Civils extends GenericModel {
                   String mdp) {
         this.id = id;
         this.id_admin = id_admin;
-        this.id_super = id_super;
         this.nom = nom;
         this.prenom = prenom;
         this.civilite = civilite;
@@ -58,10 +56,10 @@ public class Civils extends GenericModel {
         this.dateMort = dateMort;
         this.nation = nation;
         this.dateMaj = dateMaj;
-        this.mdp = mdp;
+        this.mdp = Codec.hexMD5(mdp);
     }
 
-    public static Civils connect(String id, String mdp) {
-        return find("byIdAndMdp", id, mdp).first();
+    public static Civil connect(String id, String mdp) {
+        return find("byIdAndMdp", id, Codec.hexMD5(mdp)).first();
     }
 }
