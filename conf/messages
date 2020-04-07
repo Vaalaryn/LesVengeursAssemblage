@@ -11,6 +11,7 @@ CIV_MAIL=Mail
 CIV_DATENAISSANCE=Date de naissance
 CIV_DATEMORT=Date de deces
 CIV_NATION=Nation
+ID_ADMIN= Droits administratifs
 CIV_MDP= Mot de passe
 crud.help.required = Obligatoire.
 crud.help.dateformat = Veuillez saisir une date au format yyyy-mm-dd

@@ -1,9 +1,9 @@
 package models;
 
 import play.db.jpa.GenericModel;
-import play.db.jpa.Model;
-
 import javax.persistence.*;
+
+
 
 @Entity
 @Table(name = "t_admin")

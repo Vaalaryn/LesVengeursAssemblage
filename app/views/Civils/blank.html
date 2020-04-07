@@ -1,8 +1,10 @@
-#{extends 'crud.html' /}
-
+#{extends 'CRUD/layout.html' /}
 #{set title:messages.get('crud.blank.title', type.modelName) /}
-
-
+#{set 'moreStyles'}
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/crud.css'}"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+#{/set}
 <div id="crudBlank" class="${type.name}">
 
     <h2 id="crudBlankTitle">&{'crud.blank.title', type.modelName}</h2>
@@ -10,18 +12,19 @@
     <div class="objectForm">
     #{form action:@create(), enctype:'multipart/form-data'}
         #{crud.form}
-            #{crud.custom 'CIV_NIVEAUDROIT'}
-                <label for="CIV_NIVEAUDROIT">Droits administratifs</label>
-                <select name="${filedName}" class="form-control">
-                    <option value="0">0 - Civil</option>
-                    <option value="1">1 - Admin</option>
-                    <option value="2">3 - Maitre-suprême</option>
+            #{crud.custom 'ID_ADMIN'}
+                <label for="ID_ADMIN">Droits administratifs</label>
+                <select name="${fieldName}" class="form-control">
+                    <option value="1">1 - Civil</option>
+                    <option value="2">2 - Admin</option>
+                    <option value="3">3 - Maitre-suprême</option>
                 </select>
             #{/crud.custom}
             #{crud.custom 'CIV_MDP'}
-                <label for="CIV_MDP">Mot de passe</label>
-                <input type="password" name="${filedName}">
+                <label for="CIV_MDP">Mot de passe </label>
+                <input type="password" name="${fieldName}">
             #{/crud.custom}
+
 
         #{/crud.form}
         <p class="crudButtons">
@@ -33,9 +36,8 @@
     </div>
 
 </div>
-
 <script>
-    $(()=>{
-        $("input").not('input[type=submit]').addClass("form-control")
+    $(() => {
+        $("input").not("input[type=submit]").not("input[type=radio]").addClass("form-control");
     });
 </script>

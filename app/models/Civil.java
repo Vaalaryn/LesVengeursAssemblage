@@ -1,13 +1,13 @@
 package models;
 
 import controllers.CRUD;
-import net.sf.oval.constraint.Length;
-import net.sf.oval.constraint.MaxLength;
-import play.data.validation.Required;
-import play.db.jpa.GenericModel;
-import play.db.jpa.Model;
 
 import javax.persistence.*;
+
+import play.data.validation.Required;
+import play.db.jpa.GenericModel;
+
+
 import java.util.Date;
 import java.util.Random;
 
@@ -15,8 +15,9 @@ import java.util.Random;
 @Table(name = "t_civils")
 public class Civil extends GenericModel {
     public Civil() {
-
         ID_CIVIL = generateID();
+        CIV_DATECRE = new Date();
+        CIV_DATEMAJ = new Date();
     }
 
     public String generateID() {
@@ -34,11 +35,14 @@ public class Civil extends GenericModel {
         return generatedString;
     }
 
+
     @Id
     @CRUD.Hidden
     public String ID_CIVIL;
-    public int CIV_NIVEAUDROIT;
 
+    public int ID_ADMIN;
+
+    public String CIV_ADRESSE;
 
     public String CIV_NOM;
 
@@ -46,6 +50,7 @@ public class Civil extends GenericModel {
 
 
     public String CIV_CIVILITE;
+
     public String CIV_TEL;
 
     public String CIV_VILLE;
@@ -54,8 +59,11 @@ public class Civil extends GenericModel {
 
     public String CIV_MAIL;
 
+
+    public String CIV_MDP;
+
     public Date CIV_DATENAISSANCE;
-    @CRUD.Hidden
+
     public Date CIV_DATEMORT;
 
     public String CIV_NATION;
@@ -63,6 +71,6 @@ public class Civil extends GenericModel {
     public Date CIV_DATECRE;
     @CRUD.Hidden
     public Date CIV_DATEMAJ;
-    public String CIV_MDP;
+
 
 }

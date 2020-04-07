@@ -17,7 +17,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lesvengeursassemblage.iml" filepath="$PROJECT_DIR$/.idea/modules/lesvengeursassemblage.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/tmp/classes" />
   </component>
   <component name="ScalaCompilerConfiguration">
@@ -36,23 +36,13 @@
     <mapping directory="" vcs="Git" />
   </component>
   <component name="libraryTable">
-    <library name="sbt: org.scala-lang:scala-library:2.12.7:jar" type="Scala">
-      <properties>
-        <compiler-classpath>
-          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/jline.jar" />
-          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-compiler.jar" />
-          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-library.jar" />
-          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-reflect.jar" />
-          <root url="file://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-xml_2.12.jar" />
-        </compiler-classpath>
-      </properties>
+    <library name="Play dependencies">
       <CLASSES>
-        <root url="jar://$USER_HOME$/.sbt/boot/scala-2.12.7/lib/scala-library.jar!/" />
+        <root url="file://C:/Program Files (x86)/play-1.5.3/framework/lib" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES>
-        <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.7-sources.jar!/" />
-      </SOURCES>
+      <SOURCES />
+      <jarDirectory url="file://C:/Program Files (x86)/play-1.5.3/framework/lib" recursive="false" />
     </library>
   </component>
 </project>

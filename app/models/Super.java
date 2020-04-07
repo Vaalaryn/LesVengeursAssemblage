@@ -1,12 +1,8 @@
 package models;
 
 import controllers.CRUD;
-import org.hibernate.annotations.GenericGenerator;
 import play.db.jpa.GenericModel;
-import play.db.jpa.Model;
-
 import javax.persistence.*;
-import java.nio.charset.Charset;
 import java.util.Random;
 
 @Entity
