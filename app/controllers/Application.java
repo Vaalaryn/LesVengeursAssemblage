@@ -6,7 +6,6 @@ import play.mvc.*;
 import java.util.*;
 
 import models.*;
-
 public class Application extends ConnectionController {
 
     public static void index() {
