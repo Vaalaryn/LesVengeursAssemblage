@@ -4,7 +4,7 @@ import play.mvc.Controller;
 
 import java.util.Date;
 
-public class FakeMissions {
+public class FakeMissions extends Controller{
     public static void index() {
         try {
             new models.NatureMission("sauvetage",null).save();
