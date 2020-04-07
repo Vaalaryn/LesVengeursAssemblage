@@ -8,12 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Administration extends Controller {
+public class GestionCivil extends Controller {
 
     public static void Create(){
         render();
     }
-    public static void Save(@Valid Civil civil){
+    public static void Save(@Valid models.Civil civil){
         if (validation.hasErrors()){
             params.flash();
             validation.keep();
@@ -23,20 +23,20 @@ public class Administration extends Controller {
         List();
     }
     public static void List(){
-        render(Civil.all());
+        render(models.Civil.all());
     }
     public static void Show(String id){
-        Civil model = Civil.em().find(Civil.class,id);
+        models.Civil model = models.Civil.em().find(models.Civil.class,id);
 
         render(model);
     }
-    public  static void modify(Civil civil){
+    public  static void modify(models.Civil civil){
         if (validation.hasErrors()){
             params.flash();
             validation.keep();
             Show(civil.ID_CIVIL);
         }
-        Civil civilToModify = Civil.em().find(Civil.class, civil.ID_CIVIL);
+        models.Civil civilToModify = models.Civil.em().find(models.Civil.class, civil.ID_CIVIL);
         //Réucp des anciennes infos
         civil.CIV_MDP = civilToModify.CIV_MDP;
         civil.CIV_DATECRE = civilToModify.CIV_DATECRE;

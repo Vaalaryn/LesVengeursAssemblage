@@ -28,23 +28,25 @@
     </div>
 </div>
 <script>
-    $(document).ready( function () {
+    $(document).ready(function () {
         let table = $('#table').DataTable();
-
-        $("#table tbody").on('click','tr',function(){
-            if ( $(this).hasClass('selected') ) {
+        let idSelected;
+        $("#table tbody").on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $("#btnCivil").attr("class","btn btn-primary float-right mb-3 disabled");
+                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3 disabled");
+                idSelected = null;
 
-            }
-            else {
+            } else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $("#btnCivil").attr("class","btn btn-primary float-right mb-3");
-                let id = $(this).children().first().text();
-
-                document.location.href = "/administration/civil/show?id=" + id;
+                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3");
+                idSelected = $(this).children().first().text();
             }
         });
-    } );
+        $("#btnCivil").click(function () {
+            if (idSelected != null)
+                document.location.href = "/administration/civil/show?id=" + idSelected;
+        })
+    });
 </script>

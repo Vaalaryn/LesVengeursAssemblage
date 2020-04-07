@@ -7,12 +7,12 @@ GET     /                                       Application.index2
 
 # Administration page
 ## Civils
-GET /administration/civil/nouveau               Administration.create
-POST /administration/civil/nouveau              Administration.save
+GET /administration/civil/nouveau               GestionCivil.create
+POST /administration/civil/nouveau              GestionCivil.save
 
-GET /administration/civil/list                 Administration.list
-GET /administration/civil/show                  Administration.show
-POST /administration/civil/modify               Administration.modify
+GET /administration/civil/list                  GestionCivil.list
+GET /administration/civil/show                  GestionCivil.show
+POST /administration/civil/modify               GestionCivil.modify
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
