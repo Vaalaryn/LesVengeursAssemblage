@@ -4,7 +4,6 @@
 
 # Home page
 GET     /                           Application.index
-GET     /test                       Application.index
 *       /                           module:secure
 
 # Ignore favicon requests
