@@ -1,7 +1,5 @@
 package models;
 
-import controllers.CRUD;
-
 import javax.persistence.*;
 
 import play.data.validation.Required;
@@ -15,7 +13,8 @@ import java.util.Random;
 @Table(name = "t_civils")
 public class Civil extends GenericModel {
     public Civil() {
-        ID_CIVIL = generateID();
+        if(ID_CIVIL == null)
+            ID_CIVIL = generateID();
         CIV_DATECRE = new Date();
         CIV_DATEMAJ = new Date();
     }
@@ -37,39 +36,33 @@ public class Civil extends GenericModel {
 
 
     @Id
-    @CRUD.Hidden
     public String ID_CIVIL;
-
+    @Required
     public int ID_ADMIN;
-
+    @Required
     public String CIV_ADRESSE;
-
+    @Required
     public String CIV_NOM;
-
+    @Required
     public String CIV_PRENOM;
-
-
+    @Required
     public String CIV_CIVILITE;
-
+    @Required
     public String CIV_TEL;
-
+    @Required
     public String CIV_VILLE;
-
+    @Required
     public String CIV_CP;
-
+    @Required
     public String CIV_MAIL;
-
-
+    @Required
     public String CIV_MDP;
-
+    @Required
     public Date CIV_DATENAISSANCE;
-
     public Date CIV_DATEMORT;
-
+    @Required
     public String CIV_NATION;
-    @CRUD.Hidden
     public Date CIV_DATECRE;
-    @CRUD.Hidden
     public Date CIV_DATEMAJ;
 
 

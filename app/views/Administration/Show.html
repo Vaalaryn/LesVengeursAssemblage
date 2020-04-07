@@ -1,0 +1,103 @@
+#{extends 'main.html'/}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>Modifier un civil [${model.ID_CIVIL}]</h3>
+        #{form @controllers.Administration.Modify(), method:'POST'}
+            <input type="text" name="civil.ID_CIVIL" value="${model.ID_CIVIL}" hidden>
+            <div class="form-group">
+                <label for="CIV_NOM">Nom</label>
+                <input type="text" id="CIV_NOM" class="form-control" name="civil.CIV_NOM" value="${model.CIV_NOM}">
+                <span class="error">#{error 'civil.CIV_NOM'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_PRENOM">Prénom</label>
+                <input type="text" id="CIV_PRENOM" class="form-control" name="civil.CIV_PRENOM" value="${model.CIV_PRENOM}">
+                <span class="error">#{error 'civil.CIV_PRENOM'/}</span>
+            </div>
+            <div class="form-group">
+                <label>Civilité</label>
+                <div class="row">
+                    <div class="form-check col-2 ml-3">
+                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEH"
+                               value="H" ${model.CIV_CIVILITE == "H" ? "checked" : ""}>
+                        <label class="form-check-label" for="CIV_CIVILITEH">
+                            Homme
+                        </label>
+                    </div>
+                    <div class="form-check col-2 ml-3">
+                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEF"
+                               value="F" ${model.CIV_CIVILITE == "F" ? "checked" : ""}>
+                        <label class="form-check-label" for="CIV_CIVILITEF">
+                            Femme
+                        </label>
+                    </div>
+                    <div class="form-check col-2 ml-3">
+                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEA"
+                               value="A" ${model.CIV_CIVILITE == "A" ? "checked" : ""}>
+                        <label class="form-check-label" for="CIV_CIVILITEA">
+                            Autre
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="CIV_MAIL">Adresse e-mail</label>
+                <input type="email" id="CIV_MAIL" class="form-control" name="civil.CIV_MAIL" value="${model.CIV_MAIL}">
+                <span class="error">#{error 'civil.CIV_MAIL'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_TEL">Téléphone</label>
+                <input type="tel" id="CIV_TEL" class="form-control" name="civil.CIV_TEL" value="${model.CIV_TEL}">
+                <span class="error">#{error 'civil.CIV_TEL'/}</span>
+            </div>
+
+            <div class="form-group">
+                <label for="ID_ADMIN">Droits administratifs</label>
+                <select name="civil.ID_ADMIN" id="ID_ADMIN" class="form-control">
+                    <option value="1" ${model.ID_ADMIN == 1 ? "selected" : ""}>1 - Civil</option>
+                    <option value="2" class="text-primary" ${model.ID_ADMIN == 2 ? "selected" : ""}>2 - Administrateur</option>
+                    <option value="3" class="text-danger" ${model.ID_ADMIN == 3 ? "selected" : ""}>3 - Maître suprême</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="CIV_DATENAISSANCE">Date de naissance</label>
+                <input type="date" id="CIV_DATENAISSANCE" class="form-control" name="civil.CIV_DATENAISSANCE"
+                       value="${model.CIV_DATENAISSANCE != null ?model.CIV_DATENAISSANCE.toString().substring(0,10) : null}">
+                <span class="error">#{error 'civil.CIV_DATENAISSANCE'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="" CIV_ADRESSE>Adresse</label>
+                <input type="text" id="CIV_ADRESSE" class="form-control" name="civil.CIV_ADRESSE" value="${model.CIV_ADRESSE}">
+                <span class="error">#{error 'civil.CIV_ADRESSE'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_CP">Code postal</label>
+                <input type="text" id="CIV_CP" class="form-control" name="civil.CIV_CP" value="${model.CIV_CP}">
+                <span class="error">#{error 'civil.CIV_CP'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_VILLE">Ville</label>
+                <input type="text" id="CIV_VILLE" class="form-control" name="civil.CIV_VILLE" value="${model.CIV_VILLE}">
+                <span class="error">#{error 'civil.CIV_VILLE'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_NATION">Nation</label>
+                <input type="text" id="CIV_NATION" class="form-control" name="civil.CIV_NATION" value="${model.CIV_NATION}">
+                <span class="error">#{error 'civil.CIV_NATION'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="CIV_DATEMORT">Date de décès</label>
+                <input type="date" id="CIV_DATEMORT" class="form-control" name="civil.CIV_DATEMORT"
+                       value="${model.CIV_DATEMORT != null ? model.CIV_DATEMORT.toString().substring(0,10) : null}">
+                <span class="error">#{error 'civil.CIV_DATEMORT'/}</span>
+            </div>
+            <input type="submit" value="Confirmer" class="btn btn-outline-success float-right">
+
+        #{/form}
+        #{a @controllers.Administration.List()}Retour à la liste#{/a}
+        </div>
+    </div>
+
+</div>

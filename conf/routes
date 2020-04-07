@@ -5,6 +5,14 @@
 # Home page
 GET     /                                       Application.index2
 
+# Administration page
+## Civils
+GET /administration/civil/nouveau               Administration.create
+POST /administration/civil/nouveau              Administration.save
+
+GET /administration/civil/list                 Administration.list
+GET /administration/civil/show                  Administration.show
+POST /administration/civil/modify               Administration.modify
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

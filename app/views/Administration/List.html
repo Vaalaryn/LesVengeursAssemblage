@@ -1,0 +1,50 @@
+#{extends 'main.html'/}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnCivil">Consulter</span>
+            <table id="table" class="display">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Droits</th>
+                </tr>
+                </thead>
+                <tbody>
+                #{list items:models.Civil.findAll(), as: 'civil'}
+                <tr>
+                    <td>${civil.ID_CIVIL}</td>
+                    <td>${civil.CIV_NOM}</td>
+                    <td>${civil.CIV_PRENOM}</td>
+                    <td>${civil.ID_ADMIN}</td>
+                </tr>
+                #{/list}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready( function () {
+        let table = $('#table').DataTable();
+
+        $("#table tbody").on('click','tr',function(){
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+                $("#btnCivil").attr("class","btn btn-primary float-right mb-3 disabled");
+
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $("#btnCivil").attr("class","btn btn-primary float-right mb-3");
+                let id = $(this).children().first().text();
+
+                document.location.href = "/administration/civil/show?id=" + id;
+            }
+        });
+    } );
+</script>
