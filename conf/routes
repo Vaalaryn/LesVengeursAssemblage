@@ -6,6 +6,8 @@
 GET     /                           Application.index
 GET     /test                       Application.index
 *       /                           module:secure
+#Ajout gens
+GET    /ajout                       Ajoutgens.index
 
 # Ignore favicon requests
 GET     /favicon.ico                404
