@@ -8,7 +8,8 @@ GET     /profil/{id}               Application.profile
 *       /                           module:secure
 #Ajout gens
 GET    /ajout                       Ajoutgens.index
-
+#Fake Missions db.save
+GET    /getmissions                 FakeMissions.index
 # Ignore favicon requests
 GET     /favicon.ico                404
 
