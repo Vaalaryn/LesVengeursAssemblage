@@ -19,6 +19,7 @@ public class Ajoutgens extends Controller {
         }
         try {
             new models.Civil("CIT001245HEFDCHQ",0,"Bartholomew Olsen","James","h","2605963358","The Daily Planet","Metropolis","62960","j.olsen@thedailyplanet.com",null,null,"USA", new Date(),"toor").save();
+            new models.Civil("CIT001245FYPCYHM",1,"Joanne Lane","Lois","f","2605646358","The Daily Planet","Metropolis","62960","l.lane@thedailyplanet.com",null,null,"USA", new Date(),"toor").save();
         }catch (Exception eCivil){
             System.out.println("Erreur Création Civil -> ");
             System.out.println(eCivil);
