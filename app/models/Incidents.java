@@ -7,6 +7,8 @@ import play.db.jpa.*;
 
 @Entity
 public class Incidents extends Model {
+
+    @Id
     public int id_incident;
     public int id_mission;
     public String civil;
