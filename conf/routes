@@ -9,6 +9,10 @@ GET     /profil/{id_profil}         Application.profil
 #Ajout gens
 GET    /ajout                       Ajoutgens.index
 
+# Incident
+GET /incident/new                   Incidents.index
+POST /incident/new                  Incidents.getData
+
 # Administration page
 ## Civils
 GET /administration/civil/nouveau               GestionCivil.create

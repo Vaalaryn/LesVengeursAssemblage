@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Incidents</title>
-</head>
-<body>
+#{extends 'main.html' /}
+#{set title: "Déclaration d'incident" /}
 <h1>Déclaration d'incidents</h1>
-
-<p>Date de l'incident : <input type="date"/></p>
-<p>Adresse de l'incident : <input type="text"/></p>
-<p>Description de l'incident : <input type="text"/></p>
-
-<button name="sendIncident">Envoyer Incident</button>
-</body>
-</html>
+<form action="/incident/new" method="post">
+    <p>Date de l'incident : </p>
+    <input type="date" name="date"/>
+    <p>Adresse de l'incident : </p>
+    <input type="text" name="adresse"/>
+    <p>Description de l'incident : </p>
+    <input type="text" name="description"/>
+    <input type="submit">
+</form>
