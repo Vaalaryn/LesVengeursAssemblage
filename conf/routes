@@ -4,14 +4,21 @@
 
 # Home page
 GET     /                           Application.index
-GET     /test                       Application.index
+GET     /profil/{id_profil}         Application.profil
 *       /                           module:secure
+#Ajout gens
+GET    /ajout                       Ajoutgens.index
 
+# Administration page
+## Civils
+GET /administration/civil/nouveau               GestionCivil.create
+POST /administration/civil/nouveau              GestionCivil.save
+
+GET /administration/civil/list                  GestionCivil.list
+GET /administration/civil/show                  GestionCivil.show
+POST /administration/civil/modify               GestionCivil.modify
 # Ignore favicon requests
 GET     /favicon.ico                404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                    staticDir:public
-
-# Catch all
-*       /{controller}/{action}      {controller}.{action}

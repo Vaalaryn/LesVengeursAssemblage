@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    font-size: 1.3rem;
+}
+
+.img-wrap {
+    width: 2.5rem;
+    height: 5rem;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+}
