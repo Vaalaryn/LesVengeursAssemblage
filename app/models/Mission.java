@@ -8,6 +8,7 @@ import java.util.Date;
 @Entity
 public class Mission extends Model {
 
+
     public int id_nature;
     public int id_gravite;
     public String titre;

@@ -8,6 +8,11 @@ GET     /profil/{id_profil}         Application.profil
 *       /                           module:secure
 #Ajout gens
 GET    /ajout                       Ajoutgens.index
+#Fake Missions db.save
+GET    /getmissions                 FakeMissions.index
+# Page Missions
+GET    /missions                    Missions.index
+GET    /mission                     Missions.info
 
 # Administration page
     ## Civils
