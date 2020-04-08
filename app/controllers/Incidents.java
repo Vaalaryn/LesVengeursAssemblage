@@ -1,12 +1,14 @@
 package controllers;
 
 
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 import play.Logger;
 
 public class Incidents extends ConnectionController {
 
-    public static void index(){
+    public static void index() {
         render();
     }
 
@@ -14,8 +16,15 @@ public class Incidents extends ConnectionController {
     public static void postIndex() {
         String date = params.get("date");
         String description = params.get("description");
-        String longitude = params.get("longitude");
-        String latitude = params.get("latitude");
-        render();
+        String type = params.get("type");
+        String longitude = params.get("lon");
+        String latitude = params.get("lat");
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+        try {
+            new models.Incidents(Security.connected(), type, description, latitude, longitude, format.parse(date)).save();
+        } catch (java.text.ParseException ex){
+            ex.fillInStackTrace();
+        }
+        redirect("/incident/new");
     }
 }

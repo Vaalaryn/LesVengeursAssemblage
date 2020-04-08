@@ -8,8 +8,6 @@ import play.db.jpa.*;
 @Entity
 public class Incidents extends Model {
 
-    @Id
-    public int id_incident;
     public int id_mission;
     public String civil;
     public String type;
@@ -18,16 +16,12 @@ public class Incidents extends Model {
     public String latitude;
     public Date date;
 
-    public Incidents(int id_incident,
-                     int id_mission,
-                     String civil,
+    public Incidents(String civil,
                      String type,
                      String description,
                      String latitude,
                      String longitude,
                      Date date) {
-        this.id_incident = id_incident;
-        this.id_mission = id_mission;
         this.civil = civil;
         this.type = type;
         this.description = description;

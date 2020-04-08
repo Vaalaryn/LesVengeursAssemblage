@@ -11,7 +11,7 @@ GET    /ajout                       Ajoutgens.index
 
 # Incident
 GET /incident/new                   Incidents.index
-POST /incident/new                  Incidents.getData
+POST /incident/new                  Incidents.postIndex
 
 # Administration page
 ## Civils
