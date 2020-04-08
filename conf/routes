@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           Application.index
-GET     /profil/{id}                Application.profil
+GET     /profil/{id_profil}         Application.profil
 *       /                           module:secure
 #Ajout gens
 GET    /ajout                       Ajoutgens.index
