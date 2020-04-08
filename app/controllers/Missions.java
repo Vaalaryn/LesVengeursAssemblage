@@ -16,4 +16,8 @@ public class Missions extends ConnectionController {
         List<Gravites> gravites = Gravites.find("from Gravites").fetch(0,10);
         render(missions,natures,gravites);
     }
+
+    public static void info(){
+        render();
+    }
 }
