@@ -16,10 +16,10 @@
                 <tbody>
                 #{list items:models.Civil.findAll(), as: 'civil'}
                 <tr>
-                    <td>${civil.ID_CIVIL}</td>
-                    <td>${civil.CIV_NOM}</td>
-                    <td>${civil.CIV_PRENOM}</td>
-                    <td>${civil.ID_ADMIN}</td>
+                    <td>${civil.id}</td>
+                    <td>${civil.nom}</td>
+                    <td>${civil.prenom}</td>
+                    <td>${civil.id_admin}</td>
                 </tr>
                 #{/list}
                 </tbody>

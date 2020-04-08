@@ -2,13 +2,14 @@ package controllers;
 import models.Civil;
 import play.*;
 import play.data.validation.Valid;
+import play.libs.Codec;
 import play.mvc.*;
 
 import java.util.Date;
 import java.util.List;
 
 
-public class GestionCivil extends Controller {
+public class GestionCivil extends ConnectionController {
 
     public static void Create(){
         render();
@@ -19,6 +20,7 @@ public class GestionCivil extends Controller {
             validation.keep();
             Create();
         }
+        civil.mdp = Codec.hexMD5(civil.mdp);
         civil.save();
         List();
     }
@@ -34,13 +36,13 @@ public class GestionCivil extends Controller {
         if (validation.hasErrors()){
             params.flash();
             validation.keep();
-            Show(civil.ID_CIVIL);
+            Show(civil.id);
         }
-        models.Civil civilToModify = models.Civil.em().find(models.Civil.class, civil.ID_CIVIL);
+        models.Civil civilToModify = models.Civil.em().find(models.Civil.class, civil.id);
         //Réucp des anciennes infos
-        civil.CIV_MDP = civilToModify.CIV_MDP;
-        civil.CIV_DATECRE = civilToModify.CIV_DATECRE;
-        civil.CIV_DATEMAJ = new Date();
+        civil.mdp = civilToModify.mdp;
+        civil.dateCreation = civilToModify.dateCreation;
+        civil.dateMaj = new Date();
 
 
         civilToModify = civil;

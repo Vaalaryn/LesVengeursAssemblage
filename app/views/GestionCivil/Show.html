@@ -3,95 +3,95 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h3>Modifier un civil [${model.ID_CIVIL}]</h3>
+            <h3>Modifier un civil [${model.id}]</h3>
         #{form @GestionCivil.Modify(), method:'POST'}
-            <input type="text" name="civil.ID_CIVIL" value="${model.ID_CIVIL}" hidden>
+            <input type="text" name="civil.id" value="${model.id}" hidden>
             <div class="form-group">
-                <label for="CIV_NOM">Nom</label>
-                <input type="text" id="CIV_NOM" class="form-control" name="civil.CIV_NOM" value="${model.CIV_NOM}">
-                <span class="error">#{error 'civil.CIV_NOM'/}</span>
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" class="form-control" name="civil.nom" value="${model.nom}">
+                <span class="error">#{error 'civil.nom'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_PRENOM">Prénom</label>
-                <input type="text" id="CIV_PRENOM" class="form-control" name="civil.CIV_PRENOM" value="${model.CIV_PRENOM}">
-                <span class="error">#{error 'civil.CIV_PRENOM'/}</span>
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" class="form-control" name="civil.prenom" value="${model.prenom}">
+                <span class="error">#{error 'civil.prenom'/}</span>
             </div>
             <div class="form-group">
                 <label>Civilité</label>
                 <div class="row">
                     <div class="form-check col-2 ml-3">
-                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEH"
-                               value="H" ${model.CIV_CIVILITE == "H" ? "checked" : ""}>
-                        <label class="form-check-label" for="CIV_CIVILITEH">
+                        <input class="form-check-input" type="radio" name="civil.civilite" id="civiliteH"
+                               value="H" ${model.civilite == "H" ? "checked" : ""}>
+                        <label class="form-check-label" for="civiliteH">
                             Homme
                         </label>
                     </div>
                     <div class="form-check col-2 ml-3">
-                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEF"
-                               value="F" ${model.CIV_CIVILITE == "F" ? "checked" : ""}>
-                        <label class="form-check-label" for="CIV_CIVILITEF">
+                        <input class="form-check-input" type="radio" name="civil.civilite" id="civiliteF"
+                               value="F" ${model.civilite == "F" ? "checked" : ""}>
+                        <label class="form-check-label" for="civiliteF">
                             Femme
                         </label>
                     </div>
                     <div class="form-check col-2 ml-3">
-                        <input class="form-check-input" type="radio" name="civil.CIV_CIVILITE" id="CIV_CIVILITEA"
-                               value="A" ${model.CIV_CIVILITE == "A" ? "checked" : ""}>
-                        <label class="form-check-label" for="CIV_CIVILITEA">
+                        <input class="form-check-input" type="radio" name="civil.civilite" id="civiliteA"
+                               value="A" ${model.civilite == "A" ? "checked" : ""}>
+                        <label class="form-check-label" for="civiliteA">
                             Autre
                         </label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="CIV_MAIL">Adresse e-mail</label>
-                <input type="email" id="CIV_MAIL" class="form-control" name="civil.CIV_MAIL" value="${model.CIV_MAIL}">
-                <span class="error">#{error 'civil.CIV_MAIL'/}</span>
+                <label for="mail">Adresse e-mail</label>
+                <input type="email" id="mail" class="form-control" name="civil.mail" value="${model.mail}">
+                <span class="error">#{error 'civil.mail'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_TEL">Téléphone</label>
-                <input type="tel" id="CIV_TEL" class="form-control" name="civil.CIV_TEL" value="${model.CIV_TEL}">
-                <span class="error">#{error 'civil.CIV_TEL'/}</span>
+                <label for="tel">Téléphone</label>
+                <input type="tel" id="tel" class="form-control" name="civil.tel" value="${model.tel}">
+                <span class="error">#{error 'civil.tel'/}</span>
             </div>
 
             <div class="form-group">
-                <label for="ID_ADMIN">Droits administratifs</label>
-                <select name="civil.ID_ADMIN" id="ID_ADMIN" class="form-control">
-                    <option value="1" ${model.ID_ADMIN == 1 ? "selected" : ""}>1 - Civil</option>
-                    <option value="2" class="text-primary" ${model.ID_ADMIN == 2 ? "selected" : ""}>2 - Administrateur</option>
-                    <option value="3" class="text-danger" ${model.ID_ADMIN == 3 ? "selected" : ""}>3 - Maître suprême</option>
+                <label for="id_admin">Droits administratifs</label>
+                <select name="civil.id_admin" id="id_admin" class="form-control">
+                    <option value="1" ${model.id_admin == 1 ? "selected" : ""}>1 - Civil</option>
+                    <option value="2" class="text-primary" ${model.id_admin == 2 ? "selected" : ""}>2 - Administrateur</option>
+                    <option value="3" class="text-danger" ${model.id_admin == 3 ? "selected" : ""}>3 - Maître suprême</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="CIV_DATENAISSANCE">Date de naissance</label>
-                <input type="date" id="CIV_DATENAISSANCE" class="form-control" name="civil.CIV_DATENAISSANCE"
-                       value="${model.CIV_DATENAISSANCE != null ?model.CIV_DATENAISSANCE.toString().substring(0,10) : null}">
-                <span class="error">#{error 'civil.CIV_DATENAISSANCE'/}</span>
+                <label for="dateNaissance">Date de naissance</label>
+                <input type="date" id="dateNaissance" class="form-control" name="civil.dateNaissance"
+                       value="${model.dateNaissance != null ?model.dateNaissance.toString().substring(0,10) : null}">
+                <span class="error">#{error 'civil.dateNaissance'/}</span>
             </div>
             <div class="form-group">
-                <label for="" CIV_ADRESSE>Adresse</label>
-                <input type="text" id="CIV_ADRESSE" class="form-control" name="civil.CIV_ADRESSE" value="${model.CIV_ADRESSE}">
-                <span class="error">#{error 'civil.CIV_ADRESSE'/}</span>
+                <label for="" adresse>Adresse</label>
+                <input type="text" id="adresse" class="form-control" name="civil.adresse" value="${model.adresse}">
+                <span class="error">#{error 'civil.adresse'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_CP">Code postal</label>
-                <input type="text" id="CIV_CP" class="form-control" name="civil.CIV_CP" value="${model.CIV_CP}">
-                <span class="error">#{error 'civil.CIV_CP'/}</span>
+                <label for="cp">Code postal</label>
+                <input type="text" id="cp" class="form-control" name="civil.cp" value="${model.cp}">
+                <span class="error">#{error 'civil.cp'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_VILLE">Ville</label>
-                <input type="text" id="CIV_VILLE" class="form-control" name="civil.CIV_VILLE" value="${model.CIV_VILLE}">
-                <span class="error">#{error 'civil.CIV_VILLE'/}</span>
+                <label for="ville">Ville</label>
+                <input type="text" id="ville" class="form-control" name="civil.ville" value="${model.ville}">
+                <span class="error">#{error 'civil.ville'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_NATION">Nation</label>
-                <input type="text" id="CIV_NATION" class="form-control" name="civil.CIV_NATION" value="${model.CIV_NATION}">
-                <span class="error">#{error 'civil.CIV_NATION'/}</span>
+                <label for="nation">Nation</label>
+                <input type="text" id="nation" class="form-control" name="civil.nation" value="${model.nation}">
+                <span class="error">#{error 'civil.nation'/}</span>
             </div>
             <div class="form-group">
-                <label for="CIV_DATEMORT">Date de décès</label>
-                <input type="date" id="CIV_DATEMORT" class="form-control" name="civil.CIV_DATEMORT"
-                       value="${model.CIV_DATEMORT != null ? model.CIV_DATEMORT.toString().substring(0,10) : null}">
-                <span class="error">#{error 'civil.CIV_DATEMORT'/}</span>
+                <label for="dateMort">Date de décès</label>
+                <input type="date" id="dateMort" class="form-control" name="civil.dateMort"
+                       value="${model.dateMort != null ? model.dateMort.toString().substring(0,10) : null}">
+                <span class="error">#{error 'civil.dateMort'/}</span>
             </div>
             <input type="submit" value="Confirmer" class="btn btn-outline-success float-right">
 
