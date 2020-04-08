@@ -1,7 +1,9 @@
 package models;
 
 import play.db.jpa.Model;
+import javax.persistence.Entity;
 
+@Entity
 public class Rapport extends Model {
 
     public int id_mission;
