@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title: "Gérer les incidents" /}
+
+<div class="container">
+    <ul class="list-group">
+    #{list items:incidents, as: 'incident'}
+        <button class="accordion">
+            <li class="list-group-item">${incident.type}</li>
+        </button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    #{/list}
+    </ul>
+</div>
