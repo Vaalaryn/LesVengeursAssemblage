@@ -20,7 +20,8 @@ function searchPlace() {
             var myObj = JSON.parse(this.responseText);
             document.getElementById('coords').innerHTML =
                 '<input type="hidden" id="lon" name="lon" value="' + myObj[0].lon + '">\n' +
-                '<input type="hidden" id="lat" name="lat" value="' + myObj[0].lat + '">\n';
+                '<input type="hidden" id="lat" name="lat" value="' + myObj[0].lat + '">\n' +
+                '<input type="hidden" id="adr" name="adresse" value="' + myObj[0].display_name + '">';
             initMarker([myObj[0].lat, myObj[0].lon], myObj[0].display_name);
         }
     };

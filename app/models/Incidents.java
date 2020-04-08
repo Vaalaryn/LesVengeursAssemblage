@@ -3,17 +3,20 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 
+import jdk.internal.jline.internal.Nullable;
 import play.db.jpa.*;
 
 @Entity
 public class Incidents extends Model {
 
+    @Nullable
     public int id_mission;
     public String civil;
     public String type;
     public String description;
     public String longitude;
     public String latitude;
+    public String adresse;
     public Date date;
     public boolean etat;
 
@@ -22,6 +25,7 @@ public class Incidents extends Model {
                      String description,
                      String latitude,
                      String longitude,
+                     String adresse,
                      Date date,
                      Boolean etat) {
         this.civil = civil;
@@ -29,6 +33,7 @@ public class Incidents extends Model {
         this.description = description;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.adresse = adresse;
         this.date = date;
         this.etat = etat;
     }

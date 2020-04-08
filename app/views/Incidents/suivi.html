@@ -1,21 +1,18 @@
 #{extends 'main.html' /}
 #{set title: "Suivi" /}
-<link rel="stylesheet" href="@{'/public/stylesheets/accordion.css'}">
-
-
-<h1>Suivi d'incidents</h1>
 
 <div class="container">
+    <h1>Suivi d'incidents</h1>
     <ul class="list-group">
-        #{list items:incidents, as: 'incident'}
-        <button class="accordion">
-                <li class="list-group-item">${incident.type}</li>
-        </button>
+    #{list items:incidents, as: 'incident'}
+        <li>
+            <button class="accordion">${incident.type}</button>
             <div class="panel">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>${incident.description}</p>
+                <p>${incident.date}</p>
+                <p>${incident.adresse}</p>
             </div>
-        #{/list}
+        </li>
+    #{/list}
     </ul>
 </div>
-
-<script type="text/javascript" src="/public/javascripts/accordion.js"></script>
