@@ -10,24 +10,28 @@ GET     /profil/{id_profil}         Application.profil
 GET    /ajout                       Ajoutgens.index
 
 # Administration page
-## Civils
-GET /administration/civil/nouveau               GestionCivil.create
-POST /administration/civil/nouveau              GestionCivil.save
+    ## Civils
+    GET /administration/civil/nouveau               GestionCivil.create
+    POST /administration/civil/nouveau              GestionCivil.save
 
-GET /administration/civil/list                  GestionCivil.list
-GET /administration/civil/show                  GestionCivil.show
-POST /administration/civil/modify               GestionCivil.modify
-POST /administration/civil/delete               GestionCivil.delete
+    GET /administration/civil/list                  GestionCivil.list
+    GET /administration/civil/show                  GestionCivil.show
+    POST /administration/civil/modify               GestionCivil.modify
+    POST /administration/civil/delete               GestionCivil.delete
 
-## Super Héros
-GET /administration/super/new                   GestionSuperH.create
-POST /administration/super/new                  GestionSuperH.save
+    ## Super Héros / Super vilains
+    GET /administration/super/new                   GestionSuperH.create
+    POST /administration/super/new                  GestionSuperH.save
 
-GET /administration/super/list                  GestionSuperH.list
-GET /administration/super/show                  GestionSuperH.show
-POST /administration/super/modify               GestionSuperH.modify
-POST /administration/super/delete               GestionSuperH.delete
+    GET /administration/super/list                  GestionSuperH.list
+    GET /administration/super/show                  GestionSuperH.show
+    POST /administration/super/modify               GestionSuperH.modify
+    POST /administration/super/delete               GestionSuperH.delete
 
+# Missions
+    ## Rapports
+    GET /mission/rapport/new                       Rapport.create
+    POST /mission/rapport/new                      Rapport.save
 
 # Ignore favicon requests
 GET     /favicon.ico                404
