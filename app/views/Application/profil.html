@@ -7,32 +7,22 @@
             <div>
                 <h3 class="card-title">${civil.nom} ${civil.prenom}</h3>
                 <h4 class="card-subtitle mb-2 text-muted">${id}</h4>
+                <p  class="card-subtitle mb-2 text-muted">${(civil.id_admin > 0) ? ((civil.id_admin == 3) ? "Maitre Suprême" : "Admin") : "Civil"}</p>
             </div>
             <div class="img-wrap">
-                <img src="/public/images/${type}.png"
+                <img src="/public/images/${civil.civilite}.png"
                      alt="" class="img-fluid">
             </div>
         </div>
         <div class="card-body">
-            <p class="card-text"></p>
-            <p class="card-text">${pointFaible}</p>
+            <p class="card-text">Adresse :  ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
+            <p class="card-text">Mail : ${civil.mail}</p>
+            <p class="card-text">Tel : ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
+            <p class="card-text">Date de naissance : ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+            #{if civil.dateMort != null}
+                <p class="card-text">date du déçès : ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
+            #{/if}
             <div class="flex-row d-flex justify-content-around">
-                <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">Dernière mission : </p>
-                    <ul class="list-group">
-                        #{list items:missions, as: 'mission'}
-                            <li class="list-group-item">${mission.titre}</li>
-                        #{/list}
-                    </ul>
-                </div>
-                <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">Pouvoir : </p>
-                    <ul class="list-group">
-                        #{list items:pouvoirs, as: 'pouvoir'}
-                            <li class="list-group-item">${pouvoir.nom}</li>
-                        #{/list}
-                    </ul>
-                </div>
             </div>
 
         </div>
