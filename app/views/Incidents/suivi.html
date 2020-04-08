@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title: "Suivi" /}
+<h1>Suivi d'incidents</h1>
+
+<div class="container">
+    <ul class="list-group">
+        #{list items:incidents, as: 'incident'}
+            <li class="list-group-item">${incident.type}</li>
+        #{/list}
+    </ul>
+</div>

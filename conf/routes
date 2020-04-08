@@ -12,6 +12,7 @@ GET    /ajout                       Ajoutgens.index
 # Incident
 GET /incident/new                   Incidents.index
 POST /incident/new                  Incidents.postIndex
+GET /incident/suivi                 Incidents.suivi
 
 # Administration page
 ## Civils
