@@ -18,6 +18,13 @@ public class GestionSuperH extends ConnectionController {
             validation.keep();
             Create();
         }
+        if(superH.type == 'V')
+        {
+            String[] idVilain = superH.id.split("-");
+            idVilain[0] = "SV";
+            superH.id = idVilain[0] + "-" + idVilain[1] + "-" + idVilain[2];
+        }
+
         superH.mdp = Codec.hexMD5(superH.mdp);
         superH.save();
         List();
@@ -41,9 +48,14 @@ public class GestionSuperH extends ConnectionController {
         //Réucp des anciennes infos
         superH.mdp = superHToModify.mdp;
 
+
         superHToModify = superH;
         superHToModify.save();
 
         List();
+    }
+    public static void Delete(String id){
+        SuperH superHToDelete = SuperH.em().find(SuperH.class, id);
+        superHToDelete.delete();
     }
 }
