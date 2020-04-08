@@ -9,6 +9,7 @@ import play.libs.Codec;
 public class GestionSuperH extends ConnectionController {
 
     public static void Create(){
+
         render();
     }
     public static void Save(@Valid SuperH superH,String typeS){

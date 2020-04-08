@@ -1,0 +1,87 @@
+#{extends 'main.html'/}
+
+<div class="container mt-3">
+    <h1>Rédiger un rapport</h1>
+    <div class="row mt-3">
+        <div class="col-12">
+            <ul class="list-group">
+                <li class="list-group-item"><strong class="text-info">Titre de la mission :</strong> ${mission.titre}
+                </li>
+                <li class="list-group-item"><strong class="text-info">Date de début de mission
+                    :</strong> ${mission.dateDebut.toString().substring(0,10)}</li>
+                <li class="list-group-item"><strong class="text-info">Date de début de fin de mission
+                    :</strong> ${mission.dateFin.toString().substring(0,10)}</li>
+                <li class="list-group-item"><strong class="text-info">Résultat de mission :</strong>
+                #{if mission.reussite == 'r'}
+                    <strong class="text-success">Réussite</strong>
+                #{/if}
+                #{if mission.reussite == 'e'}
+                    <strong class="text-danger">Echec</strong>
+                #{/if}
+
+                </li>
+                <li class="list-group-item"><strong class="text-info">Urgence
+                    :</strong>
+                #{if mission.urgence}
+                    <strong class="text-danger">Urgent</strong>
+                #{/if}
+                #{if !mission.urgence}
+                    <strong class="text-secondary">Pas urgent</strong>
+                #{/if}
+                <li class="list-group-item"><strong class="text-info">Lieu :</strong> ${mission.latitude}
+                    ; ${mission.longitude}</li>
+            </ul>
+        </div>
+        <div class="col-12 mt-3">
+        #{form @controllers.GestionRapport.Save()}
+            <input type="hidden" value="${mission.id}" name="rapport.id_mission">
+            #{if admin == 1 &&  rapport == null}
+                <input type="hidden" value="${id}" name="rapport.id_super">
+                <div class="form-group">
+                    <label for="rapport.rapportHero">Votre rapport :</label>
+                    <textarea class="form-control" name="rapport.rapportHero" id="rapport.rapportHero" cols="30"
+                              rows="5"></textarea>
+                </div>
+            #{/if}
+            #{if admin == 2  &&  rapport == null}
+                <input type="hidden" value="${id}" name="rapport.id_civil">
+                <div class="form-group">
+                    <label for="rapport.rapportAdmin">Votre rapport :</label>
+                    <textarea class="form-control" name="rapport.rapportAdmin" id="rapport.rapportAdmin" cols="30"
+                              rows="5"></textarea>
+                </div>
+            #{/if}
+            #{if mission != null && rapport != null}
+                <input type="hidden" value="${rapport.id}" name="idRapport">
+                #{if admin == 1}
+                    <input type="hidden" value="${id}" name="idRedacteur">
+                    <div class="form-group">
+                        <label for="rapport.rapportHero">Votre rapport :</label>
+                        <textarea class="form-control" name="rapportText" id="rapport.rapportHero" cols="30"
+                                  rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rapport.rapportAdmin">Votre rapport :</label>
+                        <textarea class="form-control" readonly id="rapport.rapportAdmin" cols="30"
+                                  rows="5">${rapport.rapportAdmin}</textarea>
+                    </div>
+                #{/if}
+                #{else }
+                    <input type="hidden" value="${id}" name="idRedacteur">
+                    <div class="form-group">
+                        <label for="rapport.rapportHero">Votre rapport :</label>
+                        <textarea class="form-control" readonly id="rapport.rapportHero" cols="30"
+                                  rows="5">${rapport.rapportHero}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rapport.rapportAdmin">Votre rapport :</label>
+                        <textarea class="form-control" name="rapportText" id="rapport.rapportAdmin" cols="30"
+                                  rows="5"></textarea>
+                    </div>
+                #{/else}
+            #{/if}
+            <input type="submit" class="btn btn-outline-success float-right mb-5" value="Confirmer">
+        #{/form}
+        </div>
+    </div>
+</div>

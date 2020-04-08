@@ -1,9 +1,9 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
+import play.db.jpa.Model;
 
-import play.db.jpa.*;
+import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
 public class Incidents extends Model {

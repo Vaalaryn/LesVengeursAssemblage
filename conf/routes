@@ -35,8 +35,8 @@ GET    /mission                     Missions.info
 
 # Missions
     ## Rapports
-    GET /mission/rapport/new                       Rapport.create
-    POST /mission/rapport/new                      Rapport.save
+    GET /mission/rapport/new                       GestionRapport.create
+    POST /mission/rapport/new                      GestionRapport.save
 
 # Ignore favicon requests
 GET     /favicon.ico                404
