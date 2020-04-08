@@ -6,11 +6,11 @@ import play.mvc.*;
 import java.util.*;
 
 import models.*;
-import sun.rmi.runtime.Log;
+
 
 public class Application extends ConnectionController {
 
-    public static void index() {
+    public static void index2() {
         render();
     }
 
