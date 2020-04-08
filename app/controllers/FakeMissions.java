@@ -1,5 +1,6 @@
 package controllers;
 
+import models.NatureMission;
 import play.mvc.Controller;
 
 import java.util.Date;
@@ -26,8 +27,8 @@ public class FakeMissions extends Controller{
             System.out.println(eGrav);
         }
         try{
-            new models.Mission(2,4,"Invasion de Chitauri à New York", true,null,null,"40.692031","73.987000","12",'r').save();
-            new models.Mission(3,3,"Meurtre prêt du cinéma Monarch", true,null,null,"40.730113","74.000709","0.150",'e').save();
+            new models.Mission(2,9,"Invasion de Chitauri à New York", true,null,null,"40.692031","73.987000","12",'r').save();
+            new models.Mission(3,7,"Meurtre prêt du cinéma Monarch", true,null,null,"40.730113","74.000709","0.150",'e').save();
         }catch(Exception eMission){
             System.out.println("Erreur Création Mission -> ");
             System.out.println(eMission);
