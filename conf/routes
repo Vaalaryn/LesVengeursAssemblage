@@ -3,7 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index2
+GET     /                           Application.index
+GET     /profil/{id}               Application.profile
+*       /                           module:secure
+#Ajout gens
+GET    /ajout                       Ajoutgens.index
 
 # Administration page
 ## Civils
@@ -14,10 +18,7 @@ GET /administration/civil/list                  GestionCivil.list
 GET /administration/civil/show                  GestionCivil.show
 POST /administration/civil/modify               GestionCivil.modify
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
-
-# Import CRUD routes
-*      /admin              module:crud
+GET     /public/                    staticDir:public
