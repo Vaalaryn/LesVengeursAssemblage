@@ -1,12 +1,10 @@
 package controllers;
 import models.Civil;
-import play.*;
+import models.SuperH;
 import play.data.validation.Valid;
 import play.libs.Codec;
-import play.mvc.*;
 
 import java.util.Date;
-import java.util.List;
 
 
 public class GestionCivil extends ConnectionController {
@@ -51,5 +49,10 @@ public class GestionCivil extends ConnectionController {
         civilToModify.save();
 
         List();
+    }
+
+    public static void Delete(String id){
+        Civil civilToDelete = SuperH.em().find(Civil.class, id);
+        civilToDelete.delete();
     }
 }

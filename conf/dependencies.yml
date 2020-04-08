@@ -2,6 +2,6 @@
 
 require:
     - play
-    - play -> docviewer
+
     - secure
     - play -> crud

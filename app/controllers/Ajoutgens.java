@@ -1,11 +1,8 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import play.mvc.Controller;
 
-import java.util.*;
-
-import models.*;
+import java.util.Date;
 
 public class Ajoutgens extends Controller {
 

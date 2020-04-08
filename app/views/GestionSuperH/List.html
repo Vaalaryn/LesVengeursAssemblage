@@ -1,28 +1,25 @@
 #{extends 'main.html'/}
 
-
 <div class="container mt-3">
-    <h2>Liste des civils</h2>
+    <h2>Liste des supers</h2>
     <div class="row">
         <div class="col-12">
-            <span class="btn btn-primary mb-3 float-right disabled " id="btnCivil">Consulter</span>
-            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnCivilSupp" >Supprimer</span>
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnSuper">Consulter</span>
+            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnSuperSupp" >Supprimer</span>
             <table id="table" class="display">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Droits</th>
+                    <th>Numéro super</th>
+                    <th>Pseudonyme</th>
+                    <th>Type</th>
                 </tr>
                 </thead>
                 <tbody>
-                #{list items:models.Civil.findAll(), as: 'civil'}
+                #{list items:models.SuperH.findAll(), as: 'superH'}
                 <tr>
-                    <td>${civil.id}</td>
-                    <td>${civil.nom}</td>
-                    <td>${civil.prenom}</td>
-                    <td>${civil.id_admin}</td>
+                    <td>${superH.id}</td>
+                    <td>${superH.nom}</td>
+                    <td>${superH.type == 'H' ? "Super héro" : "Super vilain"}</td>
                 </tr>
                 #{/list}
                 </tbody>
@@ -42,10 +39,10 @@
         $("#table tbody").on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
-                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3 disabled");
-                $("#btnCivilSupp").attr("class", "btn btn-primary float-right mb-3 disabled");
-                $("#btnCivilSupp").attr("data-toggle","");
-                $("#btnCivilSupp").attr("data-target","");
+                $("#btnSuper").attr("class", "btn btn-primary float-right mb-3 disabled");
+                $("#btnSuperSupp").attr("class", "btn btn-primary float-right mb-3 disabled");
+                $("#btnSuperSupp").attr("data-toggle","");
+                $("#btnSuperSupp").attr("data-target","");
 
                 idSelected = null;
                 trSelected = null;
@@ -53,36 +50,35 @@
             } else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3");
-                $("#btnCivilSupp").attr("class", "btn btn-danger float-right mb-3 mr-2");
-                $("#btnCivilSupp").attr("data-toggle","modal");
-                $("#btnCivilSupp").attr("data-target","#exampleModal");
+                $("#btnSuper").attr("class", "btn btn-primary float-right mb-3");
+                $("#btnSuperSupp").attr("class", "btn btn-danger float-right mb-3 mr-2");
+                $("#btnSuperSupp").attr("data-toggle","modal");
+                $("#btnSuperSupp").attr("data-target","#exampleModal");
                 idSelected = $(this).children().first().text();
                 trSelected = $(this);
             }
         });
-        $("#btnCivil").click(function () {
+        $("#btnSuper").click(function () {
             if (idSelected != null)
-                document.location.href = "/administration/civil/show?id=" + idSelected;
+                document.location.href = "/administration/super/show?id=" + idSelected;
         })
 
         $("#confirmDelete").click(function () {
-            DeleteCivil(idSelected);
+            DeleteSuperH(idSelected);
         })
 
 
-        function DeleteCivil(idCivil) {
+        function DeleteSuperH(idSuper) {
             if (idSelected != null) {
                 $.post({
-                    url: "/administration/civil/delete",
-                    data: {id: idCivil}
+                    url: "/administration/super/delete",
+                    data: {id: idSuper}
                 });
                 trSelected.empty();
             }
         }
     });
 </script>
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,7 +91,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Voulez-vous vraiment supprimer ce civil ?
+                Voulez-vous vraiment supprimer ce super ?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
