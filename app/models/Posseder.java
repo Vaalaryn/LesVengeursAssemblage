@@ -1,7 +1,9 @@
 package models;
 
 import play.db.jpa.Model;
+import javax.persistence.Entity;
 
+@Entity
 public class Posseder extends Model {
     public int id_pouvoir;
     public String id_super;

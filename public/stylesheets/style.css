@@ -4,10 +4,8 @@
 }
 
 .img-wrap {
-    min-width: 5rem;
-    min-height: 5rem;
-    width: 5rem;
-    height: 100%;
+    width: 2.5rem;
+    height: 5rem;
     position: relative;
     display: inline-block;
     overflow: hidden;
