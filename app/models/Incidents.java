@@ -3,7 +3,8 @@ package models;
 import play.db.jpa.Model;
 
 import jdk.internal.jline.internal.Nullable;
-import play.db.jpa.*;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Incidents extends Model {
