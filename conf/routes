@@ -12,7 +12,7 @@ GET    /ajout                       Ajoutgens.index
 GET    /getmissions                 FakeMissions.index
 # Page Missions
 GET    /missions                    Missions.index
-
+GET    /mission                     Missions.info
 # Ignore favicon requests
 GET     /favicon.ico                404
 
