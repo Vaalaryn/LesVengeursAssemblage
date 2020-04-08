@@ -12,7 +12,7 @@ GET    /ajout                       Ajoutgens.index
 GET    /getmissions                 FakeMissions.index
 # Page Missions
 GET    /missions                    Missions.index
-GET    /mission                     Missions.info
+GET    /mission/{id_mission}        Missions.info
 
 # Administration page
 ## Civils
