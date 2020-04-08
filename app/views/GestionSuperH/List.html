@@ -1,0 +1,54 @@
+#{extends 'main.html'/}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnCivil">Consulter</span>
+            <table id="table" class="display">
+                <thead>
+                <tr>
+                    <th>Numéro super</th>
+                    <th>Pseudonyme</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                #{list items:models.SuperH.findAll(), as: 'superH'}
+                <tr>
+                    <td>${superH.id}</td>
+                    <td>${superH.nom}</td>
+                    <td>${superH.type == 'H' ? "Super héro" : "Super vilain"}</td>
+                </tr>
+                #{/list}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let table = $('#table').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
+            }
+        });
+        let idSelected;
+        $("#table tbody").on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3 disabled");
+                idSelected = null;
+
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $("#btnCivil").attr("class", "btn btn-primary float-right mb-3");
+                idSelected = $(this).children().first().text();
+            }
+        });
+        $("#btnCivil").click(function () {
+            if (idSelected != null)
+                document.location.href = "/administration/super/show?id=" + idSelected;
+        })
+    });
+</script>

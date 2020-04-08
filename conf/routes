@@ -17,6 +17,16 @@ POST /administration/civil/nouveau              GestionCivil.save
 GET /administration/civil/list                  GestionCivil.list
 GET /administration/civil/show                  GestionCivil.show
 POST /administration/civil/modify               GestionCivil.modify
+
+## Super Héros
+GET /administration/super/new                   GestionSuperH.create
+POST /administration/super/new                  GestionSuperH.save
+
+GET /administration/super/list                  GestionSuperH.list
+GET /administration/super/show                  GestionSuperH.show
+POST /administration/super/modify               GestionSuperH.modify
+
+
 # Ignore favicon requests
 GET     /favicon.ico                404
 

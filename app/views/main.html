@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
 <html>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <head>
     <title>#{get 'title' /}</title>
     <link rel="stylesheet" href="@{'/public/stylesheets/main.css'}">
@@ -63,8 +64,17 @@
             #{/if}
             </li>
         #{if admin >= 3}
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Administration</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Administration
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/administration/civil/nouveau">Ajouter un utilisateur</a>
+                    <a class="dropdown-item" href="/administration/civil/list">Liste des utilisateurs</a>
+                    <a class="dropdown-item" href="/administration/super/new">Ajouter un super</a>
+                    <a class="dropdown-item" href="/administration/super/list">Liste des super</a>
+                </div>
             </li>
         #{/if}
         </ul>
@@ -81,9 +91,7 @@
 <div id="content">
 #{doLayout /}
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>

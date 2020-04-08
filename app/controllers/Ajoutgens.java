@@ -1,18 +1,15 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import play.mvc.Controller;
 
-import java.util.*;
-
-import models.*;
+import java.util.Date;
 
 public class Ajoutgens extends Controller {
 
     public static void index() {
         try {
-            new models.SuperH("SHK001001HNKDEFR","SuperMan","Kryptonite",'h',"toor").save();
-            new models.SuperH("SVK001001HBEAPGQ","Général Zod","Kryptonite verte",'v',"toor").save();
+            new models.SuperH("SHK001001HNKDEFR","SuperMan","Kryptonite",'H',"toor").save();
+            new models.SuperH("SVK001001HBEAPGQ","Général Zod","Kryptonite verte",'V',"toor").save();
         }catch (Exception eSuper){
             System.out.println("Erreur Création Super -> ");
             System.out.println(eSuper);
