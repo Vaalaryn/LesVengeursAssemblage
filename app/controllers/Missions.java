@@ -17,7 +17,7 @@ public class Missions extends ConnectionController {
         render(missions,natures,gravites);
     }
 
-    public static void info(){
+    public static void info(String id_mission){
         render();
     }
 }
