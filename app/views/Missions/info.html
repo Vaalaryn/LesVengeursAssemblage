@@ -83,14 +83,13 @@
     </div>
 </div>
 
-
 <!-- Boutons Modifier & Terminer-->
 <main role="main" class="container mt-5">
 #{if mission.reussite == 'c'}
     <div class="row">
         <div class="col">
             <div class="my-3 p-3 bg-white rounded box-shadow">
-                <a href="#" class="btn btn-primary btn-lg btn-block">Modifier</a>
+                <a href="/mission/modifier/${id_mission}" class="btn btn-primary btn-lg btn-block">Modifier</a>
             </div>
         </div>
         #{if supersHerosPresents.contains(models.SuperH.find("id = ?1",id).first())}
@@ -121,7 +120,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Fin de mission..</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

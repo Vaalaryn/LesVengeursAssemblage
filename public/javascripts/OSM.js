@@ -107,6 +107,7 @@ function addRadius(coords, range) {
         circle
             .setLatLng(coords)
             .setRadius(range)
+            .addTo(map);
     }
 }
 
