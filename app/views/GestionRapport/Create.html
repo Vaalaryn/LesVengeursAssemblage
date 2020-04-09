@@ -35,7 +35,7 @@
         <div class="col-12 mt-3">
         #{form @controllers.GestionRapport.Save()}
             <input type="hidden" value="${mission.id}" name="rapport.id_mission">
-            #{if admin == 1 &&  rapport == null}
+            #{if admin == 2 && rapport == null}
                 <input type="hidden" value="${id}" name="rapport.id_super">
                 <div class="form-group">
                     <label for="rapport.rapportHero">Votre rapport :</label>
@@ -43,7 +43,7 @@
                               rows="5"></textarea>
                 </div>
             #{/if}
-            #{if admin == 2  &&  rapport == null}
+            #{if admin == 1  &&  rapport == null}
                 <input type="hidden" value="${id}" name="rapport.id_civil">
                 <div class="form-group">
                     <label for="rapport.rapportAdmin">Votre rapport :</label>
@@ -54,19 +54,7 @@
             #{if mission != null && rapport != null}
                 <input type="hidden" value="${rapport.id}" name="idRapport">
                 #{if admin == 1}
-                    <input type="hidden" value="${id}" name="idRedacteur">
-                    <div class="form-group">
-                        <label for="rapport.rapportHero">Votre rapport :</label>
-                        <textarea class="form-control" name="rapportText" id="rapport.rapportHero" cols="30"
-                                  rows="5"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="rapport.rapportAdmin">Votre rapport :</label>
-                        <textarea class="form-control" readonly id="rapport.rapportAdmin" cols="30"
-                                  rows="5">${rapport.rapportAdmin}</textarea>
-                    </div>
-                #{/if}
-                #{else }
+                    <input type="hidden" value="${admin}" name="droitRedacteur">
                     <input type="hidden" value="${id}" name="idRedacteur">
                     <div class="form-group">
                         <label for="rapport.rapportHero">Votre rapport :</label>
@@ -76,7 +64,21 @@
                     <div class="form-group">
                         <label for="rapport.rapportAdmin">Votre rapport :</label>
                         <textarea class="form-control" name="rapportText" id="rapport.rapportAdmin" cols="30"
-                                  rows="5"></textarea>
+                                  rows="5">${rapport.rapportAdmin != "" ? rapport.rapportAdmin : ""}</textarea>
+                    </div>
+                #{/if}
+                #{else }
+                    <input type="hidden" value="${admin}" name="droitRedacteur">
+                    <input type="hidden" value="${id}" name="idRedacteur">
+                    <div class="form-group">
+                        <label for="rapport.rapportHero">Votre rapport :</label>
+                        <textarea class="form-control" name="rapportText" id="rapport.rapportHero" cols="30"
+                                  rows="5">${rapport.rapportHero != "" ? rapport.rapportHero : ""}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rapport.rapportAdmin">Votre rapport :</label>
+                        <textarea class="form-control" readonly id="rapport.rapportAdmin" cols="30"
+                                  rows="5">${rapport.rapportAdmin}</textarea>
                     </div>
                 #{/else}
             #{/if}

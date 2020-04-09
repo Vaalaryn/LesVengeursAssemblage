@@ -3,45 +3,207 @@
     <div class="row">
         <div class="col-12">
             <h3>Créer un nouveau super</h3>
-            #{form @controllers.GestionSuperH.Save(), method:'POST'}
-                <div class="form-group">
-                    <label for="superH.nom">Pseudonyme</label>
-                    <input type="text" id="superH.nom" class="form-control" name="superH.nom" value="${flash['superH.nom']}">
-                    <span class="error">#{error 'superH.nom'/}</span>
-                </div>
-                <div class="form-group">
-                    <label for="superH.pointFaibles">Point(s) faible(s)</label>
-                    <input type="text" id="superH.pointFaibles" class="form-control" name="superH.pointFaibles" value="${flash['superH.pointFaibles']}">
-                    <span class="error">#{error 'superH.pointFaibles'/}</span>
-                </div>
-                <div class="form-group">
-                    <label for="superH.mdp">Mot de passe</label>
-                    <input type="password" id="superH.mdp" class="form-control" name="superH.mdp" value="${flash['superH.mdp']}">
-                    <span class="error">#{error 'superH.mdp'/}</span>
-                </div>
-                <div class="form-group">
-                    <label>Type</label>
-                    <div class="row">
-                        <div class="form-check col-2 ml-3">
-                            <input class="form-check-input" type="radio" name="typeS" id="superH.typeH"
-                                   value="H" checked>
-                            <label class="form-check-label" for="superH.type">
-                                Super héro
-                            </label>
-                        </div>
-                        <div class="form-check col-2 ml-3">
-                            <input class="form-check-input" type="radio" name="typeS" id="superH.typeV"
-                                   value="V">
-                            <label class="form-check-label" for="superH.type">
-                                Super vilain
-                            </label>
-                        </div>
+        #{form @controllers.GestionSuperH.Save(), method:'POST'}
+            <div class="form-group">
+                <label for="superH.nom">Pseudonyme</label>
+                <input type="text" id="superH.nom" class="form-control" name="superH.nom"
+                       value="${flash['superH.nom']}">
+                <span class="error">#{error 'superH.nom'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="superH.pointFaibles">Point(s) faible(s)</label>
+                <input type="text" id="superH.pointFaibles" class="form-control" name="superH.pointFaibles"
+                       value="${flash['superH.pointFaibles']}">
+                <span class="error">#{error 'superH.pointFaibles'/}</span>
+            </div>
+            <div class="form-group">
+                <label for="superH.mdp">Mot de passe</label>
+                <input type="password" id="superH.mdp" class="form-control" name="superH.mdp"
+                       value="${flash['superH.mdp']}">
+                <span class="error">#{error 'superH.mdp'/}</span>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <div class="row">
+                    <div class="form-check col-2 ml-3">
+                        <input class="form-check-input" type="radio" name="typeS" id="superH.typeH"
+                               value="H" checked>
+                        <label class="form-check-label" for="superH.type">
+                            Super héro
+                        </label>
+                    </div>
+                    <div class="form-check col-2 ml-3">
+                        <input class="form-check-input" type="radio" name="typeS" id="superH.typeV"
+                               value="V">
+                        <label class="form-check-label" for="superH.type">
+                            Super vilain
+                        </label>
                     </div>
                 </div>
-                <input type="submit" value="Confirmer" class="btn btn-outline-success float-right">
-            #{/form}
+            </div>
+        <div class="form-group">
+            <label for="selectPouvoir">Sélectionner les pouvoirs du super <strong id="newSuper" data-toggle="modal" data-target="#exampleModal">Ajouter un pouvoir</strong></label>
+            <select class="form-control " name="pouvoirsId" id="selectPouvoir" multiple="multiple" style="width: 100%"></select>
+        </div>
+            <input type="submit" value="Confirmer" class="btn btn-outline-success float-right">
+        #{/form}
         #{a @controllers.GestionSuperH.List()}Retour à la liste#{/a}
         </div>
     </div>
 
+</div>
+
+<script>
+    let pouvoirsCreated = [];
+    $(() => {
+        GetJsonSelect().then((data)=>{
+            //On remplit le select
+            FillSelect(data.results);
+
+            $("#validerPouvoir").click(async  function () {
+               let nom = $("#nomPouvoir");
+               let description = $("#descPouvoir");
+               let categorie = $("#categoriePouvoir");
+
+                let id = await $.post({
+                    url: "/pouvoirs/ajouter",
+                    data:{
+                        nom : nom.val(),
+                        idCategorie: categorie.val(),
+                        description: description.val()
+                    }
+                });
+                let opt = $("<option></option>");
+                opt.attr("value", id);
+                opt.text(nom.val());
+                $("#" + categorie.val()).append(opt);
+                $("#selectPouvoir").select2().select2();
+                pouvoirsCreated.push(id);
+
+
+                $("#selectPouvoir").select2().val(pouvoirsCreated).trigger("change");
+
+                nom.val("");
+                description.val("");
+                categorie.val("");
+
+
+            });
+
+            //On active la lib Select2
+            $("#selectPouvoir").select2({
+            })
+        });
+
+    });
+
+    async function ListPouvoirs() {
+        return await $.get({
+            url: "/pouvoirs/list"
+        });
+    }
+
+    async function GetPouvoir(id) {
+        return await $.get({
+            url: "/pouvoirs/categorie",
+            data: {id: id}
+        });
+    }
+
+    async function GetJsonSelect() {
+        let json = {
+            results: []
+        };
+        let pouvoirs = await ListPouvoirs();
+
+        for (let i = 0; i < pouvoirs.length; i++) {
+            //Création nouvelle catégorie
+            let categorie = await GetPouvoir(pouvoirs[i].id_categorie);
+
+            let indexFinded = false;
+            for (let j = 0; j < json.results.length; j++) {
+                if (json.results[j].text == categorie.nom) {
+                    json.results[j].children.push({nom: pouvoirs[i].nom, id: pouvoirs[i].id});
+                    indexFinded = true;
+                }
+            }
+            if (!indexFinded) {
+                let pouvoirGroupe = {
+                    text: categorie.nom,
+                    id: categorie.id,
+                    children: [{nom: pouvoirs[i].nom, id: pouvoirs[i].id}]
+                };
+                json.results.push(pouvoirGroupe);
+            }
+        }
+
+        return json;
+    }
+
+    function EmptySelect() {
+        let select = $("#selectPouvoir");
+        select.remove();
+    }
+    
+    function FillSelect(datasource) {
+        let select = $("#selectPouvoir");
+        console.log("datasource : ")
+        console.log(datasource)
+
+        for (let i =0; i < datasource.length; i++){
+            let optg = $("<optgroup></optgroup>");
+            optg.attr("label",datasource[i].text);
+            optg.attr("id",datasource[i].id);
+
+            for (let j = 0; j < datasource[i].children.length; j++){
+                let opt = $("<option></option>");
+                opt.attr("value" , datasource[i].children[j].id);
+                opt.text(datasource[i].children[j].nom);
+
+                optg.append(opt);
+            }
+            select.append(optg);
+        }
+    }
+</script>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un pouvoir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="addPouvoir">
+                    <div class="form-group">
+                        <label for="nomPouvoir">Nom du pouvoir</label>
+                        <input type="text" class="form-control" id="nomPouvoir">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoriePouvoir">Nom du pouvoir</label>
+                        <select class="form-control" name="categoriePouvoir" id="categoriePouvoir">
+                            <option value="">Sélectionner une catégorie</option>
+                            #{list items:models.CategoriesPouvoir.findAll() ,as: "categorie"}
+                                <option value="${categorie.id}">${categorie.nom}</option>
+                            #{/list}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descPouvoir">Description</label>
+                        <input type="text" class="form-control" id="descPouvoir">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="validerPouvoir">Ajouter un pouvoir</button>
+            </div>
+        </div>
+    </div>
 </div>

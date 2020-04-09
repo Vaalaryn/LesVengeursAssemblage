@@ -45,7 +45,10 @@ GET /incident/manage/{id_incident}  Incidents.manageIncident
     ## Rapports
     GET /mission/rapport/new                       GestionRapport.create
     POST /mission/rapport/new                      GestionRapport.save
-
+# Supers pouvoirs
+    GET /pouvoirs/list                             GestionPouvoirs.getallpouvoirs
+    GET /pouvoirs/categorie                        GestionCategoriePouvoir.getcategorie
+    POST /pouvoirs/ajouter                         GestionPouvoirs.create
 # Ignore favicon requests
 GET     /favicon.ico                404
 
