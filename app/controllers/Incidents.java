@@ -3,6 +3,11 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
+import play.Logger;
+import play.data.validation.Valid;
+import play.db.jpa.Model;
+import play.libs.Codec;
+
 public class Incidents extends ConnectionController {
 
     public static void index() {
@@ -10,19 +15,13 @@ public class Incidents extends ConnectionController {
     }
 
 
-    public static void postIndex(Date date) throws Exception {
-
-        String description = params.get("description");
-        String type = params.get("type");
-        String longitude = params.get("lon");
-        String latitude = params.get("lat");
-        String adresse = params.get("adresse");
-
-
-
-
-        new models.Incidents(Security.connected(), type, description, latitude, longitude, adresse, date, false).save();
-
+    public static void postIndex(@Valid models.Incidents incidents) {
+        incidents.civil = Security.connected();
+        if (validation.hasErrors()){
+            params.flash();
+            validation.keep();
+            index();
+        }
         redirect("/incident/new");
     }
 

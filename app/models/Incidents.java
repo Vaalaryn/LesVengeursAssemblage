@@ -1,6 +1,7 @@
 package models;
 
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.Column;
@@ -13,13 +14,21 @@ public class Incidents extends Model {
     @Column(nullable = true)
     public long id_mission;
     public String civil;
-    public String type;
-    public String description;
-    public String longitude;
-    public String latitude;
-    public String adresse;
-    public Date date;
     public boolean etat;
+    @Required
+    public String type;
+    @Required
+    public String description;
+    @Required
+    public Date date;
+    @Required
+    public String longitude;
+    @Required
+    public String latitude;
+
+    @Required
+    public String adresse;
+
 
     public Incidents(String civil,
                      String type,
