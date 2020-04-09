@@ -1,20 +1,11 @@
 package controllers;
 
-import models.*;
 import models.Incidents;
-import net.bytebuddy.implementation.bind.annotation.Super;
-import play.Logger;
-import play.mvc.Controller;
-import sun.security.util.Debug;
+import models.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import static java.util.Collections.emptyList;
-import static java.util.Collections.list;
-
 public class Missions extends ConnectionController {
 
     public static Mission fetchMissionById(long id){
@@ -46,6 +37,14 @@ public class Missions extends ConnectionController {
 
         render(missions, natures, gravites);
     }
+    public static void Cloturer(long id_mission, Boolean reussite){
+        Mission mission = Mission.find("id = ?1", id_mission).first();
+        mission.reussite = reussite ? 'r': 'e';
+        mission.dateFin = new Date();
+
+        mission.save();
+        redirect("GestionRapport.create", id_mission);
+    }
 
     public static void flow(String id_hero){
     //List<Mission> missions = Mission.find("from Mission where reussite='c' and where id in (select id_mission from Assigner where id_super LIKE ?)", "SHK001001HNKDEFR").fetch();
@@ -76,6 +75,7 @@ public class Missions extends ConnectionController {
         //Afficher Heros & Vilains
         List<SuperH> supersVilainsPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'V', id_mission).fetch();
         List<SuperH> supersHerosPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'H', id_mission).fetch();
+
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 
@@ -92,6 +92,7 @@ public class Missions extends ConnectionController {
         List<NatureMission> natureMissions = NatureMission.findAll();
         render(id_incident, gravites, natureMissions, incident, superHeros, superVilains);
     }
+
 
     private static String RenderListSuper(List<String> supersListing){
         String listH = "['";
@@ -133,21 +134,17 @@ public class Missions extends ConnectionController {
         render();
     }
 
-    public static void save(long id_incident, String[] hero, String[] vilain){
-        String date = params.get("debut");
+    public static void save(long id_incident, String[] hero, String[] vilain, Date date){
         String latitude = params.get("lat");
         String longitude = params.get("lon");
         String rayon = params.get("rayon");
         String gravite = params.get("gravite");
         String nature = params.get("nature");
         String titre = params.get("titre");
-        Logger.debug(hero[0]);
-        Logger.debug(hero[1]);
-        Logger.debug(vilain[0]);
         boolean urgence = (params.get("urgence") != null);
         SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
-        try{
-            Mission mission = new models.Mission( Integer.parseInt(nature),  Integer.parseInt(gravite), titre, urgence, format.parse(date), null, longitude, latitude, rayon, 'c').save();
+
+            Mission mission = new models.Mission( Integer.parseInt(nature),  Integer.parseInt(gravite), titre, urgence, date, null, longitude, latitude, rayon, 'c').save();
             Incidents incident = Incidents.find("byId", id_incident).first();
             incident.setId_mission(mission.id);
             incident.save();
@@ -157,9 +154,7 @@ public class Missions extends ConnectionController {
             for (String vilainId: vilain) {
                 new Assigner(mission.id, vilainId).save();
             }
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+
         redirect("/incident/manage");
     }
 }

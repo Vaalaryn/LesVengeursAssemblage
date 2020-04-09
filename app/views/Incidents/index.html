@@ -11,12 +11,13 @@
         </div>
     </div>
 
-    <form action="" class="row mt-3">
-        <input class="form-control col-4" type="text" id="street" placeholder="Rue" value="">
-        <input class="form-control col-3" type="text" id="city" placeholder="Ville" value="">
-        <input class="form-control col-3" type="text" id="country" placeholder="Pays" value="">
-        <input class="form-control col-2" type="text" id="postal" placeholder="Code postal" value="">
-    </form>
+    <div class="row mt-3">
+        <input class="form-control col-4" type="text" id="street" placeholder="Rue" name="incidents.street">
+        <input class="form-control col-3" type="text" id="city" placeholder="Ville" name="incidents.city">
+        <input class="form-control col-3" type="text" id="country" placeholder="Pays" name="incidents.country">
+        <input class="form-control col-2" type="text" id="postal" placeholder="Code postal" name="incidents.postal">
+        <span class="error">#{error 'incidents.adresse'/}</span>
+    </div>
 
     <div class="row">
         <div class="col-12 p-0">
@@ -26,20 +27,23 @@
             <form action="/incident/new" method="post">
                 <div class="form-group">
                     <label for="incidentType">Type d'incidents</label>
-                    <input class="form-control" type="text" name="type" id="incidentType" required/>
+                    <input class="form-control" type="text" name="incidents.type" id="incidentType" value="${flash['incidents.type']}"/>
+                    <span class="error">#{error 'incidents.type'/}</span>
                 </div>
                 <div class="form-group ">
                     <label for="date">Date de l'incident :</label>
-                    <input class="form-control" id="date" type="date" name="date" required/>
+                    <input class="form-control" id="date" type="date" name="incidents.date" value="${flash['incidents.date']}"/>
+                    <span class="error">#{error 'incidents.date'/}</span>
                 </div>
                 <div class="form-group">
                     <label for="description">Description de l'incident : </label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10"
-                              required></textarea>
+                    <textarea class="form-control" name="incidents.description" id="description" cols="30" rows="10" value="${flash['incidents.description']}"
+                              ></textarea>
+                    <span class="error">#{error 'incidents.description'/}</span>
                 </div>
 
                 <div id="coords">
-                    <input name="adresse" type="hidden" required>
+                    <input name="adresse" type="hidden">
                 </div>
                 <input type="submit" class="float-right btn btn-outline-success mb-5">
             </form>

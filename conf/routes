@@ -18,7 +18,8 @@ POST    /mission/new/{id_incident}  Missions.save
 GET    /missions/{id_super}         Missions.flow
 GET    /missions/historique/{id_super}       Missions.history
 GET    /mission/modifier/{id_mission}   Missions.modifier
-POST    /mission/modifier/{id_mission}   Missions.saveModifier
+POST   /mission/modifier/{id_mission}   Missions.saveModifier
+GET    /mission/cloturer/{id_mission} Missions.cloturer
 
 # Incident
 GET /incident/new                   Incidents.index
@@ -50,7 +51,10 @@ GET /incident/manage/{id_incident}  Incidents.manageIncident
     ## Rapports
     GET /mission/rapport/new                       GestionRapport.create
     POST /mission/rapport/new                      GestionRapport.save
-
+# Supers pouvoirs
+    GET /pouvoirs/list                             GestionPouvoirs.getallpouvoirs
+    GET /pouvoirs/categorie                        GestionCategoriePouvoir.getcategorie
+    POST /pouvoirs/ajouter                         GestionPouvoirs.create
 # Ignore favicon requests
 GET     /favicon.ico                404
 
