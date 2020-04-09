@@ -18,7 +18,12 @@
             <p class="card-text">Adresse :  ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
             <p class="card-text">Mail : ${civil.mail}</p>
             <p class="card-text">Tel : ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
-            <p class="card-text">Date de naissance : ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+            #{if civil.dateMort != null}
+                <p class="card-text">Date de naissance : ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+            #{/if}
+            #{else}
+                <p class="card-text">Date de naissance : Inconnue</p>
+            #{/else}
             #{if civil.dateMort != null}
                 <p class="card-text">date du déçès : ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
             #{/if}
