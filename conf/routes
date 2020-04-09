@@ -14,7 +14,8 @@ GET    /getmissions                 FakeMissions.index
 GET    /missions                    Missions.index
 GET    /mission/{id_mission}        Missions.info
 GET    /mission/new/{id_incident}   Missions.create
-GET    /missions/flow/{id_super}             Missions.flow
+POST    /mission/new/{id_incident}  Missions.save
+GET    /missions/{id_super}         Missions.flow
 GET    /missions/historique/{id_super}       Missions.history
 
 # Incident
