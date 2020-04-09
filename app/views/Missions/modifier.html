@@ -1,14 +1,14 @@
 #{extends 'main.html' /}
-#{set title:'Info' /}
+#{set title:'Modifier une mission' /}
 
 <!-- Titre -->
 <main role="main" class="container">
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col">
-                <h4 class="border-bottom border-gray pb-2 mb-0">${mission.titre}</h4>
+                <h4 class="border-bottom border-gray pb-2 mb-0">Modifier : ${missionFinish.titre}</h4>
             </div>
-        #{if mission.urgence}
+        #{if missionFinish.urgence}
             <div class="col-1">
                 <i class="fas fa-exclamation-triangle" style="color:darkred;"></i>
             </div>
@@ -20,17 +20,17 @@
 <main role="main" class="container">
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
-        #{if mission.reussite == 'c'}
+        #{if missionFinish.reussite == 'c'}
             <div class="col-1 text-center">
                 <img class="rotating" src="/public/images/missionIconLoading.png" alt="Mission en cours">
             </div>
         #{/if}
-        #{if mission.reussite == 'r'}
+        #{if missionFinish.reussite == 'r'}
             <div class="col-1 text-center">
                 <i class="fas fa-thumbs-up" style="color:green;"></i>
             </div>
         #{/if}
-        #{if mission.reussite == 'e'}
+        #{if missionFinish.reussite == 'e'}
             <div class="col-1 text-center">
                 <i class="fas fa-thumbs-down" style="color:red;"></i>
             </div>
@@ -69,9 +69,9 @@
     <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="row">
             <div class="col">
-                <p>Date de debut : ${mission.dateDebut.format("dd/MM/YYYY hh:mm")}</p>
-            #{if mission.dateFin != null}
-                <p>Date de fin : ${mission.dateFin.format("dd/MM/YYYY hh:mm")}</p>
+                <p>Date de debut : ${missionFinish.dateDebut.format("dd/MM/YYYY hh:mm")}</p>
+            #{if missionFinish.dateFin != null}
+                <p>Date de fin : ${missionFinish.dateFin.format("dd/MM/YYYY hh:mm")}</p>
             #{/if}
             </div>
         </div>
@@ -82,13 +82,13 @@
     <div id="map" style="height: 35vh">
     </div>
 </div>
-#{if mission.reussite == 'c'}
+#{if missionFinish.reussite == 'c'}
 <!-- Boutons Modifier & Terminer-->
 <main role="main" class="container">
     <div class="row">
         <div class="col">
             <div class="my-3 p-3 bg-white rounded box-shadow">
-                <a href="/mission/modifier/${id_mission}" class="btn btn-primary btn-lg btn-block">Modifier</a>
+                <a href="/mission/finish/${id_mission}" class="btn btn-primary btn-lg btn-block">Modifier</a>
             </div>
         </div>
         <div class="col">
@@ -111,6 +111,6 @@
         crossorigin=""></script>
 <script src="@{'/public/javascripts/OSM.js'}"></script>
 <script>
-    initMarkerInfo([${mission.latitude}, ${mission.longitude}]);
-    addRadius([${mission.latitude}, ${mission.longitude}], ${mission.rayon} * 1000);
+    initMarkerInfo([${missionFinish.latitude}, ${missionFinish.longitude}]);
+    addRadius([${missionFinish.latitude}, ${missionFinish.longitude}], ${missionFinish.rayon} * 1000);
 </script>

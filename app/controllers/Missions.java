@@ -12,6 +12,9 @@ import static java.util.Collections.emptyList;
 
 public class Missions extends ConnectionController {
 
+    public static Mission fetchMissionById(long id){
+        return Mission.find("byId", id).first();
+    }
 
     public static void index() {
         List<Mission> missions = Mission.find("from Mission").fetch(0, 50);
@@ -84,7 +87,6 @@ public class Missions extends ConnectionController {
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 
-
     public static void history() {
         List<Mission> missions = Mission.find("from Mission where reussite!=?1 and id in (select id_mission from Assigner where id_super LIKE ?2)", 'c', Security.connected()).fetch();
         render(missions);
@@ -97,5 +99,11 @@ public class Missions extends ConnectionController {
         List<SuperH> superVilains = SuperH.find("id like ?1", "SV%").fetch();
         List<NatureMission> natureMissions = NatureMission.findAll();
         render(id_incident, gravites, natureMissions, incident, superHeros, superVilains);
+    }
+
+    public static void modifier(long id_mission){
+        Mission mission = fetchMissionById(id_mission);
+        //missionFinish.
+        render(mission);
     }
 }

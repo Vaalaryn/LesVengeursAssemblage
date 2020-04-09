@@ -16,6 +16,7 @@ GET    /mission/{id_mission}        Missions.info
 GET    /mission/new/{id_incident}   Missions.create
 GET    /missions/flow/{id_super}             Missions.flow
 GET    /missions/historique/{id_super}       Missions.history
+GET    /mission/modifier/{id_mission}   Missions.modifier
 
 # Incident
 GET /incident/new                   Incidents.index
