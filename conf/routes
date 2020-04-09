@@ -13,12 +13,14 @@ GET    /getmissions                 FakeMissions.index
 # Page Missions
 GET    /missions                    Missions.index
 GET    /mission/{id_mission}        Missions.info
+GET    /mission/new/{id_incident}   Missions.info
 
 # Incident
 GET /incident/new                   Incidents.index
 POST /incident/new                  Incidents.postIndex
 GET /incident/suivi                 Incidents.suivi
 GET /incident/manage                Incidents.manage
+GET /incident/manage/{id_incident}  Incidents.manageIncident
 
 # Administration page
     ## Civils
