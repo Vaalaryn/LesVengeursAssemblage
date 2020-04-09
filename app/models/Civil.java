@@ -14,8 +14,8 @@ public class Civil extends GenericModel {
 
     public Civil(){
         //Génération aléatoire du code civil (Uniquement terrien pour le moment)
-        String id = "CI-T001";
-        this.id = id +=  CodeNation() + "-" + generateAlphanum();
+        String id = "CIT001";
+        this.id = id +=  CodeNation() + generateAlphanum();
         dateCreation = new Date();
     }
 
