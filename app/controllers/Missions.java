@@ -69,21 +69,8 @@ public class Missions extends ConnectionController {
         }
 
         //Afficher Heros & Vilains
-        List<SuperH> supers = SuperH.find("id in (select id_super from Assigner where id_mission LIKE ?1)", 10).fetch();
-        List<SuperH> supersVilainsPresents = new ArrayList<>();
-        List<SuperH> supersHerosPresents = new ArrayList<>();
-        for (SuperH superSupers : supers) {
-            //SH262763 Superman
-            //SV262763 Superman
-            if (superSupers.id.substring(0, 2).equals("SV")) {
-                Logger.debug("Vilain");
-                supersVilainsPresents.add(0, superSupers);
-            } else if (superSupers.id.substring(0, 2).equals("SH")) {
-                Logger.debug("Hero");
-                Logger.debug(superSupers.id);
-                supersHerosPresents.add(0,superSupers);
-            }
-        }
+        List<SuperH> supersVilainsPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'V', id_mission).fetch();
+        List<SuperH> supersHerosPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'H', id_mission).fetch();
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 
