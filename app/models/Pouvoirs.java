@@ -1,10 +1,16 @@
 package models;
 
 import play.db.jpa.Model;
-import javax.persistence.Entity;
 
-@Entity
+
+@javax.persistence.Entity
 public class Pouvoirs extends Model {
+    public Pouvoirs(){
+
+    }
+
+
+
     public long id_categorie;
     public String nom;
     public String description;

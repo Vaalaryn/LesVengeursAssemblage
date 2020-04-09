@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Posseder extends Model {
-    public long id_pouvoir;
+    public Posseder(){
+
+    }
+    public int id_pouvoir;
     public String id_super;
 
     public Posseder(long id_pouvoir, String id_super) {
