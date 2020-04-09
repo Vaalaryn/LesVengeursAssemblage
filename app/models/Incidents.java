@@ -1,15 +1,16 @@
 package models;
 
+
 import play.db.jpa.Model;
 
-import jdk.internal.jline.internal.Nullable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
 public class Incidents extends Model {
 
-    @Nullable
+    @Column(nullable = true)
     public int id_mission;
     public String civil;
     public String type;

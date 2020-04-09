@@ -1,31 +1,55 @@
 #{extends 'main.html' /}
 #{set title: "Déclaration d'incident" /}
 <div class="container">
-    <h1>Déclaration d'incidents</h1>
-    <div id="map"
-         class="map_list leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
-         tabindex="0" style="position: relative; outline: none; height: 350px">
-    </div>
-    <input type="text" id="street" placeholder="Rue" value="">
-    <input type="text" id="city" placeholder="Ville" value="">
-    <input type="text" id="country" placeholder="Pays" value="">
-    <input type="text" id="postal" placeholder="Code postal" value="">
-    <p id="place"></p>
-    <button id="add_address" onclick="searchPlace()">Ajouter l'adresse</button>
-    <form action="/incident/new" method="post">
-        <p>Type d'incident : </p>
-        <input type="text" name="type" required/>
-        <p>Date de l'incident : </p>
-        <input type="date" name="date" required/>
-        <p>Description de l'incident : </p>
-        <textarea name="description" id="" cols="30" rows="10" required></textarea>
-        <div id="coords">
-            <input name="adresse" type="hidden" required>
+
+    <div class="row">
+        <h1>Déclaration d'incidents</h1>
+
+        <div id="map"
+             class=" col-12 p-0 map_list leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+             tabindex="0" style="position: relative; outline: none; height: 350px; border: 2px solid grey">
         </div>
-        <input type="submit">
+    </div>
+
+    <form action="" class="row mt-3">
+        <input class="form-control col-4" type="text" id="street" placeholder="Rue" value="">
+        <input class="form-control col-3" type="text" id="city" placeholder="Ville" value="">
+        <input class="form-control col-3" type="text" id="country" placeholder="Pays" value="">
+        <input class="form-control col-2" type="text" id="postal" placeholder="Code postal" value="">
     </form>
+
+    <div class="row">
+        <div class="col-12 p-0">
+
+            <p id="place"></p>
+            <button id="add_address" class="btn btn-outline-primary" onclick="searchPlace()">Ajouter l'adresse</button>
+            <form action="/incident/new" method="post">
+                <div class="form-group">
+                    <label for="incidentType">Type d'incidents</label>
+                    <input class="form-control" type="text" name="type" id="incidentType" required/>
+                </div>
+                <div class="form-group ">
+                    <label for="date">Date de l'incident :</label>
+                    <input class="form-control" id="date" type="date" name="date" required/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description de l'incident : </label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10"
+                              required></textarea>
+                </div>
+
+                <div id="coords">
+                    <input name="adresse" type="hidden" required>
+                </div>
+                <input type="submit" class="float-right btn btn-outline-success mb-5">
+            </form>
+
+        </div>
+    </div>
 </div>
-<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
 <script src="@{'/public/javascripts/OSM.js'}"></script>
 <script>
 </script>
