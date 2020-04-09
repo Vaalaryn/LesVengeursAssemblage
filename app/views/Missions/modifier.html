@@ -1,116 +1,118 @@
 #{extends 'main.html' /}
 #{set title:'Modifier une mission' /}
-
-<!-- Titre -->
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <div class="row">
-            <div class="col">
-                <h4 class="border-bottom border-gray pb-2 mb-0">Modifier : ${missionFinish.titre}</h4>
-            </div>
-        #{if missionFinish.urgence}
-            <div class="col-1">
-                <i class="fas fa-exclamation-triangle" style="color:darkred;"></i>
-            </div>
-        #{/if}
-        </div>
-    </div>
-</main>
-<!-- SubTitle -->
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <div class="row">
-        #{if missionFinish.reussite == 'c'}
-            <div class="col-1 text-center">
-                <img class="rotating" src="/public/images/missionIconLoading.png" alt="Mission en cours">
-            </div>
-        #{/if}
-        #{if missionFinish.reussite == 'r'}
-            <div class="col-1 text-center">
-                <i class="fas fa-thumbs-up" style="color:green;"></i>
-            </div>
-        #{/if}
-        #{if missionFinish.reussite == 'e'}
-            <div class="col-1 text-center">
-                <i class="fas fa-thumbs-down" style="color:red;"></i>
-            </div>
-        #{/if}
-            <div class="col">
-                <h5 class="pb-2 mb-0">${nomNature} ${nomGravite}</h5>
-            </div>
-        </div>
-    </div>
-</main>
-<!-- Heros & Vilains-->
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <div class="row">
-            <div class="col border-success border mr-1">
-                <h6 class="text-center mt-1">Heros sur place</h6>
-                <ul>
-                #{list items:supersHerosPresents, as:'heros' }
-                    <li>${heros.nom}</li>
-                #{/list}
-                </ul>
-            </div>
-            <div class="col border-danger border ml-1">
-                <h6 class="text-center mt-1">Vilains sur place</h6>
-                <ul>
-                #{list items:supersVilainsPresents, as:'vilains' }
-                    <li>${vilains.nom}</li>
-                #{/list}
-                </ul>
-            </div>
-        </div>
-    </div>
-</main>
-<!-- Durée -->
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <div class="row">
-            <div class="col">
-                <p>Date de debut : ${missionFinish.dateDebut.format("dd/MM/YYYY hh:mm")}</p>
-            #{if missionFinish.dateFin != null}
-                <p>Date de fin : ${missionFinish.dateFin.format("dd/MM/YYYY hh:mm")}</p>
-            #{/if}
-            </div>
-        </div>
-    </div>
-</main>
-<!-- Map -->
 <div class="container">
-    <div id="map" style="height: 35vh">
+
+    <div class="row">
+    <div id="map"
+         class=" col-12 p-0 map_list leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+         tabindex="0" style="position: relative; outline: none; height: 350px; border: 2px solid grey">
     </div>
 </div>
-#{if missionFinish.reussite == 'c'}
-<!-- Boutons Modifier & Terminer-->
-<main role="main" class="container">
-    <div class="row">
+    <div>
+    <form action="" class="row mt-3 mb-3">
+        <input class="form-control col-4" type="text" id="street" placeholder="Rue" value="">
+        <input class="form-control col-3" type="text" id="city" placeholder="Ville" value="">
+        <input class="form-control col-3" type="text" id="country" placeholder="Pays" value="">
+        <input class="form-control col-2" type="text" id="postal" placeholder="Code postal" value="">
+    </form>
+
+</div>
+
+    <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="MajPlace()">Modifier l'adresse</button>
+    <form action="" method="post">
+    <div class="form-row">
         <div class="col">
-            <div class="my-3 p-3 bg-white rounded box-shadow">
-                <a href="/mission/finish/${id_mission}" class="btn btn-primary btn-lg btn-block">Modifier</a>
-            </div>
+            <input type="number" name="rayon" placeholder="Rayon(km)" id="rayon" class="form-control" value="${mission.rayon}" onchange="MajRadius()">
         </div>
         <div class="col">
-            <div class="my-3 p-3 bg-white rounded box-shadow">
-                <a href="/mission/rapport/new" class="btn btn-success btn-lg btn-block">Fin de mission</a>
-            </div>
         </div>
     </div>
-</main>
-#{/if}
-#{else }
-<main role="main" class="container">
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <a href="/missions" class="btn btn-primary btn-lg btn-block"><i class="fas fa-arrow-left" style="color:#fff;"></i> Retour aux missions</a>
+    <input type="text" name="titre"
+           placeholder="Titre de la mission"  class="form-control mb-3" value="${mission.titre}">
+    <input type="date" name="debut" placeholder="debut" class="form-control mb-3" value="${mission.dateDebut.toString().substring(0,10)}">
+    <div class="mb-3">
+        <label for="">Sélection SuperHero : </label>
+        <select name="hero[]" id="hero"  class="form-control mb-3 js-example-basic-multiple" multiple="multiple" >
+        #{list items:superHeros, as: 'superHero'}
+            <option value="${superHero.id}">${superHero.nom}</option>
+        #{/list}
+        </select>
     </div>
-</main>
-#{/else}
+    <div class="mb-3">
+        <label for="">Sélection SuperVilains : </label>
+        <select name="vilain[]" id="vilain"  class="form-control  mb-3 js-example-basic-multiple" multiple="multiple">
+        #{list items:superVilains, as: 'superVilain'}
+            <option value="${superVilain.id}">${superVilain.nom}</option>
+        #{/list}
+        </select>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="">Nature : </label>
+            <select name="nature" id=""  class="form-control">
+            #{list items:natureMissions, as: 'nature'}
+                <option value="${nature.id}" #{if nature.id == mission.id_nature}selected#{/if}>${nature.nom}</option>
+            #{/list}
+            </select>
+        </div>
+        <div class="col">
+            <label for="">Gravite : </label>
+            <select name="gravite" id=""  class="form-control">
+            #{list items:gravites, as: 'gravite'}
+                <option value="${gravite.id}" #{if gravite.id == mission.id_gravite}selected#{/if}>${gravite.nom}</option>
+            #{/list}
+            </select>
+        </div>
+    </div>
+    <div class="form-check">
+
+        <input class="form-check-input" type="checkbox" name="urgence" #{if mission.urgence}checked#{/if}>
+        <label class="form-check-label" for="defaultCheck1">
+            Urgent
+        </label>
+    </div>
+    <div id="coords">
+        <input name="lon" type="hidden" id="lon" value="${mission.longitude}">
+        <input name="lat" type="hidden" id="lat" value="${mission.latitude}">
+    </div>
+    <input type="submit"  class="btn btn-primary float-right m-3">
+</form>
+</div>
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
 <script src="@{'/public/javascripts/OSM.js'}"></script>
 <script>
-    initMarkerInfo([${missionFinish.latitude}, ${missionFinish.longitude}]);
-    addRadius([${missionFinish.latitude}, ${missionFinish.longitude}], ${missionFinish.rayon} * 1000);
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+
+
+    var xmlhttp = new XMLHttpRequest();
+
+    function MajRadius() {
+        let lat= document.getElementById("lat").value;
+        let lon= document.getElementById("lon").value;
+        addRadius([lat,lon], document.getElementById("rayon").value*1000);
+    }
+    function MajPlace(){
+        searchPlace();
+        setTimeout(MajRadius, 500);
+        //MajRadius();
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var myObj = JSON.parse(this.responseText);
+            console.log(myObj);
+            initMarker([${mission.latitude}, ${mission.longitude}], myObj.display_name);
+            addRadius([myObj.lat,myObj.lon], ${mission.rayon}*1000)
+
+        }
+    };
+    xmlhttp.open("GET", 'https://nominatim.openstreetmap.org/reverse?format=json&lat=${mission.latitude}&lon=${mission.longitude}', true);
+    xmlhttp.send();
+    $('#hero').val(${listH});
+    $('#hero').trigger('change'); // Notify any JS components that the value changed
+    $('#vilain').val(${listV});
+    $('#vilain').trigger('change'); // Notify any JS components that the value changed
 </script>

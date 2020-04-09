@@ -18,6 +18,7 @@ POST    /mission/new/{id_incident}  Missions.save
 GET    /missions/{id_super}         Missions.flow
 GET    /missions/historique/{id_super}       Missions.history
 GET    /mission/modifier/{id_mission}   Missions.modifier
+POST    /mission/modifier/{id_mission}   Missions.saveModifier
 
 # Incident
 GET /incident/new                   Incidents.index

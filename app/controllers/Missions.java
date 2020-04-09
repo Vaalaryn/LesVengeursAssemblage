@@ -5,6 +5,7 @@ import models.Incidents;
 import net.bytebuddy.implementation.bind.annotation.Super;
 import play.Logger;
 import play.mvc.Controller;
+import sun.security.util.Debug;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.list;
 
 public class Missions extends ConnectionController {
 
@@ -91,15 +93,44 @@ public class Missions extends ConnectionController {
         render(id_incident, gravites, natureMissions, incident, superHeros, superVilains);
     }
 
+    private static String RenderListSuper(List<String> supersListing){
+        String listH = "['";
+        for (String fmsuper :
+                supersListing) {
+            listH += fmsuper+ "','";
+        }
+        return listH.substring(0,listH.length()-3) + "']";
+    }
 
     public static void modifier(long id_mission) {
         Mission mission = fetchMissionById(id_mission);
 
         //Afficher Heros & Vilains
-        List<SuperH> supersVilainsPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'V', id_mission).fetch();
-        List<SuperH> supersHerosPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'H', id_mission).fetch();
+        List<String> supersVilainsPresents = SuperH.find("select id from SuperH where type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'V', id_mission).fetch();
+        List<String> supersHerosPresents = SuperH.find("select id from SuperH where type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'H', id_mission).fetch();
 
-        render(mission, supersVilainsPresents, supersHerosPresents);
+        renderArgs.put("listH",RenderListSuper(supersHerosPresents));
+        renderArgs.put("listV",RenderListSuper(supersVilainsPresents));
+
+        List<SuperH> superHeros = SuperH.find("id like ?1", "SH%").fetch();
+        List<SuperH> superVilains = SuperH.find("id like ?1", "SV%").fetch();
+
+        List<Gravites> gravites = Gravites.findAll();
+        List<NatureMission> natureMissions = NatureMission.findAll();
+
+
+        render(gravites,natureMissions, mission,superVilains,superHeros);
+    }
+
+    public static void saveModifier(long id_incident, String[] hero, String[] vilain){
+        String date = params.get("debut");
+        String latitude = params.get("lat");
+        String longitude = params.get("lon");
+        String rayon = params.get("rayon");
+        String gravite = params.get("gravite");
+        String nature = params.get("nature");
+        String titre = params.get("titre");
+        render();
     }
 
     public static void save(long id_incident, String[] hero, String[] vilain){
