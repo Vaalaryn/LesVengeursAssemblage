@@ -2,14 +2,19 @@
 #{set title: "Gérer les incidents" /}
 
 <div class="container">
-    <ul class="list-group">
+    <h1>Gestion d'incidents</h1>
+    <ul class="list-group list-group-flush">
     #{list items:incidents, as: 'incident'}
-        <button class="accordion">
-            <li class="list-group-item">${incident.type}</li>
-        </button>
-        <div class="panel">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
+        <li class="list-group-item">
+            <button class="accordion btn btn-light">${incident.type}</button>
+            <div class="panel">
+                <p>${incident.description}</p>
+                <p>${incident.date}</p>
+                <p>${incident.adresse}</p>
+                <a href="/incident/manage/${incident.id}" class="btn btn-outline-success float-right">Gérer incident</a>
+                <button href="/missions/new/${incident.id}" class="btn btn-outline-danger float-right">Refuser</button>
+            </div>
+        </li>
     #{/list}
     </ul>
 </div>

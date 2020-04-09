@@ -41,4 +41,11 @@ public class Incidents extends ConnectionController {
         renderArgs.put("incidents", incidents);
         render();
     }
+
+    @Check("Admin")
+    public static void manageIncident(){
+        List<models.Incidents> incidents = models.Incidents.find("byEtat", false).fetch();
+        renderArgs.put("incidents", incidents);
+        render();
+    }
 }
