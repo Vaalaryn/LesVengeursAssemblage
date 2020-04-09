@@ -3,13 +3,56 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                               Application.index
+GET     /profil/{id_profil}             Application.profil
+*       /                               module:secure
 
+# Pages Missions
+GET    /missions                        Missions.index
+GET    /mission/{id_mission}            Missions.info
+GET    /mission/new/{id_incident}       Missions.create
+POST   /mission/new/{id_incident}       Missions.save
+GET    /missions/{id_super}             Missions.flow
+GET    /missions/historique/{id_super}  Missions.history
+GET    /mission/modifier/{id_mission}   Missions.modifier
+POST   /mission/modifier/{id_mission}   Missions.saveModifier
+GET    /mission/cloturer/{id_mission}   Missions.cloturer
+    ## Rapports
+GET    /mission/rapport/new             GestionRapport.create
+POST   /mission/rapport/new             GestionRapport.save
+
+# Incident
+GET    /incident/new                    Incidents.index
+POST   /incident/new                    Incidents.postIndex
+GET    /incident/suivi                  Incidents.suivi
+GET    /incident/manage                 Incidents.manage
+GET    /incident/manage/{id_incident}   Incidents.manageIncident
+
+# Administration page
+    ## Civils
+    GET     /administration/civil/nouveau               GestionCivil.create
+    POST    /administration/civil/nouveau               GestionCivil.save
+
+    GET     /administration/civil/list                  GestionCivil.list
+    GET     /administration/civil/show                  GestionCivil.show
+    POST    /administration/civil/modify                GestionCivil.modify
+    POST    /administration/civil/delete                GestionCivil.delete
+
+    ## Super Héros / Super vilains
+    GET     /administration/super/new                   GestionSuperH.create
+    POST    /administration/super/new                   GestionSuperH.save
+
+    GET     /administration/super/list                  GestionSuperH.list
+    GET     /administration/super/show                  GestionSuperH.show
+    POST    /administration/super/modify                GestionSuperH.modify
+    POST    /administration/super/delete                GestionSuperH.delete
+
+# Supers pouvoirs
+    GET     /pouvoirs/list                              GestionPouvoirs.getallpouvoirs
+    GET     /pouvoirs/categorie                         GestionCategoriePouvoir.getcategorie
+    POST    /pouvoirs/ajouter                           GestionPouvoirs.create
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                    404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
-
-# Catch all
-*       /{controller}/{action}                  {controller}.{action}
+GET     /public/                        staticDir:public

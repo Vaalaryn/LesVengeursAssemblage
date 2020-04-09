@@ -1,0 +1,137 @@
+#{extends 'main.html' /}
+#{set title:'Info' /}
+
+<!-- Titre -->
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="row">
+            <div class="col">
+                <h4 class="border-bottom border-gray pb-2 mb-0">${mission.titre}</h4>
+            </div>
+        #{if mission.urgence}
+            <div class="col-1">
+                <i class="fas fa-exclamation-triangle" style="color:darkred;"></i>
+            </div>
+        #{/if}
+        </div>
+    </div>
+</main>
+<!-- SubTitle -->
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="row">
+        #{if mission.reussite == 'c'}
+            <div class="col-1 text-center">
+                <img class="rotating" src="/public/images/missionIconLoading.png" alt="Mission en cours">
+            </div>
+        #{/if}
+        #{if mission.reussite == 'r'}
+            <div class="col-1 text-center">
+                <i class="fas fa-thumbs-up" style="color:green;"></i>
+            </div>
+        #{/if}
+        #{if mission.reussite == 'e'}
+            <div class="col-1 text-center">
+                <i class="fas fa-thumbs-down" style="color:red;"></i>
+            </div>
+        #{/if}
+            <div class="col">
+                <h5 class="pb-2 mb-0">${nomNature} ${nomGravite}</h5>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Heros & Vilains-->
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="row">
+            <div class="col border-success border mr-1">
+                <h6 class="text-center mt-1">Heros sur place</h6>
+                <ul>
+                #{list items:supersHerosPresents, as:'heros' }
+                    <li>${heros.nom}</li>
+                #{/list}
+                </ul>
+            </div>
+            <div class="col border-danger border ml-1">
+                <h6 class="text-center mt-1">Vilains sur place</h6>
+                <ul>
+                #{list items:supersVilainsPresents, as:'vilains' }
+                    <li>${vilains.nom}</li>
+                #{/list}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Durée -->
+<main role="main" class="container">
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="row">
+            <div class="col">
+                <p>Date de debut : ${mission.dateDebut.format("dd/MM/YYYY hh:mm")}</p>
+            #{if mission.dateFin != null}
+                <p>Date de fin : ${mission.dateFin.format("dd/MM/YYYY hh:mm")}</p>
+            #{/if}
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Map -->
+<div class="container">
+    <div id="map" style="height: 35vh">
+    </div>
+</div>
+
+<!-- Boutons Modifier & Terminer-->
+<main role="main" class="container mt-5">
+#{if mission.reussite == 'c'}
+    <div class="row">
+        <div class="col">
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+                <a href="/mission/modifier/${id_mission}" class="btn btn-primary btn-lg btn-block">Modifier</a>
+            </div>
+        </div>
+        #{if supersHerosPresents.contains(models.SuperH.find("id = ?1",id).first())}
+
+        <div class="col">
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+                <span  class="btn btn-success btn-lg btn-block"  data-toggle="modal" data-target="#exampleModal">Fin de mission</span>
+            </div>
+        </div>
+        #{/if}
+    </div>
+#{/if}
+</main>
+
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+<script src="@{'/public/javascripts/OSM.js'}"></script>
+<script>
+    initMarkerInfo([${mission.latitude}, ${mission.longitude}]);
+    addRadius([${mission.latitude}, ${mission.longitude}], ${mission.rayon} * 1000);
+</script>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fin de mission..</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Avez-vous réussi la mission ?
+            </div>
+            <div class="modal-footer">
+                <a href="/mission/cloturer/${id_mission}?reussite=false" class="btn btn-danger">Non</a>
+                <a href="/mission/cloturer/${id_mission}?reussite=true"  class="btn btn-success">Oui</a>
+            </div>
+        </div>
+    </div>
+</div>

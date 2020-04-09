@@ -1,0 +1,102 @@
+#{extends 'main.html'/}
+
+<div class="container mt-3">
+    <h2>Liste des supers</h2>
+    <div class="row">
+        <div class="col-12">
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnSuper">Consulter</span>
+            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnSuperSupp" >Supprimer</span>
+            <table id="table" class="display">
+                <thead>
+                <tr>
+                    <th>Numéro super</th>
+                    <th>Pseudonyme</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                #{list items:models.SuperH.findAll(), as: 'superH'}
+                <tr>
+                    <td>${superH.id}</td>
+                    <td>${superH.nom}</td>
+                    <td>${superH.type == 'H' ? "Super héro" : "Super vilain"}</td>
+                </tr>
+                #{/list}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let table = $('#table').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/French.json"
+            }
+        });
+        let idSelected;
+        let trSelected;
+        $("#table tbody").on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                $("#btnSuper").attr("class", "btn btn-primary float-right mb-3 disabled");
+                $("#btnSuperSupp").attr("class", "btn btn-danger float-right mr-2 mb-3 disabled");
+                $("#btnSuperSupp").attr("data-toggle","");
+                $("#btnSuperSupp").attr("data-target","");
+
+                idSelected = null;
+                trSelected = null;
+
+            } else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $("#btnSuper").attr("class", "btn btn-primary float-right mb-3");
+                $("#btnSuperSupp").attr("class", "btn btn-danger float-right mb-3 mr-2");
+                $("#btnSuperSupp").attr("data-toggle","modal");
+                $("#btnSuperSupp").attr("data-target","#exampleModal");
+                idSelected = $(this).children().first().text();
+                trSelected = $(this);
+            }
+        });
+        $("#btnSuper").click(function () {
+            if (idSelected != null)
+                document.location.href = "/administration/super/show?id=" + idSelected;
+        })
+
+        $("#confirmDelete").click(function () {
+            DeleteSuperH(idSelected);
+        })
+
+
+        function DeleteSuperH(idSuper) {
+            if (idSelected != null) {
+                $.post({
+                    url: "/administration/super/delete",
+                    data: {id: idSuper}
+                });
+                trSelected.empty();
+            }
+        }
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmer la suppression.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment supprimer ce super ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="confirmDelete">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>

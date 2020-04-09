@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title: "Gérer les incidents" /}
+
+<div class="container">
+    <h1>Gestion d'incidents</h1>
+    <ul class="list-group list-group-flush">
+    #{list items:incidents, as: 'incident'}
+        <li class="list-group-item">
+            <button class="accordion btn btn-light">${incident.type} - ${incident.date.format("dd/MM/YYYY h:mm")}</button>
+            <div class="panel">
+                <p>${incident.description}</p>
+                <p>${incident.adresse}</p>
+                <a href="/mission/new/${incident.id}" class="btn btn-outline-success float-right ml-2">Accepter</a>
+                <a href="/incident/manage/${incident.id}" class="btn btn-outline-danger float-right">Refuser</a>
+            </div>
+        </li>
+    #{/list}
+    </ul>
+</div>

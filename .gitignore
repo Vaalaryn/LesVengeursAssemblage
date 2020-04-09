@@ -16,3 +16,7 @@ server.pid
 .cache
 conf/application.conf
 .idea/
+*.iml
+*.ipr
+*.iws
+lesvengeurs001.sql

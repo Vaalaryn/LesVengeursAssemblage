@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    font-size: 1.3rem;
+}
+
+.img-wrap {
+    width: 2.5rem;
+    height: 5rem;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+}
+
+.accordion {
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
