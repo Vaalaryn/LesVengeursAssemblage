@@ -31,7 +31,7 @@ public class GestionSuperH extends ConnectionController {
 
         for(int i =0; i < pouvoirsId.length; i++){
             Posseder posseder = new Posseder();
-            posseder.id_pouvoir = pouvoirsId[i];
+            posseder.id_pouvoir = (long)pouvoirsId[i];
             posseder.id_super = superH.id;
             posseder.save();
         }
@@ -48,7 +48,7 @@ public class GestionSuperH extends ConnectionController {
 
         render(model);
     }
-    public  static void Modify(@Valid SuperH superH, String type,List<Integer> pouvoirsId){
+    public  static void Modify(@Valid SuperH superH, String type,List<Long> pouvoirsId){
         if (validation.hasErrors()){
             params.flash();
             validation.keep();
@@ -60,10 +60,10 @@ public class GestionSuperH extends ConnectionController {
         superH.mdp = superHToModify.mdp;
 
         String hql = "select p.id_pouvoir from Posseder p where p.id_super = :id";
-        TypedQuery<Integer> query = Posseder.em().createQuery(hql,Integer.class);
+        TypedQuery<Long> query = Posseder.em().createQuery(hql,Long.class);
         query.setParameter("id",superH.id);
 
-        List<Integer> superPouvoirs = query.getResultList();
+        List<Long> superPouvoirs = query.getResultList();
         for (int i = 0; i < pouvoirsId.size(); i++){
             if(!superPouvoirs.contains(pouvoirsId.get(i))){
                 Posseder posseder = new Posseder();
