@@ -9,8 +9,8 @@ import java.util.Date;
 public class Mission extends Model {
 
 
-    public int id_nature;
-    public int id_gravite;
+    public long id_nature;
+    public long id_gravite;
     public String titre;
     public boolean urgence;
     public Date dateDebut;
@@ -20,7 +20,7 @@ public class Mission extends Model {
     public String rayon;
     public char reussite;
 
-    public Mission(int id_nature, int id_gravite, String titre, boolean urgence, Date dateDebut, Date dateFin, String longitude, String latitude, String rayon, char reussite) {
+    public Mission(long id_nature, long id_gravite, String titre, boolean urgence, Date dateDebut, Date dateFin, String longitude, String latitude, String rayon, char reussite) {
         this.id_nature = id_nature;
         this.id_gravite = id_gravite;
         this.titre = titre;
