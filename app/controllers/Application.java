@@ -11,7 +11,7 @@ import models.*;
 public class Application extends ConnectionController {
 
     public static void index() {
-        render();
+        redirect("/incident/new");
     }
 
     public static void profil(String id_profil) {

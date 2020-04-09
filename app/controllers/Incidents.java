@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import play.Logger;
+import play.db.jpa.Model;
 
 public class Incidents extends ConnectionController {
 
@@ -43,9 +44,11 @@ public class Incidents extends ConnectionController {
     }
 
     @Check("Admin")
-    public static void manageIncident(){
-        List<models.Incidents> incidents = models.Incidents.find("byEtat", false).fetch();
-        renderArgs.put("incidents", incidents);
-        render();
+    public static void manageIncident(int id_incident){
+        models.Incidents incidents =  models.Incidents.find("byId", (long)id_incident).first();
+        incidents.setEtat(true);
+        incidents.setId_mission(0);
+        incidents.save();
+        redirect("/incident/manage");
     }
 }
