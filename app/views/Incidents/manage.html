@@ -6,13 +6,12 @@
     <ul class="list-group list-group-flush">
     #{list items:incidents, as: 'incident'}
         <li class="list-group-item">
-            <button class="accordion btn btn-light">${incident.type}</button>
+            <button class="accordion btn btn-light">${incident.type} - ${incident.date.format("dd/MM/YYYY h:mm")}</button>
             <div class="panel">
                 <p>${incident.description}</p>
-                <p>${incident.date}</p>
                 <p>${incident.adresse}</p>
-                <a href="/incident/manage/${incident.id}" class="btn btn-outline-success float-right">Gérer incident</a>
-                <button href="/missions/new/${incident.id}" class="btn btn-outline-danger float-right">Refuser</button>
+                <a href="/mission/new/${incident.id}" class="btn btn-outline-success float-right">Accepter</a>
+                <a href="/incident/manage/${incident.id}" class="btn btn-outline-danger float-right">Refuser</a>
             </div>
         </li>
     #{/list}

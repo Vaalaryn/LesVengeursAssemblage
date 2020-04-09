@@ -1,0 +1,101 @@
+#{extends 'main.html' /}
+#{set title: "Suivi" /}
+
+<div class="container">
+    <h2 class="mb-3">Creation d'une mission</h2>
+    <div class="col-12">
+        <h4>Récapitulatif de l'incident</h4>
+        <ul class="list-group mb-5">
+            <li class="list-group-item"><strong class="text-info">Type de l'incident : </strong>${incident.type}</li>
+            <li class="list-group-item"><strong class="text-info">Date de l'incident
+                : </strong>${incident.date.format("dd/MM/YYYY hh:mm")}</li>
+            <li class="list-group-item"><strong class="text-info">Déclaré par : </strong>${incident.civil}</li>
+            <li class="list-group-item"><strong class="text-info">Description de
+                l'incident: </strong>${incident.description}</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div id="map"
+             class=" col-12 p-0 map_list leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+             tabindex="0" style="position: relative; outline: none; height: 350px; border: 2px solid grey">
+        </div>
+    </div>
+    <div>
+        <form action="" class="row mt-3 mb-3">
+            <input class="form-control col-4" type="text" id="street" placeholder="Rue" value="">
+            <input class="form-control col-3" type="text" id="city" placeholder="Ville" value="">
+            <input class="form-control col-3" type="text" id="country" placeholder="Pays" value="">
+            <input class="form-control col-2" type="text" id="postal" placeholder="Code postal" value="">
+        </form>
+
+    </div>
+    <form action="" method="post">
+        <div class="form-row">
+            <div class="col">
+                <input type="number" name="rayon" placeholder="Rayon(km)" class="form-control">
+            </div>
+            <div class="col">
+                <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="searchPlace()">Modifier l'adresse</button>
+            </div>
+        </div>
+        <input type="text" name="titre"
+               placeholder="Titre de la mission"  class="form-control mb-3">
+        <input type="date" name="debut" placeholder="debut" class="form-control mb-3">
+        <div class="mb-3">
+            <label for="">Sélection SuperHero : </label>
+            <select name="hero[]" id=""  class="form-control mb-3 js-example-basic-multiple" multiple="multiple" >
+            #{list items:superHeros, as: 'superHero'}
+                <option value="${superHero.id}">${superHero.nom}</option>
+            #{/list}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="">Sélection SuperVilains : </label>
+            <select name="vilain[]" id=""  class="form-control  mb-3 js-example-basic-multiple" multiple="multiple">
+            #{list items:superVilains, as: 'superVilain'}
+                <option value="${superVilain.id}">${superVilain.nom}</option>
+            #{/list}
+            </select>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="">Nature : </label>
+                <select name="nature" id=""  class="form-control">
+                #{list items:natureMissions, as: 'nature'}
+                    <option value="${nature.id}">${nature.nom}</option>
+                #{/list}
+                </select>
+            </div>
+            <div class="col">
+                <label for="">Gravite : </label>
+                <select name="gravite" id=""  class="form-control">
+                #{list items:gravites, as: 'gravite'}
+                    <option value="${gravite.id}">${gravite.nom}</option>
+                #{/list}
+                </select>
+            </div>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="urgence" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Urgent
+            </label>
+        </div>
+        <div id="coords">
+            <input name="lon" type="hidden" required>
+            <input name="lat" type="hidden" required>
+            <input name="adresse" type="hidden" required>
+        </div>
+        <input type="submit"  class="btn btn-primary float-right m-3">
+    </form>
+</div>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+<script src="@{'/public/javascripts/OSM.js'}"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+    initMarker([${incident.latitude}, ${incident.longitude}], "${incident.adresse}");
+</script>

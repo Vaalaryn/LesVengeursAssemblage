@@ -13,8 +13,8 @@ GET    /getmissions                 FakeMissions.index
 # Pages Missions
 GET    /missions                    Missions.index
 GET    /mission/{id_mission}        Missions.info
-GET    /mission/new/{id_incident}   Missions.info
-GET    /missions/{id_super}       Missions.flow
+GET    /mission/new/{id_incident}   Missions.create
+GET    /missions/{id_super}         Missions.flow
 
 # Incident
 GET /incident/new                   Incidents.index
@@ -26,7 +26,7 @@ GET /incident/manage/{id_incident}  Incidents.manageIncident
 # Administration page
     ## Civils
     GET /administration/civil/nouveau               GestionCivil.create
-    POST /administration/civil/nouveau              GestionCivil.sgit fetchave
+    POST /administration/civil/nouveau              GestionCivil.save
 
     GET /administration/civil/list                  GestionCivil.list
     GET /administration/civil/show                  GestionCivil.show

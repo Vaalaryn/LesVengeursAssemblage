@@ -50,14 +50,14 @@ public class Missions extends ConnectionController {
         Mission mission = Mission.find("byId", id_mission).first();
 
         //Afficher Nature & Gravité
-        List<Gravites> gravites = Gravites.find("from Gravites").fetch(0, 10);
+        List<Gravites> gravites = Gravites.find("from Gravites").fetch();
         String nomGravite = null;
         for (Gravites gravite : gravites) {
             if (gravite.id == mission.id_gravite) {
                 nomGravite = gravite.nom;
             }
         }
-        List<NatureMission> natures = NatureMission.find("from NatureMission").fetch(0, 10);
+        List<NatureMission> natures = NatureMission.find("from NatureMission").fetch();
         String nomNature = null;
         for (NatureMission nature : natures) {
             if (nature.id == mission.id_nature) {
@@ -82,5 +82,14 @@ public class Missions extends ConnectionController {
             }
         }
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
+    }
+
+    public static void create(int id_incident){
+        models.Incidents incident = models.Incidents.find("byId", (long)id_incident).first();
+        List<Gravites> gravites = Gravites.findAll();
+        List<SuperH> superHeros = SuperH.find("id like ?1", "SH%").fetch();
+        List<SuperH> superVilains = SuperH.find("id like ?1", "SV%").fetch();
+        List<NatureMission> natureMissions = NatureMission.findAll();
+        render(id_incident, gravites, natureMissions, incident, superHeros, superVilains);
     }
 }
