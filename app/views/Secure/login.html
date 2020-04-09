@@ -1,8 +1,8 @@
-#{extends 'Secure/layout.html' /}
+#{extends 'main_not_signed.html'/}
 
-<div id="login">
+<div class="container">
 	
-	<h1></h1>
+	<h1>Les avengers</h1>
 		
 	#{form @authenticate()}
 		
@@ -17,20 +17,22 @@
 			</p>
 		#{/if}
 	
-		<p id="username-field">
-			<label for="username">&{'secure.username'}</label>
-			<input type="text" name="username" id="username" value="${flash.username}" />
-		</p>
-		<p id="password-field">
-			<label for="password">&{'secure.password'}</label>
-			<input type="password" name="password" id="password" value="" />
-		</p>
-		<p id="remember-field">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">&{'secure.remember'}</label>
-		</p>
-		<p id="signin-field">
-			<input type="submit" id="signin" value="&{'secure.signin'}" />
-		</p>
+		<div class="form-group">
+			<label for="username">Votre identifiant</label>
+			<input required class="form-control" type="text" name="username" id="username" value="${flash.username}" />
+		</div>
+
+		<div class="form-goup">
+			<label for="password">Mot de passe</label>
+			<input required class="form-control" type="password" name="password" id="password" value="" />
+		</div>
+
+			<div class="form-group">
+				<input class="form-check-label" type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+				<label for="remember">&{'secure.remember'}</label>
+			</div>
+
+			<input class="btn col-12 btn-primary" type="submit" id="signin" value="Se connecter" />
+
 	#{/form}
 </div>

@@ -20,3 +20,4 @@ crud.saveAndContinue = Sauvegarder et continuer à éditer
 crud.saveAndAddAnother = Sauvegarder et créer nouveau %s
 crud.add = Créer &{%s}
 crud.blank.title = Créer &{%s}
+secure.error = Votre mot de passe ou votre identifiant est incorrect. Veuillez réessayer.
