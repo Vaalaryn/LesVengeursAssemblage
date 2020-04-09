@@ -87,25 +87,12 @@
         $('.js-example-basic-multiple').select2();
     });
 
-
     var xmlhttp = new XMLHttpRequest();
-
-    function MajRadius() {
-        let lat= document.getElementById("lat").value;
-        let lon= document.getElementById("lon").value;
-        addRadius([lat,lon], document.getElementById("rayon").value*1000);
-    }
-    function MajPlace(){
-        searchPlace();
-        setTimeout(MajRadius, 500);
-        //MajRadius();
-    }
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var myObj = JSON.parse(this.responseText);
-            console.log(myObj);
-            initMarker([${mission.latitude}, ${mission.longitude}], myObj.display_name);
-            addRadius([myObj.lat,myObj.lon], ${mission.rayon}*1000)
+            initMarker([${mission.latitude}, ${mission.longitude}], myObj.display_name != "" ? myObj.display_name : "Aucune info sur le lieu coordonnées : ${mission.latitude}, ${mission.longitude}");
+            addRadius([myObj.lat,myObj.lon], ${mission.rayon}*1000);
 
         }
     };

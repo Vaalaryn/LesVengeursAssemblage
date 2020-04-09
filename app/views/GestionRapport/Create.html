@@ -28,8 +28,8 @@
                 #{if !mission.urgence}
                     <strong class="text-secondary">Pas urgent</strong>
                 #{/if}
-                <li class="list-group-item"><strong class="text-info">Lieu :</strong> ${mission.latitude}
-                    ; ${mission.longitude}</li>
+                <li class="list-group-item"><div id="map" style="height: 300px">
+            </div></li>
             </ul>
         </div>
         <div class="col-12 mt-3">
@@ -87,3 +87,20 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+<script src="@{'/public/javascripts/OSM.js'}"></script>
+<script>
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var myObj = JSON.parse(this.responseText);
+            initMarker([${mission.latitude}, ${mission.longitude}], myObj.display_name != "" ? myObj.display_name : "Aucune info sur le lieu coordonnées : ${mission.latitude}, ${mission.longitude}");
+            addRadius([myObj.lat,myObj.lon], ${mission.rayon}*1000);
+
+        }
+    };
+    xmlhttp.open("GET", 'https://nominatim.openstreetmap.org/reverse?format=json&lat=${mission.latitude}&lon=${mission.longitude}', true);
+    xmlhttp.send();
+</script>
