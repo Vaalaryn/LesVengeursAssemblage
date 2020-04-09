@@ -47,7 +47,7 @@ public class Incidents extends ConnectionController {
     public static void manageIncident(int id_incident){
         models.Incidents incidents =  models.Incidents.find("byId", (long)id_incident).first();
         incidents.setEtat(true);
-        incidents.setId_mission(0);
+        incidents.setId_mission((long)0);
         incidents.save();
         redirect("/incident/manage");
     }

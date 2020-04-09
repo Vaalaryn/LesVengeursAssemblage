@@ -29,13 +29,14 @@
         </form>
 
     </div>
+
+    <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="searchPlace()">Modifier l'adresse</button>
     <form action="" method="post">
         <div class="form-row">
             <div class="col">
                 <input type="number" name="rayon" placeholder="Rayon(km)" class="form-control">
             </div>
             <div class="col">
-                <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="searchPlace()">Modifier l'adresse</button>
             </div>
         </div>
         <input type="text" name="titre"
@@ -76,7 +77,7 @@
             </div>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="urgence" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" name="urgence">
             <label class="form-check-label" for="defaultCheck1">
                 Urgent
             </label>

@@ -11,7 +11,7 @@ import java.util.Date;
 public class Incidents extends Model {
 
     @Column(nullable = true)
-    public int id_mission;
+    public long id_mission;
     public String civil;
     public String type;
     public String description;
@@ -43,7 +43,7 @@ public class Incidents extends Model {
         this.etat = value;
     }
 
-    public void setId_mission(int id_mission) {
+    public void setId_mission(long id_mission) {
         this.id_mission = id_mission;
     }
 }
