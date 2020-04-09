@@ -1,10 +1,7 @@
 package controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import play.Logger;
-import play.db.jpa.Model;
+import java.util.Date;
+import java.util.List;
 
 public class Incidents extends ConnectionController {
 
@@ -13,20 +10,19 @@ public class Incidents extends ConnectionController {
     }
 
 
-    public static void postIndex() {
-        String date = params.get("date");
+    public static void postIndex(Date date) throws Exception {
+
         String description = params.get("description");
         String type = params.get("type");
         String longitude = params.get("lon");
         String latitude = params.get("lat");
         String adresse = params.get("adresse");
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 
-        try {
-            new models.Incidents(Security.connected(), type, description, latitude, longitude, adresse , format.parse(date), false).save();
-        } catch (java.text.ParseException ex){
-            ex.fillInStackTrace();
-        }
+
+
+
+        new models.Incidents(Security.connected(), type, description, latitude, longitude, adresse, date, false).save();
+
         redirect("/incident/new");
     }
 
@@ -37,18 +33,21 @@ public class Incidents extends ConnectionController {
     }
 
     @Check("Admin")
-    public static void manage(){
+    public static void manage() {
         List<models.Incidents> incidents = models.Incidents.find("byEtat", false).fetch();
         renderArgs.put("incidents", incidents);
         render();
     }
 
     @Check("Admin")
-    public static void manageIncident(int id_incident){
-        models.Incidents incidents =  models.Incidents.find("byId", (long)id_incident).first();
+    public static void manageIncident(int id_incident) {
+        models.Incidents incidents = models.Incidents.find("byId", (long) id_incident).first();
         incidents.setEtat(true);
-        incidents.setId_mission((long)0);
+        incidents.setId_mission((long) 0);
         incidents.save();
         redirect("/incident/manage");
     }
+
+
+
 }
