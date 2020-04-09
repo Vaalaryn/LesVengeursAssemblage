@@ -38,4 +38,12 @@ public class Incidents extends Model {
         this.date = date;
         this.etat = etat;
     }
+
+    public void setEtat(boolean value){
+        this.etat = value;
+    }
+
+    public void setId_mission(int id_mission) {
+        this.id_mission = id_mission;
+    }
 }

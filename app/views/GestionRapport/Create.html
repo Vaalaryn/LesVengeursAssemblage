@@ -8,9 +8,9 @@
                 <li class="list-group-item"><strong class="text-info">Titre de la mission :</strong> ${mission.titre}
                 </li>
                 <li class="list-group-item"><strong class="text-info">Date de début de mission
-                    :</strong> ${mission.dateDebut.toString().substring(0,10)}</li>
+                    :</strong> ${mission.dateDebut.format("dd/MM/YYYY hh:mm")}</li>
                 <li class="list-group-item"><strong class="text-info">Date de début de fin de mission
-                    :</strong> ${mission.dateFin.toString().substring(0,10)}</li>
+                    :</strong> ${mission.dateFin.format("dd/MM/YYYY hh:mm")}</li>
                 <li class="list-group-item"><strong class="text-info">Résultat de mission :</strong>
                 #{if mission.reussite == 'r'}
                     <strong class="text-success">Réussite</strong>
