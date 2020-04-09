@@ -39,6 +39,13 @@ public class Missions extends ConnectionController {
         render(missions, natures, gravites);
     }
 
+    public static void flow(String id_hero){
+    //List<Mission> missions = Mission.find("from Mission where reussite='c' and where id in (select id_mission from Assigner where id_super LIKE ?)", "SHK001001HNKDEFR").fetch();
+    List<Mission> missions = Mission.find("from Mission where reussite=?1 and id in (select id_mission from Assigner where id_super LIKE ?2)", 'c', Security.connected()).fetch();
+    //List<Mission> missions = Mission.find("from Mission where reussite=?1", 'c').fetch();
+        render(missions);
+    }
+
     public static void info(long id_mission) {
         Mission mission = Mission.find("byId", id_mission).first();
 
