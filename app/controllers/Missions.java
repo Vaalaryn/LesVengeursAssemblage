@@ -83,4 +83,9 @@ public class Missions extends ConnectionController {
         }
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
+
+    public static void history(){
+        List<Mission> missions = Mission.find("from Mission where reussite!=?1 and id in (select id_mission from Assigner where id_super LIKE ?2)", 'c', Security.connected()).fetch();
+        render(missions);
+    }
 }
