@@ -1,10 +1,13 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
-
-import play.db.jpa.*;
+import play.data.validation.Required;
+import play.db.jpa.GenericModel;
 import play.libs.Codec;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
+import java.util.Random;
 
 @Entity
 public class Civil extends GenericModel {
@@ -45,18 +48,29 @@ public class Civil extends GenericModel {
 
     @Id
     public String id;
+    @Required
     public String mdp;
+    @Required
     public int id_admin;
+    @Required
     public String nom;
+    @Required
     public String prenom;
+    @Required
     public String civilite;
     public String tel;
+    @Required
     public String adresse;
+    @Required
     public String ville;
+    @Required
     public String cp;
+    @Required
     public String mail;
+    @Required
     public Date dateNaissance;
     public Date dateMort;
+    @Required
     public String nation;
     public Date dateMaj;
     public Date dateCreation;
