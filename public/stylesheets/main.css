@@ -14,3 +14,11 @@
     -webkit-animation: rotating 2s linear infinite;
     max-width: 30px;
 }
+
+#newSuper{
+    color: #0A65AF;
+}
+#newSuper:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
