@@ -129,6 +129,6 @@ public class Missions extends ConnectionController {
         }catch (ParseException e){
             e.printStackTrace();
         }
-        redirect("/");
+        redirect("/incident/manage");
     }
 }
