@@ -97,9 +97,6 @@ public class Missions extends ConnectionController {
         String gravite = params.get("gravite");
         String nature = params.get("nature");
         String titre = params.get("titre");
-        Logger.debug(hero[0]);
-        Logger.debug(hero[1]);
-        Logger.debug(vilain[0]);
         boolean urgence = (params.get("urgence") != null);
         SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
         try{
