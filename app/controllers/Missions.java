@@ -100,8 +100,8 @@ public class Missions extends ConnectionController {
                 supersListing) {
             listH += fmsuper+ "','";
         }
-        return listH.substring(0,listH.length()-3) + "']";
-    }
+        return (supersListing.size()>0)? listH.substring(0,listH.length()-3) + "']" : "[]";
+        }
 
     public static void modifier(long id_mission) {
         Mission mission = fetchMissionById(id_mission);
@@ -123,15 +123,40 @@ public class Missions extends ConnectionController {
         render(gravites,natureMissions, mission,superVilains,superHeros);
     }
 
-    public static void saveModifier(long id_incident, String[] hero, String[] vilain){
-        String date = params.get("debut");
+    public static void saveModifier(long id_mission, String[] hero, String[] vilain, Date date){
         String latitude = params.get("lat");
         String longitude = params.get("lon");
         String rayon = params.get("rayon");
         String gravite = params.get("gravite");
         String nature = params.get("nature");
         String titre = params.get("titre");
-        render();
+        boolean urgence = (params.get("urgence") != null);
+
+        Mission mission = models.Mission.find("byId", id_mission).first();
+        mission.latitude = latitude;
+        mission.longitude = longitude;
+        mission.rayon = rayon;
+        mission.id_gravite = Long.parseLong(gravite);
+        mission.id_nature = Long.parseLong(nature);
+        mission.urgence = urgence;
+        mission.titre = titre;
+
+        mission.dateDebut = date;
+        mission.save();
+
+        Assigner.delete("id_mission = ?1", mission.id);
+
+        if (hero != null){
+            for (String heroId: hero) {
+                new Assigner(mission.id, heroId).save();
+            }
+        }
+        if (vilain != null){
+            for (String vilainId: vilain) {
+                new Assigner(mission.id, vilainId).save();
+            }
+        }
+        redirect("/mission/"+mission.id);
     }
 
     public static void save(long id_incident, String[] hero, String[] vilain, Date date){
@@ -142,19 +167,17 @@ public class Missions extends ConnectionController {
         String nature = params.get("nature");
         String titre = params.get("titre");
         boolean urgence = (params.get("urgence") != null);
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
 
-            Mission mission = new models.Mission( Integer.parseInt(nature),  Integer.parseInt(gravite), titre, urgence, date, null, longitude, latitude, rayon, 'c').save();
-            Incidents incident = Incidents.find("byId", id_incident).first();
-            incident.setId_mission(mission.id);
-            incident.save();
-            for (String heroId: hero) {
-                new Assigner(mission.id, heroId).save();
-            }
-            for (String vilainId: vilain) {
-                new Assigner(mission.id, vilainId).save();
-            }
-
+        Mission mission = new models.Mission( Integer.parseInt(nature),  Integer.parseInt(gravite), titre, urgence, date, null, longitude, latitude, rayon, 'c').save();
+        Incidents incident = Incidents.find("byId", id_incident).first();
+        incident.setId_mission(mission.id);
+        incident.save();
+        for (String heroId: hero) {
+            new Assigner(mission.id, heroId).save();
+        }
+        for (String vilainId: vilain) {
+            new Assigner(mission.id, vilainId).save();
+        }
         redirect("/incident/manage");
     }
 }
