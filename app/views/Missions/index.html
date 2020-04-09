@@ -15,7 +15,12 @@
                     <strong class="text-gray-dark">${mission.titre}</strong>
                     <a href="/mission/${mission.id}">En savoir plus</a>
                 </div>
-                <span class="d-block">${natures.get(mission.id_nature-1).nom} ${gravites.get(mission.id_gravite-1).nom}</span>
+                <span class="d-block">
+
+                ${natures.get(mission.id_nature-1).nom}
+
+                ${gravites.get(mission.id_gravite-1).nom}
+                </span>
             </div>
         </div>
         #{/list}
