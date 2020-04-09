@@ -1,17 +1,13 @@
 package controllers;
 
-import models.*;
 import models.Incidents;
-import net.bytebuddy.implementation.bind.annotation.Super;
+import models.*;
 import play.Logger;
-import play.mvc.Controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import static java.util.Collections.emptyList;
 
 public class Missions extends ConnectionController {
 
@@ -40,6 +36,14 @@ public class Missions extends ConnectionController {
         */
 
         render(missions, natures, gravites);
+    }
+    public static void Cloturer(long id_mission, Boolean reussite){
+        Mission mission = Mission.find("id = ?1", id_mission).first();
+        mission.reussite = reussite ? 'r': 'e';
+        mission.dateFin = new Date();
+
+        mission.save();
+        redirect("GestionRapport.create", id_mission);
     }
 
     public static void flow(String id_hero){
@@ -71,6 +75,7 @@ public class Missions extends ConnectionController {
         //Afficher Heros & Vilains
         List<SuperH> supersVilainsPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'V', id_mission).fetch();
         List<SuperH> supersHerosPresents = SuperH.find("type = ?1 and id in (select id_super from Assigner where id_mission LIKE ?2)", 'H', id_mission).fetch();
+
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 
