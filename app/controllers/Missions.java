@@ -1,29 +1,25 @@
 package controllers;
 
-import models.Gravites;
-import models.Mission;
-import models.NatureMission;
+import models.*;
+import net.bytebuddy.implementation.bind.annotation.Super;
+import play.Logger;
 import play.mvc.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 public class Missions extends ConnectionController {
 
 
-    public static void index(){
+    public static void index() {
         List<Mission> missions = Mission.find("from Mission").fetch(0, 50);
-        List<NatureMission> natures = NatureMission.find("from NatureMission").fetch(0,10);
-        List<Gravites> gravites = Gravites.find("from Gravites").fetch(0,10);
-        render(missions,natures,gravites);
-    }
+        List<NatureMission> natures = NatureMission.find("from NatureMission").fetch(0, 10);
+        List<Gravites> gravites = Gravites.find("from Gravites").fetch(0, 10);
 
-    public static void info(long id_mission){
-        List<Mission> mission = Mission.find("from Mission where id=?1", id_mission).fetch(0,1);
-
-        String missionTitre = mission.get(0).titre;
-        char missionReuss = mission.get(0).reussite;
-        String missionRayon = mission.get(0).rayon;
-        boolean missionUrg = mission.get(0).urgence;
+        //Afficher Nature & Gravité de chaque Mission
+        /*
         List<Gravites> gravites = Gravites.find("from Gravites").fetch(0,10);
         String nomGravite = null;
         for (Gravites gravite : gravites){
@@ -38,6 +34,46 @@ public class Missions extends ConnectionController {
                 nomNature = nature.nom;
             }
         }
-        render(missionTitre, id_mission, nomGravite, nomNature, missionReuss, missionRayon, missionUrg);
+        */
+
+        render(missions, natures, gravites);
+    }
+
+    public static void info(long id_mission) {
+        Mission mission = Mission.find("byId", id_mission).first();
+
+        //Afficher Nature & Gravité
+        List<Gravites> gravites = Gravites.find("from Gravites").fetch(0, 10);
+        String nomGravite = null;
+        for (Gravites gravite : gravites) {
+            if (gravite.id == mission.id_gravite) {
+                nomGravite = gravite.nom;
+            }
+        }
+        List<NatureMission> natures = NatureMission.find("from NatureMission").fetch(0, 10);
+        String nomNature = null;
+        for (NatureMission nature : natures) {
+            if (nature.id == mission.id_nature) {
+                nomNature = nature.nom;
+            }
+        }
+
+        //Afficher Heros & Vilains
+        List<SuperH> supers = SuperH.find("id in (select id_super from Assigner where id_mission LIKE ?1)", 10).fetch();
+        List<SuperH> supersVilainsPresents = new ArrayList<>();
+        List<SuperH> supersHerosPresents = new ArrayList<>();
+        for (SuperH superSupers : supers) {
+            //SH262763 Superman
+            //SV262763 Superman
+            if (superSupers.id.substring(0, 2).equals("SV")) {
+                Logger.debug("Vilain");
+                supersVilainsPresents.add(0, superSupers);
+            } else if (superSupers.id.substring(0, 2).equals("SH")) {
+                Logger.debug("Hero");
+                Logger.debug(superSupers.id);
+                supersHerosPresents.add(0,superSupers);
+            }
+        }
+        render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 }

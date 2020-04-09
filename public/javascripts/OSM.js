@@ -59,6 +59,11 @@ function initMarker(coords, name) {
         .openPopup();
 }
 
+function initMarkerInfo(coords) {
+    map.setView(new L.LatLng(coords[0], coords[1]), 12);
+    myMarker = new L.marker(coords).addTo(map);
+}
+
 function knowPosition() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -82,11 +87,11 @@ var circle;
 
 function addRadius(coords, range) {
     //10 pour 20km 8 pour 50km 11 pour 10km 12 pour 5km
-    if (range == 5000) {
+    if (range => 5000) {
         map.setView(new L.LatLng(coords[0], coords[1]), 12);
-    } else if (range == 10000) {
+    } else if (range => 10000) {
         map.setView(new L.LatLng(coords[0], coords[1]), 11);
-    } else if (range == 20000) {
+    } else if (range => 20000) {
         map.setView(new L.LatLng(coords[0], coords[1]), 10);
     } else {
         map.setView(new L.LatLng(coords[0], coords[1]), 8);
