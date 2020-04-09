@@ -104,7 +104,6 @@
             $("#selectPouvoir").select2({})
             $("#selectPouvoir").on('select2:select',function (e) {
                     pouvoirsAssigned.push(e.params.data.id);
-                    console.log(e.params.data.id)
             });
             $("#selectPouvoir").select2().val(pouvoirsAssigned).trigger("change");
 
@@ -162,8 +161,6 @@
 
     function FillSelect(datasource) {
         let select = $("#selectPouvoir");
-        console.log("datasource : ")
-        console.log(datasource)
 
         for (let i = 0; i < datasource.length; i++) {
             let optg = $("<optgroup></optgroup>");

@@ -30,11 +30,11 @@
 
     </div>
 
-    <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="searchPlace()">Modifier l'adresse</button>
+    <button id="add_address" class="btn btn-outline-primary mb-3 float-right" onclick="MajPlace()">Modifier l'adresse</button>
     <form action="" method="post">
         <div class="form-row">
             <div class="col">
-                <input type="number" name="rayon" placeholder="Rayon(km)" class="form-control">
+                <input type="number" name="rayon" id="rayon" placeholder="Rayon(km)" class="form-control" onchange="MajRadius()">
             </div>
             <div class="col">
             </div>
@@ -83,8 +83,8 @@
             </label>
         </div>
         <div id="coords">
-            <input name="lon" type="hidden" value="${incident.longitude}">
-            <input name="lat" type="hidden" value="${incident.longitude}">
+            <input name="lon" id="lon" type="hidden" value="${incident.longitude}">
+            <input name="lat" id="lat" type="hidden" value="${incident.latitude}">
         </div>
         <input type="submit"  class="btn btn-primary float-right m-3">
     </form>

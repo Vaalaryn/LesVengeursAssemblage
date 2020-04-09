@@ -22,6 +22,7 @@ public class Incidents extends ConnectionController {
             validation.keep();
             index();
         }
+        incidents.save();
         redirect("/incident/new");
     }
 

@@ -12,8 +12,8 @@ import java.util.Random;
 public class SuperH extends GenericModel {
     public SuperH(){
         //Génération aléatoire du code civil (Uniquement terrien pour le moment)
-        String id = "SH-T001";
-        this.id = id +=  CodeNation() + "-" + generateAlphanum();
+        String id = "SHT001";
+        this.id = id +=  CodeNation() + generateAlphanum();
     }
 
     private String generateAlphanum() {

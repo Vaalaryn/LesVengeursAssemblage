@@ -29,29 +29,6 @@ function searchPlace() {
     xmlhttp.send();
 }
 
-function placedMarker(coords, name) {
-    L.marker(coords).addTo(map)
-        .bindPopup(name)
-}
-
-
-function selectPlace() {
-    var place = document.getElementById('street').value,
-        city = document.getElementById('city').value,
-        country = document.getElementById('country').value,
-        postal = document.getElementById("postal").value;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var myObj = JSON.parse(this.responseText);
-            setPlace(myObj[0].lat, myObj[0].lon, myObj[0].display_name);
-            addRadius([myObj[0].lat, myObj[0].lon], (document.getElementById('dist').value * 1000));
-        }
-    };
-    xmlhttp.open("GET", 'https://nominatim.openstreetmap.org/search?format=json&street=' + place + '&city=' + city + '&postalcode=' + postal + '&country=' + country, true);
-    xmlhttp.send();
-}
-
 function initMarker(coords, name) {
     map.setView(new L.LatLng(coords[0], coords[1]), 12);
     myMarker = new L.marker(coords).addTo(map)
@@ -62,12 +39,6 @@ function initMarker(coords, name) {
 function initMarkerInfo(coords) {
     map.setView(new L.LatLng(coords[0], coords[1]), 12);
     myMarker = new L.marker(coords).addTo(map);
-}
-
-function knowPosition() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
 }
 
 function showPosition(position) {
@@ -115,6 +86,18 @@ function setPlace(lat, lon, name) {
     document.getElementById('lat').value = lat;
     document.getElementById('lon').value = lon;
     document.getElementById('place').innerText = name;
+}
+
+
+function MajRadius() {
+    let lat= document.getElementById("lat").value;
+    let lon= document.getElementById("lon").value;
+    addRadius([lat,lon], document.getElementById("rayon").value*1000);
+}
+
+function MajPlace(){
+    searchPlace();
+    setTimeout(MajRadius, 200);
 }
 
 initMap();

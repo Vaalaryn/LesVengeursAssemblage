@@ -147,8 +147,6 @@
     
     function FillSelect(datasource) {
         let select = $("#selectPouvoir");
-        console.log("datasource : ")
-        console.log(datasource)
 
         for (let i =0; i < datasource.length; i++){
             let optg = $("<optgroup></optgroup>");
@@ -201,7 +199,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
                 <button type="button" class="btn btn-success" id="validerPouvoir">Ajouter un pouvoir</button>
             </div>
         </div>
