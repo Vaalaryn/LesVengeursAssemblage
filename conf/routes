@@ -10,10 +10,11 @@ GET     /profil/{id_profil}         Application.profil
 GET    /ajout                       Ajoutgens.index
 #Fake Missions db.save
 GET    /getmissions                 FakeMissions.index
-# Page Missions
+# Pages Missions
 GET    /missions                    Missions.index
 GET    /mission/{id_mission}        Missions.info
 GET    /mission/new/{id_incident}   Missions.info
+GET    /missions/{id_super}       Missions.flow
 
 # Incident
 GET /incident/new                   Incidents.index
@@ -25,7 +26,7 @@ GET /incident/manage/{id_incident}  Incidents.manageIncident
 # Administration page
     ## Civils
     GET /administration/civil/nouveau               GestionCivil.create
-    POST /administration/civil/nouveau              GestionCivil.save
+    POST /administration/civil/nouveau              GestionCivil.sgit fetchave
 
     GET /administration/civil/list                  GestionCivil.list
     GET /administration/civil/show                  GestionCivil.show
