@@ -1,8 +1,7 @@
 package controllers;
 
-import models.Gravites;
-import models.Mission;
-import models.NatureMission;
+import models.*;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import play.mvc.Controller;
 
 import java.util.List;
@@ -38,6 +37,28 @@ public class Missions extends ConnectionController {
                 nomNature = nature.nom;
             }
         }
-        render(missionTitre, id_mission, nomGravite, nomNature, missionReuss, missionRayon, missionUrg);
+
+        List<Assigner> supersAssignes = Assigner.find("from Assigner where id_mission=?1",id_mission).fetch();
+        List<SuperH> supersNoms = SuperH.find("from SuperH").fetch();
+        List<SuperH> supersVilainsPresents = null;
+        List<SuperH> supersHerosPresents = null;
+        for (Assigner assignation : supersAssignes){
+            //10 SH262763
+            //11 SH262763
+            //10 SV262763
+            for (SuperH superSupers : supersNoms){
+                //SH262763 Superman
+                //SV262763 Superman
+                if (assignation.id_super.equals(superSupers.id)){
+                    //Si Vilain -> ++ <List> SupersVilainsPresents : SupersVilainsPresents
+                    if (superSupers.id.substring(0, 2).equals("SV")) {
+                        supersVilainsPresents.add(0,superSupers);
+                    }else if (superSupers.id.substring(0, 2).equals("SH")){
+                        supersVilainsPresents.add(0,superSupers);
+                    }
+                }
+            }
+        }
+        render(missionTitre, id_mission, nomGravite, nomNature, missionReuss, missionRayon, missionUrg,supersHerosPresents,supersVilainsPresents);
     }
 }
