@@ -20,3 +20,7 @@ conf/application.conf
 *.ipr
 *.iws
 lesvengeurs001.sql
+
+.ideaDataSources/
+
+*.meta

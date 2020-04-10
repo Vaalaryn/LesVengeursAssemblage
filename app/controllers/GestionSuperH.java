@@ -24,9 +24,10 @@ public class GestionSuperH extends ConnectionController {
         }
         if(superH.type == 'V')
         {
-            String[] idVilain = superH.id.split("-");
-            idVilain[0] = "SV";
-            superH.id = idVilain[0] + "-" + idVilain[1] + "-" + idVilain[2];
+            char[] idVilain = superH.id.toCharArray();
+            idVilain[0] = 'S';
+            idVilain[1] = 'V';
+            superH.id = idVilain.toString();
         }
 
         for(int i =0; i < pouvoirsId.length; i++){
