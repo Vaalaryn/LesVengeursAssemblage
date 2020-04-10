@@ -55,6 +55,7 @@ public class SuperH extends GenericModel {
     }
     @Id
     public String id;
+    public String id_civil;
     @Required
     public String nom;
     public String pointFaibles;
