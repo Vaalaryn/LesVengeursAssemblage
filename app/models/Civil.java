@@ -12,6 +12,9 @@ import java.util.Random;
 @Entity
 public class Civil extends GenericModel {
 
+    /**
+     * Constructeur du model Civil
+     */
     public Civil(){
         //Génération aléatoire du code civil (Uniquement terrien pour le moment)
         String id = "CIT001";
@@ -19,6 +22,10 @@ public class Civil extends GenericModel {
         dateCreation = new Date();
     }
 
+    /**
+     * Retourne un String alpha-numérique de longeur 6
+     * @return (String)
+     */
     private String generateAlphanum() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
@@ -34,6 +41,10 @@ public class Civil extends GenericModel {
         return generatedString.toUpperCase();
     }
 
+    /**
+     * retourne le code nation
+     * @return (String)
+     */
     private String CodeNation(){
         StringBuilder nation = new StringBuilder();
         int max = 9;
@@ -75,7 +86,9 @@ public class Civil extends GenericModel {
     public Date dateMaj;
     public Date dateCreation;
 
-
+    /**
+     * Constructeur du model Civil
+     */
     public Civil(String id,
                   int id_admin,
                   String nom,
@@ -110,6 +123,12 @@ public class Civil extends GenericModel {
         this.dateCreation = dateCreation;
     }
 
+    /**
+     * Verifie que le civil existe avec le bon mdp
+     * @param id (String)
+     * @param mdp (String)
+     * @return (Civil)
+     */
     public static Civil connect(String id, String mdp) {
         return find("byIdAndMdp", id, Codec.hexMD5(mdp)).first();
     }

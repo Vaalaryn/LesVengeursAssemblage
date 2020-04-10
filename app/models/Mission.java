@@ -20,6 +20,19 @@ public class Mission extends Model {
     public String rayon;
     public char reussite;
 
+    /**
+     * constructeur du model Mission
+     * @param id_nature (long)
+     * @param id_gravite (long)
+     * @param titre (String)
+     * @param urgence (urgence)
+     * @param dateDebut (Date)
+     * @param dateFin (dateFin)
+     * @param longitude (String)
+     * @param latitude (String)
+     * @param rayon (String)
+     * @param reussite (char)
+     */
     public Mission(long id_nature, long id_gravite, String titre, boolean urgence, Date dateDebut, Date dateFin, String longitude, String latitude, String rayon, char reussite) {
         this.id_nature = id_nature;
         this.id_gravite = id_gravite;

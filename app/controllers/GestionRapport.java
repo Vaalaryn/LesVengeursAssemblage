@@ -5,6 +5,13 @@ import models.Rapport;
 import play.data.validation.Valid;
 
 public class GestionRapport extends ConnectionController {
+
+    /**
+     * Creation d'un rapport associé à une mission
+     * @param idMission (long)
+     * @param idRapport (long)
+     */
+    @Check("Admin")
     public static void Create(long idMission, long idRapport) {
         Mission mission = Mission.em().find(Mission.class, idMission);
         if(idRapport != 0){
@@ -15,7 +22,16 @@ public class GestionRapport extends ConnectionController {
             render(mission);
         }
     }
-    //Rédiger le deuxième rapport (héro et admin donc et édite celui existant dans la bdd)
+
+    /**
+     * Sauvegarde les infos d'un rapport
+     * @param rapport (Rapport)
+     * @param idRapport (String)
+     * @param rapportText (String)
+     * @param idRedacteur (String)
+     * @param droitRedacteur (String)
+     */
+    @Check("Admin")
     public static void Save(@Valid Rapport rapport, String idRapport, String rapportText, String idRedacteur, String droitRedacteur) {
         if(idRapport == null)
         {

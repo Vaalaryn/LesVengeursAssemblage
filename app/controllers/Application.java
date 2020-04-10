@@ -10,10 +10,17 @@ import models.*;
 
 public class Application extends ConnectionController {
 
+    /**
+     * Redirection vers la page de déclaration d'incident
+     */
     public static void index() {
         redirect("/incident/new");
     }
 
+    /**
+     * Affichage de la page de profil
+     * @param id_profil (String)
+     */
     public static void profil(String id_profil) {
         switch (id_profil.substring(0, 2)){
             case "SH":
