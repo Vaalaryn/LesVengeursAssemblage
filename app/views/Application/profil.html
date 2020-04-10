@@ -1,6 +1,44 @@
 #{extends 'main.html' /}
 #{set title:'Profil' /}
-#{if admin != 2}
+#{if admin == 2}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header flex-row d-flex justify-content-between">
+            <div>
+                <h3 class="card-title">${username}</h3>
+                <h4 class="card-subtitle mb-2 text-muted">${id}</h4>
+            </div>
+            <div class="img-wrap">
+                <img src="/public/images/${type}.png"
+                     alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text"></p>
+            <p class="card-text">${pointFaible}</p>
+            <div class="flex-row d-flex justify-content-around">
+                <div class="w-50 p-3 d-flex justify-content-between flex-column">
+                    <p class="card-text">&{'profil.missions'} </p>
+                    <ul class="list-group">
+                    #{list items:missions, as: 'mission'}
+                        <li class="list-group-item">${mission.titre}</li>
+                    #{/list}
+                    </ul>
+                </div>
+                <div class="w-50 p-3 d-flex justify-content-between flex-column">
+                    <p class="card-text">&{'profil.pouvoirs'} </p>
+                    <ul class="list-group">
+                    #{list items:pouvoirs, as: 'pouvoir'}
+                        <li class="list-group-item">${pouvoir.nom}</li>
+                    #{/list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+#{/if}
+#{if civil != null}
 <div class="container mt-5">
     <div class="card">
         <div class="card-header flex-row d-flex justify-content-between">
@@ -34,42 +72,3 @@
     </div>
 </div>
 #{/if}
-#{else}
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header flex-row d-flex justify-content-between">
-            <div>
-                <h3 class="card-title">${username}</h3>
-                <h4 class="card-subtitle mb-2 text-muted">${id}</h4>
-            </div>
-            <div class="img-wrap">
-                <img src="/public/images/${type}.png"
-                     alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="card-text"></p>
-            <p class="card-text">${pointFaible}</p>
-            <div class="flex-row d-flex justify-content-around">
-                <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">&{'profil.missions'} </p>
-                    <ul class="list-group">
-                        #{list items:missions, as: 'mission'}
-                            <li class="list-group-item">${mission.titre}</li>
-                        #{/list}
-                    </ul>
-                </div>
-                <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">&{'profil.pouvoirs'} </p>
-                    <ul class="list-group">
-                        #{list items:pouvoirs, as: 'pouvoir'}
-                            <li class="list-group-item">${pouvoir.nom}</li>
-                        #{/list}
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-#{/else}
