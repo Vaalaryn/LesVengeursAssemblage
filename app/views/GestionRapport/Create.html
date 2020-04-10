@@ -1,32 +1,31 @@
 #{extends 'main.html'/}
 
 <div class="container mt-3">
-    <h1>Rédiger un rapport</h1>
+    <h1>&{'gestion.rapport.create.title'}</h1>
     <div class="row mt-3">
         <div class="col-12">
             <ul class="list-group">
-                <li class="list-group-item"><strong class="text-info">Titre de la mission :</strong> ${mission.titre}
+                <li class="list-group-item"><strong class="text-info">&{'gestion.rapport.create.mission.titre'}</strong> ${mission.titre}
                 </li>
-                <li class="list-group-item"><strong class="text-info">Date de début de mission
+                <li class="list-group-item"><strong class="text-info">&{'gestion.rapport.create.mission.date.debut'}
                     :</strong> ${mission.dateDebut.format("dd/MM/YYYY hh:mm")}</li>
-                <li class="list-group-item"><strong class="text-info">Date de début de fin de mission
+                <li class="list-group-item"><strong class="text-info">&{'gestion.rapport.create.mission.date.fin'}
                     :</strong> ${mission.dateFin.format("dd/MM/YYYY hh:mm")}</li>
-                <li class="list-group-item"><strong class="text-info">Résultat de mission :</strong>
+                <li class="list-group-item"><strong class="text-info">&{'gestion.rapport.create.mission.resultat'}</strong>
                 #{if mission.reussite == 'r'}
-                    <strong class="text-success">Réussite</strong>
+                    <strong class="text-success">&{'gestion.rapport.create.mission.reussite'}</strong>
                 #{/if}
                 #{if mission.reussite == 'e'}
-                    <strong class="text-danger">Echec</strong>
+                    <strong class="text-danger">&{'gestion.rapport.create.mission.echec'}</strong>
                 #{/if}
 
                 </li>
-                <li class="list-group-item"><strong class="text-info">Urgence
-                    :</strong>
+                <li class="list-group-item"><strong class="text-info">&{'gestion.rapport.create.mission.urgence'}</strong>
                 #{if mission.urgence}
-                    <strong class="text-danger">Urgent</strong>
+                    <strong class="text-danger">&{'gestion.rapport.create.mission.urgent'}</strong>
                 #{/if}
                 #{if !mission.urgence}
-                    <strong class="text-secondary">Pas urgent</strong>
+                    <strong class="text-secondary">&{'gestion.rapport.create.mission.pasurgent'}</strong>
                 #{/if}
                 <li class="list-group-item"><div id="map" style="height: 300px">
             </div></li>
@@ -38,7 +37,7 @@
             #{if admin == 2 && rapport == null}
                 <input type="hidden" value="${id}" name="rapport.id_super">
                 <div class="form-group">
-                    <label for="rapport.rapportHero">Votre rapport :</label>
+                    <label for="rapport.rapportHero">&{'gestion.rapport.create.rapport.title'}</label>
                     <textarea class="form-control" name="rapport.rapportHero" id="rapport.rapportHero" cols="30"
                               rows="5"></textarea>
                 </div>
@@ -46,7 +45,7 @@
             #{if admin == 1  &&  rapport == null}
                 <input type="hidden" value="${id}" name="rapport.id_civil">
                 <div class="form-group">
-                    <label for="rapport.rapportAdmin">Votre rapport :</label>
+                    <label for="rapport.rapportAdmin">&{'gestion.rapport.create.rapport.title'}</label>
                     <textarea class="form-control" name="rapport.rapportAdmin" id="rapport.rapportAdmin" cols="30"
                               rows="5"></textarea>
                 </div>
@@ -57,12 +56,12 @@
                     <input type="hidden" value="${admin}" name="droitRedacteur">
                     <input type="hidden" value="${id}" name="idRedacteur">
                     <div class="form-group">
-                        <label for="rapport.rapportHero">Votre rapport :</label>
+                        <label for="rapport.rapportHero">&{'gestion.rapport.create.rapport.title'}</label>
                         <textarea class="form-control" readonly id="rapport.rapportHero" cols="30"
                                   rows="5">${rapport.rapportHero}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="rapport.rapportAdmin">Votre rapport :</label>
+                        <label for="rapport.rapportAdmin">&{'gestion.rapport.create.rapport.title'}:</label>
                         <textarea class="form-control" name="rapportText" id="rapport.rapportAdmin" cols="30"
                                   rows="5">${rapport.rapportAdmin != "" ? rapport.rapportAdmin : ""}</textarea>
                     </div>
@@ -71,12 +70,12 @@
                     <input type="hidden" value="${admin}" name="droitRedacteur">
                     <input type="hidden" value="${id}" name="idRedacteur">
                     <div class="form-group">
-                        <label for="rapport.rapportHero">Votre rapport :</label>
+                        <label for="rapport.rapportHero">&{'gestion.rapport.create.rapport.title'}</label>
                         <textarea class="form-control" name="rapportText" id="rapport.rapportHero" cols="30"
                                   rows="5">${rapport.rapportHero != "" ? rapport.rapportHero : ""}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="rapport.rapportAdmin">Votre rapport :</label>
+                        <label for="rapport.rapportAdmin">&{'gestion.rapport.create.rapport.title'}</label>
                         <textarea class="form-control" readonly id="rapport.rapportAdmin" cols="30"
                                   rows="5">${rapport.rapportAdmin}</textarea>
                     </div>

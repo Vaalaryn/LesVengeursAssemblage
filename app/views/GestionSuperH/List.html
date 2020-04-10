@@ -1,17 +1,17 @@
 #{extends 'main.html'/}
 
 <div class="container mt-3">
-    <h2>Liste des supers</h2>
+    <h2>&{'gestion.super.list.title'}</h2>
     <div class="row">
         <div class="col-12">
-            <span class="btn btn-primary mb-3 float-right disabled " id="btnSuper">Consulter</span>
-            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnSuperSupp" >Supprimer</span>
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnSuper">&{'gestion.super.list.consulter'}</span>
+            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnSuperSupp" >&{'gestion.super.list.supprimer'}</span>
             <table id="table" class="display">
                 <thead>
                 <tr>
-                    <th>Numéro super</th>
-                    <th>Pseudonyme</th>
-                    <th>Type</th>
+                    <th>&{'gestion.super.list.num'}</th>
+                    <th>&{'gestion.super.list.pseudo'}</th>
+                    <th>&{'gestion.super.list.type'}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,17 +85,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmer la suppression.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">&{'gestion.super.list.modal.title'}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Voulez-vous vraiment supprimer ce super ?
+                &{'gestion.super.list.modal.body'}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="confirmDelete">Oui</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">&{'gestion.super.list.modal.non'}</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="confirmDelete">&{'gestion.super.list.modal.oui'}</button>
             </div>
         </div>
     </div>

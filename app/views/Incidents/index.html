@@ -3,7 +3,7 @@
 <div class="container">
 
     <div class="row">
-        <h1>Déclaration d'incidents</h1>
+        <h1>&{'incident.title'}</h1>
 
         <div id="map"
              class=" col-12 p-0 map_list leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
@@ -23,20 +23,20 @@
         <div class="col-12 p-0">
 
             <p id="place"></p>
-            <button id="add_address" class="btn btn-outline-primary" onclick="searchPlace()">Ajouter l'adresse</button>
+            <button id="add_address" class="btn btn-outline-primary" onclick="searchPlace()">&{'incident.add.adresse'}</button>
             <form action="/incident/new" method="post">
                 <div class="form-group">
-                    <label for="incidentType">Type d'incidents</label>
+                    <label for="incidentType">&{'incident.type'}</label>
                     <input class="form-control" type="text" name="incidents.type" id="incidentType" value="${flash['incidents.type']}"/>
                     <span class="error">#{error 'incidents.type'/}</span>
                 </div>
                 <div class="form-group ">
-                    <label for="date">Date de l'incident :</label>
+                    <label for="date">&{'incident.date'}</label>
                     <input class="form-control" id="date" type="date" name="incidents.date" value="${flash['incidents.date']}"/>
                     <span class="error">#{error 'incidents.date'/}</span>
                 </div>
                 <div class="form-group">
-                    <label for="description">Description de l'incident : </label>
+                    <label for="description">&{'incident.desc'}</label>
                     <textarea class="form-control" name="incidents.description" id="description" cols="30" rows="10" value="${flash['incidents.description']}"
                               ></textarea>
                     <span class="error">#{error 'incidents.description'/}</span>

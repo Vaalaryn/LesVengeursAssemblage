@@ -1,0 +1,131 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+
+menu.title=JARVENGEURS
+menu.incidents.title=Incidents
+menu.incidents.suivre=Suivi d'incidents
+menu.incidents.declarer=Déclarer un incident
+menu.incidents.gerer=Gérer incidents
+menu.missions.title=Missions
+menu.missions.gerer=Gérer missions
+menu.missions.assigner=Missions assignées
+menu.missions.historique=Historique missions
+menu.admin.title=Administration
+menu.admin.ajout.civil=Ajouter un civil
+menu.admin.ajout.super=Ajouter un super
+menu.admin.liste.super=Liste des supers
+menu.admin.liste.civil=Liste des civils
+menu.profil=Profil
+menu.deconnexion=Déconnexion
+
+profil.adresse=Adresse : 
+profil.mail=Mail : 
+profil.tel=Tel : 
+profil.date.naissance.connu=Date de naissance :
+profil.date.naissance.pasconnu=Date de naissance : Inconnue
+profil.date.deces=Date du décès :
+profil.missions=Dernière mission(s) :
+profil.pouvoirs=Pouvoir(s) :
+
+gestion.civil.create.title=Créer un nouvel utilisateur
+gestion.civil.create.nom=Nom
+gestion.civil.create.prenom=Prénom
+gestion.civil.create.civ=Civilité
+gestion.civil.create.homme=Homme
+gestion.civil.create.femme=Femme
+gestion.civil.create.autre=Autre
+gestion.civil.create.mail=Adresse e-mail
+gestion.civil.create.tel=Téléphone
+gestion.civil.create.mdp=Mot de passe
+gestion.civil.create.droit=Droits
+gestion.civil.create.civil=0 - Civil
+gestion.civil.create.admin=1 - Administrateur
+gestion.civil.create.maitre=3 - Maître suprême
+gestion.civil.create.date.naissance=Date de naissance
+gestion.civil.create.date.deces=Date de décès
+gestion.civil.create.adresse=Adresse
+gestion.civil.create.cp=Code postal
+gestion.civil.create.ville=Ville
+gestion.civil.create.nation=Nation
+gestion.civil.create.retour=Retour à la liste
+
+gestion.civil.list.titre=Liste des civils
+gestion.civil.list.consulter=Consulter
+gestion.civil.list.supprimer=Supprimer
+gestion.civil.list.id=ID
+gestion.civil.list.nom=Nom
+gestion.civil.list.prenom=Prénom
+gestion.civil.list.droits=Droits
+gestion.civil.list.modal.title=Confirmer la suppression.
+gestion.civil.list.modal.body=Voulez-vous vraiment supprimer ce civil ?
+gestion.civil.list.modal.non=Non
+gestion.civil.list.modal.oui=Oui
+
+gestion.civil.modif.title=Modifier un civil
+
+gestion.rapport.create.title=Rédiger un rapport
+gestion.rapport.create.mission.titre=Titre de la mission :
+gestion.rapport.create.mission.date.debut=Date de début de mission
+gestion.rapport.create.mission.date.fin=Date de fin de mission
+gestion.rapport.create.mission.resultat=Résultat de mission :
+gestion.rapport.create.mission.reussite=Réussite
+gestion.rapport.create.mission.echec=Echec
+gestion.rapport.create.mission.urgence=Urgence :
+gestion.rapport.create.mission.urgent=Urgent
+gestion.rapport.create.mission.pasurgent=Pas urgent
+gestion.rapport.create.rapport.title=Votre rapport :
+
+gestion.super.create.title=Créer un nouveau super
+gestion.super.create.nom=Pseudonyme
+gestion.super.create.pointfaible=Point(s) faible(s)
+gestion.super.create.mdp=Mot de passe
+gestion.super.create.type=Type
+gestion.super.create.hero=Super héro
+gestion.super.create.vilain=Super vilain
+gestion.super.create.select=Sélectionner les pouvoirs du super
+gestion.super.create.add=Ajouter un pouvoir
+
+gestion.super.create.modal.title=Ajouter un pouvoir
+gestion.super.create.modal.nompouvoir=Nom du pouvoir
+gestion.super.create.modal.selectcat=Sélectionner une catégorie
+gestion.super.create.modal.desc=Description
+gestion.super.create.modal.fermer=Fermer
+
+gestion.super.list.title=Liste des supers
+gestion.super.list.consulter=Consulter
+gestion.super.list.supprimer=Supprimer
+gestion.super.list.num=Numéro super
+gestion.super.list.pseudo=Pseudonyme
+gestion.super.list.type=Type
+
+gestion.super.list.modal.title=Confirmer la suppression.
+gestion.super.list.modal.body=Voulez-vous vraiment supprimer ce super ?
+gestion.super.list.modal.non=Non
+gestion.super.list.modal.oui=Oui
+
+gestion.super.modif.title=Modifier un super
+
+incident.title=Déclaration d'incidents
+incident.add.adresse=Ajouter l'adresse
+incident.type=Type d'incidents
+incident.date=Date de l'incident :
+incident.desc=Description de l'incident :
+
+incident.manage.title=Gestion d'incidents
+incident.manage.yes=Accepter
+incident.manage.non=
+
+incident.suivi.title=Suivi d'incidents
+
+
+play.data.validation.required = Obligatoire.
+crud.help.dateformat = Veuillez saisir une date au format yyyy-mm-dd
+crud.save = Sauvegarder
+crud.saveAndContinue = Sauvegarder et continuer à éditer
+crud.saveAndAddAnother = Sauvegarder et créer nouveau %s
+crud.add = Créer &{%s}
+crud.blank.title = Créer &{%s}
+secure.error = Votre mot de passe ou votre identifiant est incorrect. Veuillez réessayer.
+date.format.custom=dd / MM / YYYY
+
+

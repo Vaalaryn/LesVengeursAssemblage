@@ -1,6 +1,7 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 
+menu.title=Jarvengers
 CIV_NOM =Nom
 CIV_PRENOM=Prenom
 CIV_CIVILITE=Civilité

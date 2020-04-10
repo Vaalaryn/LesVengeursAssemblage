@@ -2,18 +2,18 @@
 
 
 <div class="container mt-3">
-    <h2>Liste des civils</h2>
+    <h2>&{'gestion.civil.list.titre'}</h2>
     <div class="row">
         <div class="col-12">
-            <span class="btn btn-primary mb-3 float-right disabled " id="btnCivil">Consulter</span>
-            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnCivilSupp" >Supprimer</span>
+            <span class="btn btn-primary mb-3 float-right disabled " id="btnCivil">&{'gestion.civil.list.consulter'}</span>
+            <span class="btn btn-danger mb-3 float-right disabled mr-2 " id="btnCivilSupp" >&{'gestion.civil.list.supprimer'}</span>
             <table id="table" class="display">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Droits</th>
+                    <th>&{'gestion.civil.list.id'}</th>
+                    <th>&{'gestion.civil.list.nom'}</th>
+                    <th>&{'gestion.civil.list.prenom'}</th>
+                    <th>&{'gestion.civil.list.droits'}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -89,17 +89,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmer la suppression.</h5>
+                <h5 class="modal-title" id="exampleModalLabel">&{'gestion.civil.list.modal.title'}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Voulez-vous vraiment supprimer ce civil ?
+                &{'gestion.civil.list.modal.body'}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="confirmDelete">Oui</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">&{'gestion.civil.list.modal.non'}</button>
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="confirmDelete">&{'gestion.civil.list.modal.oui'}</button>
             </div>
         </div>
     </div>

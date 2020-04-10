@@ -15,17 +15,17 @@
             </div>
         </div>
         <div class="card-body">
-            <p class="card-text">Adresse :  ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
-            <p class="card-text">Mail : ${civil.mail}</p>
-            <p class="card-text">Tel : ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
-            #{if civil.dateMort != null}
-                <p class="card-text">Date de naissance : ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+            <p class="card-text">&{'profil.adresse'} ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
+            <p class="card-text">&{'profil.mail'} ${civil.mail}</p>
+            <p class="card-text">&{'profil.tel'} ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
+            #{if civil.dateNaissance != null}
+                <p class="card-text">&{'profil.date.naissance.connu'} ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
             #{/if}
             #{else}
-                <p class="card-text">Date de naissance : Inconnue</p>
+                <p class="card-text">&{'profil.date.naissance.pasconnu'}</p>
             #{/else}
             #{if civil.dateMort != null}
-                <p class="card-text">date du déçès : ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
+                <p class="card-text">&{'profil.date.deces'} ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
             #{/if}
             <div class="flex-row d-flex justify-content-around">
             </div>
@@ -52,7 +52,7 @@
             <p class="card-text">${pointFaible}</p>
             <div class="flex-row d-flex justify-content-around">
                 <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">Dernière mission : </p>
+                    <p class="card-text">&{'profil.missions'} </p>
                     <ul class="list-group">
                         #{list items:missions, as: 'mission'}
                             <li class="list-group-item">${mission.titre}</li>
@@ -60,7 +60,7 @@
                     </ul>
                 </div>
                 <div class="w-50 p-3 d-flex justify-content-between flex-column">
-                    <p class="card-text">Pouvoir : </p>
+                    <p class="card-text">&{'profil.pouvoirs'} </p>
                     <ul class="list-group">
                         #{list items:pouvoirs, as: 'pouvoir'}
                             <li class="list-group-item">${pouvoir.nom}</li>

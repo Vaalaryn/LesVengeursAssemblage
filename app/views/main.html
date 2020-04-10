@@ -29,26 +29,23 @@
 </head>
 <body class="container-fluid p-0">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">AV</a>
+    <a class="navbar-brand" href="/">&{'menu.title'}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-        *{            <li class="nav-item active">}*
-        *{                <a class="nav-link" href="#">Accueil</a>}*
-        *{            </li>}*
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Incidents
+                    &{'menu.incidents.title'}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/incident/new">Déclarer un incident</a>
-                    <a class="dropdown-item" href="/incident/suivi">Suivre un incident</a>
+                    <a class="dropdown-item" href="/incident/new">&{'menu.incidents.declarer'}</a>
+                    <a class="dropdown-item" href="/incident/suivi">&{'menu.incidents.suivre'}</a>
                 #{if admin >= 1}
-                    <a class="dropdown-item" href="/incident/manage">Gérer incident</a>
+                    <a class="dropdown-item" href="/incident/manage">&{'menu.incidents.gerer'}</a>
                 #{/if}
                 </div>
             </li>
@@ -56,15 +53,13 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Missions
+                &{'menu.missions.title'}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/missions">Gerer missions</a>
+                    <a class="dropdown-item" href="/missions">&{'menu.missions.gerer'}</a>
                     #{if admin == 2}
-                        <a class="dropdown-item" href="/missions/${id}">Missions assigné</a>
-                        <a class="dropdown-item" href="/missions/historique/${id}">Historique missions</a>
-
-
+                        <a class="dropdown-item" href="/missions/${id}">&{'menu.missions.assigner'}</a>
+                        <a class="dropdown-item" href="/missions/historique/${id}">&{'menu.missions.historique'}</a>
                     #{/if}
                 </div>
             </li>
@@ -76,20 +71,20 @@
                     Administration
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/administration/civil/nouveau">Ajouter un utilisateur</a>
-                    <a class="dropdown-item" href="/administration/civil/list">Liste des utilisateurs</a>
-                    <a class="dropdown-item" href="/administration/super/new">Ajouter un super</a>
-                    <a class="dropdown-item" href="/administration/super/list">Liste des super</a>
+                    <a class="dropdown-item" href="/administration/civil/nouveau">&{'menu.admin.ajout.civil'}</a>
+                    <a class="dropdown-item" href="/administration/civil/list">&{'menu.admin.liste.civil'}</a>
+                    <a class="dropdown-item" href="/administration/super/new">&{'menu.admin.ajout.super'}</a>
+                    <a class="dropdown-item" href="/administration/super/list">&{'menu.admin.liste.super'}</a>
                 </div>
             </li>
         #{/if}
         </ul>
         <ul class="navbar-nav ml-auto my-2 my-lg-">
             <li class="nav-item active">
-                <a class="nav-link" href="/profil/${id}">Profil</a>
+                <a class="nav-link" href="/profil/${id}">&{'menu.profil'}</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/logout">Déconnexion</a>
+                <a class="nav-link" href="/logout">&{'menu.deconnexion'}</a>
             </li>
         </ul>
     </div>
