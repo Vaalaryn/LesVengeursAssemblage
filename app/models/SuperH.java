@@ -10,12 +10,19 @@ import java.util.Random;
 
 @Entity
 public class SuperH extends GenericModel {
+    /**
+     * Constructeur du model SuperH
+     */
     public SuperH(){
         //Génération aléatoire du code civil (Uniquement terrien pour le moment)
         String id = "SHT001";
         this.id = id +=  CodeNation() + generateAlphanum();
     }
 
+    /**
+     * Génère un String d'alphanum de longueur 6
+     * @return (String)
+     */
     private String generateAlphanum() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
@@ -31,6 +38,10 @@ public class SuperH extends GenericModel {
         return generatedString.toUpperCase();
     }
 
+    /**
+     * retourne le code nation d'un hero
+     * @return (String)
+     */
     private String CodeNation(){
         StringBuilder nation = new StringBuilder();
         int max = 9;
@@ -53,6 +64,14 @@ public class SuperH extends GenericModel {
     @Required
     public String mdp;
 
+    /**
+     * Construteur d'un super
+     * @param id (String)
+     * @param nom (String)
+     * @param pointFaibles (String)
+     * @param type (char)
+     * @param mdp (String)
+     */
     public SuperH(String id, String nom, String pointFaibles, char type, String mdp){
         this.id = id;
         this.nom = nom;
@@ -61,6 +80,12 @@ public class SuperH extends GenericModel {
         this.mdp = Codec.hexMD5(mdp);
     }
 
+    /**
+     * Connexion d'un super
+     * @param id
+     * @param mdp
+     * @return
+     */
     public static SuperH connect(String id, String mdp) {
         return find("byIdAndMdp", id, Codec.hexMD5(mdp)).first();
     }

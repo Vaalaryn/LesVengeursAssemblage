@@ -8,12 +8,22 @@ import play.libs.Codec;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-
+@Check("MaitreSupreme")
 public class GestionSuperH extends ConnectionController {
 
+    /**
+     * Page de creation d'un rapport
+     */
     public static void Create(){
         render();
     }
+
+    /**
+     * Sauvegarde des informations d'un Super
+     * @param superH (SuperH)
+     * @param typeS (String)
+     * @param pouvoirsId (int[])
+     */
     public static void Save(@Valid SuperH superH,String typeS,int[] pouvoirsId){
 
         superH.type = typeS.toCharArray()[0];
@@ -41,14 +51,30 @@ public class GestionSuperH extends ConnectionController {
         superH.save();
         List();
     }
+
+    /**
+     * Liste tous les super
+     */
     public static void List(){
         render(SuperH.all());
     }
+
+    /**
+     * Détail d'un super
+     * @param id (String)
+     */
     public static void Show(String id){
         SuperH model = SuperH.em().find(SuperH.class,id);
 
         render(model);
     }
+
+    /**
+     * Modifie les infos d'un super
+     * @param superH (SuperH)
+     * @param type (String)
+     * @param pouvoirsId (List<long>)
+     */
     public  static void Modify(@Valid SuperH superH, String type,List<Long> pouvoirsId){
         if (validation.hasErrors()){
             params.flash();
@@ -80,6 +106,11 @@ public class GestionSuperH extends ConnectionController {
 
         List();
     }
+
+    /**
+     * Supprime un Super
+     * @param id (String)
+     */
     public static void Delete(String id){
         SuperH superHToDelete = SuperH.em().find(SuperH.class, id);
         superHToDelete.delete();

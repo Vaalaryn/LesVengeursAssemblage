@@ -6,12 +6,20 @@ import play.libs.Codec;
 
 import java.util.Date;
 
-
+@Check("MaitreSupreme")
 public class GestionCivil extends ConnectionController {
 
+    /**
+     * affiche la creation d'un Civil
+     */
     public static void Create(){
         render();
     }
+
+    /**
+     * Sauvegarde des informations d'un civil
+     * @param civil (Civil)
+     */
     public static void Save(@Valid models.Civil civil){
         if (validation.hasErrors()){
             params.flash();
@@ -22,14 +30,28 @@ public class GestionCivil extends ConnectionController {
         civil.save();
         List();
     }
+
+    /**
+     * Liste tous les civils
+     */
     public static void List(){
         render(models.Civil.all());
     }
+
+    /**
+     * Récupere un civil
+     * @param id (String)
+     */
     public static void Show(String id){
         models.Civil model = models.Civil.em().find(models.Civil.class,id);
 
         render(model);
     }
+
+    /**
+     * modifie un civil
+     * @param civil (Civil)
+     */
     public  static void modify(models.Civil civil){
         if (validation.hasErrors()){
             params.flash();
@@ -51,6 +73,10 @@ public class GestionCivil extends ConnectionController {
         List();
     }
 
+    /**
+     * Supprime un Civil
+     * @param id (String)
+     */
     public static void Delete(String id){
         Civil civilToDelete = SuperH.em().find(Civil.class, id);
         civilToDelete.delete();

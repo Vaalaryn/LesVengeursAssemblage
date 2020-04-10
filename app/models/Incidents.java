@@ -29,7 +29,9 @@ public class Incidents extends Model {
     @Required
     public String adresse;
 
-
+    /**
+     * Constructeur du model Civil
+     */
     public Incidents(String civil,
                      String type,
                      String description,
@@ -48,10 +50,18 @@ public class Incidents extends Model {
         this.etat = etat;
     }
 
+    /**
+     * setter de etat
+     * @param value (boolean)
+     */
     public void setEtat(boolean value){
         this.etat = value;
     }
 
+    /**
+     * setter de l'id mission
+     * @param id_mission (long)
+     */
     public void setId_mission(long id_mission) {
         this.id_mission = id_mission;
     }

@@ -7,12 +7,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Check("Admin")
 public class Missions extends ConnectionController {
 
+    /**
+     * Retourne une mission en fonction de son id
+     * @param id (long)
+     * @return (Mission)
+     */
     public static Mission fetchMissionById(long id) {
         return Mission.find("byId", id).first();
     }
 
+    /**
+     * List les 50 premières missions
+     */
     public static void index() {
         List<Mission> missions = Mission.find("from Mission").fetch(0, 50);
         List<NatureMission> natures = NatureMission.find("from NatureMission").fetch(0, 10);
@@ -20,6 +29,11 @@ public class Missions extends ConnectionController {
         render(missions, natures, gravites);
     }
 
+    /**
+     * Cloture une mission
+     * @param id_mission (long)
+     * @param reussite (boolean)
+     */
     public static void Cloturer(long id_mission, Boolean reussite) {
         Mission mission = Mission.find("id = ?1", id_mission).first();
         mission.reussite = reussite ? 'r' : 'e';
@@ -29,11 +43,19 @@ public class Missions extends ConnectionController {
         redirect("GestionRapport.create", id_mission);
     }
 
+    /**
+     * Affiche les missions en cours d'un hero
+     * @param id_hero (String)
+     */
     public static void flow(String id_hero) {
         List<Mission> missions = Mission.find("from Mission where reussite=?1 and id in (select id_mission from Assigner where id_super LIKE ?2)", 'c', Security.connected()).fetch();
         render(missions);
     }
 
+    /**
+     * Affiches le detail des infos d'une mission
+     * @param id_mission (long)
+     */
     public static void info(long id_mission) {
         Mission mission = Mission.find("byId", id_mission).first();
 
@@ -60,11 +82,19 @@ public class Missions extends ConnectionController {
         render(mission, id_mission, nomGravite, nomNature, supersHerosPresents, supersVilainsPresents);
     }
 
+    /**
+     * Affiche l'historique des missions affectuées par l'utilisateur connecté
+     */
+    @Check("Super")
     public static void history() {
         List<Mission> missions = Mission.find("from Mission where reussite!=?1 and id in (select id_mission from Assigner where id_super LIKE ?2)", 'c', Security.connected()).fetch();
         render(missions);
     }
 
+    /**
+     *
+     * @param id_incident
+     */
     public static void create(int id_incident) {
         models.Incidents incident = models.Incidents.find("byId", (long) id_incident).first();
         List<Gravites> gravites = Gravites.findAll();
@@ -74,7 +104,11 @@ public class Missions extends ConnectionController {
         render(id_incident, gravites, natureMissions, incident, superHeros, superVilains);
     }
 
-
+    /**
+     * Render une List d'ID de super en JSON stringifié
+     * @param supersListing (List<String>)
+     * @return String
+     */
     private static String RenderListSuper(List<String> supersListing) {
         String listH = "['";
         for (String fmsuper :
@@ -84,6 +118,10 @@ public class Missions extends ConnectionController {
         return (supersListing.size() > 0) ? listH.substring(0, listH.length() - 3) + "']" : "[]";
     }
 
+    /**
+     * Affiche la page pour modifier une mission
+     * @param id_mission (long)
+     */
     public static void modifier(long id_mission) {
         Mission mission = fetchMissionById(id_mission);
 
@@ -104,6 +142,13 @@ public class Missions extends ConnectionController {
         render(gravites, natureMissions, mission, superVilains, superHeros);
     }
 
+    /**
+     * Sauvegarde des modifications d'une mission
+     * @param id_mission (long)
+     * @param hero (String[])
+     * @param vilain (String[])
+     * @param date (Date)
+     */
     public static void saveModifier(long id_mission, String[] hero, String[] vilain, Date date) {
         String latitude = params.get("lat");
         String longitude = params.get("lon");
@@ -140,6 +185,13 @@ public class Missions extends ConnectionController {
         redirect("/mission/" + mission.id);
     }
 
+    /**
+     * Sauvegarde les infos d'une nouvelle mission
+     * @param id_incident (long)
+     * @param hero (String[])
+     * @param vilain (String[])
+     * @param date (Date)
+     */
     public static void save(long id_incident, String[] hero, String[] vilain, Date date) {
         String latitude = params.get("lat");
         String longitude = params.get("lon");
