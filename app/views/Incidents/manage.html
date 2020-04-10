@@ -8,7 +8,7 @@
     <ul class="list-group list-group-flush">
     #{list items:incidents, as: 'incident'}
         <li class="list-group-item">
-            <button class="accordion btn btn-light">${incident.type} - ${incident.date.format("dd/MM/YYYY h:mm")}</button>
+            <button class="accordion btn btn-light">${incident.type} - ${incident.date.format("dd/MM/YYYY")}</button>
             <div class="panel">
                 <p>${incident.description}</p>
                 <p>${incident.adresse}</p>

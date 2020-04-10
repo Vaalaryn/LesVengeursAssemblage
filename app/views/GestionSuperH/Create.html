@@ -41,6 +41,15 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="id_civil">Sélectionner le civil correspondant au héro</label>
+                <select class="form-control" name="superH.id_civil" id="id_civil">
+                    <option value="">Sélectionner un civil</option>
+                    #{list items:models.Civil.findAll() ,as: "civil"}
+                        <option value="${civil.id}">${civil.id} - ${civil.nom + " " + civil.prenom}</option>
+                    #{/list}
+                </select>
+            </div>
         <div class="form-group">
             <label for="selectPouvoir">&{'gestion.super.create.select'} <strong id="newSuper" data-toggle="modal" data-target="#exampleModal">&{'gestion.super.create.add'}</strong></label>
             <select class="form-control " name="pouvoirsId" id="selectPouvoir" multiple="multiple" style="width: 100%"></select>
@@ -92,6 +101,8 @@
 
             //On active la lib Select2
             $("#selectPouvoir").select2({
+            })
+            $("#id_civil").select2({
             })
         });
 
@@ -196,6 +207,7 @@
                         <label for="descPouvoir">&{'gestion.super.create.modal.desc'}</label>
                         <input type="text" class="form-control" id="descPouvoir">
                     </div>
+
                 </div>
             </div>
             <div class="modal-footer">

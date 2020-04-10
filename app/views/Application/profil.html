@@ -1,40 +1,6 @@
 #{extends 'main.html' /}
 #{set title:'Profil' /}
-#{if admin != 2}
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header flex-row d-flex justify-content-between">
-            <div>
-                <h3 class="card-title">${civil.nom} ${civil.prenom}</h3>
-                <h4 class="card-subtitle mb-2 text-muted">${id}</h4>
-                <p  class="card-subtitle mb-2 text-muted">${(civil.id_admin > 0) ? ((civil.id_admin == 3) ? "Maitre Suprême" : "Admin") : "Civil"}</p>
-            </div>
-            <div class="img-wrap">
-                <img src="/public/images/${civil.civilite}.png"
-                     alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="card-text">&{'profil.adresse'} ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
-            <p class="card-text">&{'profil.mail'} ${civil.mail}</p>
-            <p class="card-text">&{'profil.tel'} ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
-            #{if civil.dateNaissance != null}
-                <p class="card-text">&{'profil.date.naissance.connu'} ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
-            #{/if}
-            #{else}
-                <p class="card-text">&{'profil.date.naissance.pasconnu'}</p>
-            #{/else}
-            #{if civil.dateMort != null}
-                <p class="card-text">&{'profil.date.deces'} ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
-            #{/if}
-            <div class="flex-row d-flex justify-content-around">
-            </div>
-
-        </div>
-    </div>
-</div>
-#{/if}
-#{else}
+#{if admin == 2}
 <div class="container mt-5">
     <div class="card">
         <div class="card-header flex-row d-flex justify-content-between">
@@ -68,8 +34,71 @@
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
+    #{if identite != null}
+        <div class="card mt-5">
+            <div class="card-header flex-row d-flex justify-content-between">
+                <div>
+                    <h3 class="card-title">${identite.nom} ${identite.prenom}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">${identite.id}</h4>
+                    <p class="card-subtitle mb-2 text-muted">${(identite.id_admin > 0) ? ((identite.id_admin == 3) ? "Maitre Suprême" : "Admin") : "Civil"}</p>
+                </div>
+                <div class="img-wrap">
+                    <img src="/public/images/${identite.civilite}.png"
+                         alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">&{'profil.adresse'} ${identite.nation} ${identite.adresse} ${identite.ville} ${identite.cp}</p>
+                <p class="card-text">&{'profil.mail'} ${identite.mail}</p>
+                <p class="card-text">&{'profil.tel'} ${identite.tel.substring(0, 2)} ${identite.tel.substring(2, 4)} ${identite.tel.substring(4, 6)} ${identite.tel.substring(6, 8)} ${identite.tel.substring(8, 10)}</p>
+                #{if identite.dateNaissance != null}
+                    <p class="card-text">&{'profil.date.naissance.connu'} ${identite.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+                #{/if}
+                #{else}
+                    <p class="card-text">&{'profil.date.naissance.pasconnu'}</p>
+                #{/else}
+                #{if identite.dateMort != null}
+                    <p class="card-text">&{'profil.date.deces'} ${identite.dateMort.format("dd / MM / YYYY").toString()}</p>
+                #{/if}
+                <div class="flex-row d-flex justify-content-around">
+                </div>
+            </div>
+        </div>
+    #{/if}
 </div>
-#{/else}
+#{/if}
+#{else}
+<div class="container mt-5">
+        <div class="card mt-5">
+            <div class="card-header flex-row d-flex justify-content-between">
+                <div>
+                    <h3 class="card-title">${civil.nom} ${civil.prenom}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">${civil.id}</h4>
+                    <p class="card-subtitle mb-2 text-muted">${(civil.id_admin > 0) ? ((civil.id_admin == 3) ? "Maitre Suprême" : "Admin") : "Civil"}</p>
+                </div>
+                <div class="img-wrap">
+                    <img src="/public/images/${civil.civilite}.png"
+                         alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">&{'profil.adresse'} ${civil.nation} ${civil.adresse} ${civil.ville} ${civil.cp}</p>
+                <p class="card-text">&{'profil.mail'} ${civil.mail}</p>
+                <p class="card-text">&{'profil.tel'} ${civil.tel.substring(0, 2)} ${civil.tel.substring(2, 4)} ${civil.tel.substring(4, 6)} ${civil.tel.substring(6, 8)} ${civil.tel.substring(8, 10)}</p>
+                #{if civil.dateNaissance != null}
+                    <p class="card-text">&{'profil.date.naissance.connu'} ${civil.dateNaissance.format("dd / MM / YYYY").toString()}</p>
+                #{/if}
+                #{else}
+                    <p class="card-text">&{'profil.date.naissance.pasconnu'}</p>
+                #{/else}
+                #{if civil.dateMort != null}
+                    <p class="card-text">&{'profil.date.deces'} ${civil.dateMort.format("dd / MM / YYYY").toString()}</p>
+                #{/if}
+                <div class="flex-row d-flex justify-content-around">
+                </div>
+            </div>
+        </div>
+</div>
+}#{/else}
