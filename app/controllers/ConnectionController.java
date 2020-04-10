@@ -9,6 +9,10 @@ import models.*;
 
 @With(Secure.class)
 public class ConnectionController extends Controller  {
+
+    /**
+     * gestion de la connexion des utilisateurs
+     */
     @Before
     static void setConnectedUser() {
         if(Security.isConnected()) {

@@ -10,11 +10,17 @@ import play.libs.Codec;
 
 public class Incidents extends ConnectionController {
 
+    /**
+     * Render la page de la création d'incident
+     */
     public static void index() {
         render();
     }
 
-
+    /**
+     * Création d'un incident
+     * @param incidents (Incidents)
+     */
     public static void postIndex(@Valid models.Incidents incidents) {
         incidents.civil = Security.connected();
         if (validation.hasErrors()){
@@ -26,12 +32,18 @@ public class Incidents extends ConnectionController {
         redirect("/incident/new");
     }
 
+    /**
+     * Affiche les incidents déclaré
+     */
     public static void suivi() {
         List<models.Incidents> incidents = models.Incidents.find("byCivil", Security.connected()).fetch();
         renderArgs.put("incidents", incidents);
         render();
     }
 
+    /**
+     * render la page de gestion des incidents
+     */
     @Check("Admin")
     public static void manage() {
         List<models.Incidents> incidents = models.Incidents.find("byEtat", false).fetch();
@@ -39,6 +51,10 @@ public class Incidents extends ConnectionController {
         render();
     }
 
+    /**
+     * defini un incident comme sans suite
+     * @param id_incident (int)
+     */
     @Check("Admin")
     public static void manageIncident(int id_incident) {
         models.Incidents incidents = models.Incidents.find("byId", (long) id_incident).first();
