@@ -2,7 +2,9 @@
 #{set title: "Gérer les incidents" /}
 
 <div class="container">
-    <h1>Gestion d'incidents</h1>
+    <div class="row">
+        <div class="col-12">
+    <h1>&{'incident.manage.title'}</h1>
     <ul class="list-group list-group-flush">
     #{list items:incidents, as: 'incident'}
         <li class="list-group-item">
@@ -10,10 +12,12 @@
             <div class="panel">
                 <p>${incident.description}</p>
                 <p>${incident.adresse}</p>
-                <a href="/mission/new/${incident.id}" class="btn btn-outline-success float-right ml-2">Accepter</a>
-                <a href="/incident/manage/${incident.id}" class="btn btn-outline-danger float-right">Refuser</a>
+                <a href="/mission/new/${incident.id}" class="btn btn-outline-success float-right ml-2">&{'incident.manage.yes'}</a>
+                <a href="/incident/manage/${incident.id}" class="btn btn-outline-danger float-right">&{'incident.manage.non'}</a>
             </div>
         </li>
     #{/list}
     </ul>
+    </div>
+        </div>
 </div>

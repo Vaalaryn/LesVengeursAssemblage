@@ -2,52 +2,52 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h3>Créer un nouveau super</h3>
+            <h3>&{'gestion.super.create.title'}</h3>
         #{form @controllers.GestionSuperH.Save(), method:'POST'}
             <div class="form-group">
-                <label for="superH.nom">Pseudonyme</label>
+                <label for="superH.nom">&{'gestion.super.create.nom'}</label>
                 <input type="text" id="superH.nom" class="form-control" name="superH.nom"
                        value="${flash['superH.nom']}">
                 <span class="error">#{error 'superH.nom'/}</span>
             </div>
             <div class="form-group">
-                <label for="superH.pointFaibles">Point(s) faible(s)</label>
+                <label for="superH.pointFaibles">&{'gestion.super.create.pointfaible'}</label>
                 <input type="text" id="superH.pointFaibles" class="form-control" name="superH.pointFaibles"
                        value="${flash['superH.pointFaibles']}">
                 <span class="error">#{error 'superH.pointFaibles'/}</span>
             </div>
             <div class="form-group">
-                <label for="superH.mdp">Mot de passe</label>
+                <label for="superH.mdp">&{'gestion.super.create.mdp'}</label>
                 <input type="password" id="superH.mdp" class="form-control" name="superH.mdp"
                        value="${flash['superH.mdp']}">
                 <span class="error">#{error 'superH.mdp'/}</span>
             </div>
             <div class="form-group">
-                <label>Type</label>
-                <div class="row">
+                <label>&{'gestion.super.create.type'}</label>
+                <div class="row  radio-multiple">
                     <div class="form-check col-2 ml-3">
                         <input class="form-check-input" type="radio" name="typeS" id="superH.typeH"
                                value="H" checked>
                         <label class="form-check-label" for="superH.type">
-                            Super héro
+                        &{'gestion.super.create.hero'}
                         </label>
                     </div>
                     <div class="form-check col-2 ml-3">
                         <input class="form-check-input" type="radio" name="typeS" id="superH.typeV"
                                value="V">
                         <label class="form-check-label" for="superH.type">
-                            Super vilain
+                        &{'gestion.super.create.vilain'}
                         </label>
                     </div>
                 </div>
             </div>
         <div class="form-group">
-            <label for="selectPouvoir">Sélectionner les pouvoirs du super <strong id="newSuper" data-toggle="modal" data-target="#exampleModal">Ajouter un pouvoir</strong></label>
+            <label for="selectPouvoir">&{'gestion.super.create.select'} <strong id="newSuper" data-toggle="modal" data-target="#exampleModal">&{'gestion.super.create.add'}</strong></label>
             <select class="form-control " name="pouvoirsId" id="selectPouvoir" multiple="multiple" style="width: 100%"></select>
         </div>
             <input type="submit" value="Confirmer" class="btn btn-outline-success float-right">
         #{/form}
-        #{a @controllers.GestionSuperH.List()}Retour à la liste#{/a}
+        #{a @controllers.GestionSuperH.List()}#{/a}
         </div>
     </div>
 
@@ -172,7 +172,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ajouter un pouvoir</h5>
+                <h5 class="modal-title" id="exampleModalLabel">&{'gestion.super.create.modal.title'}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -180,27 +180,32 @@
             <div class="modal-body">
                 <div class="addPouvoir">
                     <div class="form-group">
-                        <label for="nomPouvoir">Nom du pouvoir</label>
+                        <label for="nomPouvoir">&{'gestion.super.create.modal.nompouvoir'}</label>
                         <input type="text" class="form-control" id="nomPouvoir">
                     </div>
                     <div class="form-group">
-                        <label for="categoriePouvoir">Nom du pouvoir</label>
+                        <label for="categoriePouvoir">&{'gestion.super.create.modal.nompouvoir'}</label>
                         <select class="form-control" name="categoriePouvoir" id="categoriePouvoir">
-                            <option value="">Sélectionner une catégorie</option>
+                            <option value="">&{'gestion.super.create.modal.selectcat'}</option>
                             #{list items:models.CategoriesPouvoir.findAll() ,as: "categorie"}
                                 <option value="${categorie.id}">${categorie.nom}</option>
                             #{/list}
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="descPouvoir">Description</label>
+                        <label for="descPouvoir">&{'gestion.super.create.modal.desc'}</label>
                         <input type="text" class="form-control" id="descPouvoir">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-success" id="validerPouvoir">Ajouter un pouvoir</button>
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" class="btn btn-danger col-sm-12" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-success col-sm-12" id="validerPouvoir">Ajouter un pouvoir</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
